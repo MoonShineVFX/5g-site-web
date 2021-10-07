@@ -29,13 +29,20 @@ const FooterLayout = styled('footer')(({ theme }) => ({
         fontSize: '1.8em',
         'a': {
             color: theme.palette.containerTextColor,
+            marginRight: '16px',
         },
     },
     '.footer-copyright': {
+        textAlign: 'center',
         'p': {
             marginBottom: '0',
         },
     },
+    '.align-box': {
+        border: '1px solid',
+        textAlign: 'left',
+        display: 'inline-block',
+    }
 }));
 
 //
@@ -52,7 +59,9 @@ const Footer = () => (
             </Grid>
 
             <Grid item xs>
-                456
+                <div className="align-box">
+                    456
+                </div>
             </Grid>
 
             <Grid item xs>
@@ -67,18 +76,20 @@ const Footer = () => (
         >
             <Grid item xs></Grid>
             <Grid item xs>
-                {
-                    socialMedia.map(({ url, icon }, idx) => (
+                <div className="align-box">
+                    {
+                        socialMedia.map(({ url, icon }, idx) => (
 
-                        <Links
-                            key={idx}
-                            href={url}
-                        >
-                            <FontIcon icon={icon} />
-                        </Links>
+                            <Links
+                                key={idx}
+                                href={url}
+                            >
+                                <FontIcon icon={icon} />
+                            </Links>
 
-                    ))
-                }
+                        ))
+                    }
+                </div>
             </Grid>
             <Grid item xs></Grid>
         </Grid>
