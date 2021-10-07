@@ -7,19 +7,19 @@ const LogoLayout = styled(Links)(({ theme }) => ({
     textDecoration: 'none',
     '.logo-text': {
         fontWeight: 'normal',
-        color: theme.palette.containerTextColor,
+        color: theme.palette.bg.text,
         letterSpacing: '8px',
         margin: '0',
     },
     'div': {
         fontSize: '0.9em',
-        color: '#9AE5D9',
+        color: theme.palette.text.secondary,
     },
 }));
 
 const LogoText = () => (
 
-    <LogoLayout>
+    <LogoLayout url="/" className="logoText">
         <h2 className="logo-text">高雄市</h2>
         <div>地方文化特色整合</div>
         <div>5G應用與落地計畫</div>

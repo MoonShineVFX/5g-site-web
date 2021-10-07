@@ -1,141 +1,222 @@
+import { GlobalStyles, Grid } from '@mui/material';
 import { styled } from '@mui/system';
+import theme from '../../utils/theme';
 import SlideShow from '../SlideShow';
+import { Links } from '../Links';
 
-const SlideShowWrapLayout = styled(SlideShow)(({ theme }) => ({
-    '.slideshow-control-arrows': {
-        position: 'absolute',
-        bottom: '24px',
-        right: '24px',
-        '.MuiButton-root': {
-            width: '34px',
-            height: '34px',
-            minHeight: 'initial',
-            position: 'initial',
-            transform: 'initial',
-            '&:first-of-type': {
-                marginRight: '16px',
+//
+const styles = {
+    'main > div > section': {
+        '&:not(:last-child)': {
+            marginBottom: '100px',
+        },
+        '.section-title': {
+            marginBottom: '80px',
+        },
+    },
+    '.breadcrumb': {
+        display: 'none',
+    },
+    [theme.breakpoints.up('md')]: {
+
+    },
+    [theme.breakpoints.down('md')]: {
+        'main > div > section': {
+            marginBottom: '40px',
+            padding: '0',
+            '.section-title': {
+                marginBottom: '40px',
             },
         },
-        'svg': {
-            fontSize: '1em',
+    },
+};
+
+// Home Style
+const homeStyles = <GlobalStyles styles={styles} />;
+
+//
+const SlideShowLayout = styled(SlideShow)(({ theme }) => ({
+    '.item': {
+        height: '428px',
+    },
+    [theme.breakpoints.up('md')]: {
+        padding: '0 30px',
+    },
+    [theme.breakpoints.down('sm')]: {
+        '.item': {
+            height: '360px',
+        },
+    },
+    [theme.breakpoints.down('420')]: {
+        '.item': {
+            height: '300px',
         },
     },
 }));
 
-const SlideShowItemLayout = styled('div')(({ theme }) => ({
-    '.inner': {
-        lineHeight: '1.8',
-        maxHeight: '420px',
-        borderRadius: theme.borderRadius,
-        display: 'flex',
-        overflow: 'hidden',
-        '> *': {
-            flex: 1,
-        },
+//
+const ItemLayout = styled(Grid)({
+    padding: '0 24px',
+    '.item': {
+        display: 'block',
     },
-    '.price': {
-        fontSize: '1.15em',
-        color: theme.palette.priceColor,
+    '.thumb': {
+        height: '191px',
     },
-}));
+});
 
-const SlideshowInfoLayout = styled('div')(({ theme }) => ({
-    backgroundColor: theme.palette.card.main,
-    padding: '30px 36px',
-    position: 'relative',
-    '.status': {
-        fontWeight: 'bold',
-        color: theme.palette.textColor,
+//
+const ItemPartnerLayout = styled(Grid)(({ theme }) => ({
+    maxWidth: '900px',
+    fontSize: '2em',
+    textAlign: 'center',
+    margin: 'auto',
+    '*': {
+        color: theme.palette.primary.main,
     },
-    '.title': {
-        fontWeight: 'normal',
-        margin: '16px 0 20px',
+    'svg': {
+        fontSize: '2.2em',
     },
-    '.description': {
-        fontSize: '1.15em',
-        marginBottom: '30px',
-        display: '-webkit-box',
-        WebkitLineClamp: 5,
-        WebkitBoxOrient: 'vertical',
-        overflow: 'hidden',
-    },
-}));
-
-const ItemNewArrivalLayout = styled('div', {
-    name: 'items',
-})(({ theme }) => ({
     '.itemWrap': {
-        width: 'calc((100% - (30px * 3)) / 4)',
-        height: '328px',
-        float: 'left',
-        borderRadius: '16px',
-        marginRight: '30px',
+        marginBottom: '80px',
+        padding: '0 10px',
+    },
+    'a': {
+        width: '240px',
+        border: '1px solid',
+        borderBottom: '0',
+        borderRadius: '70% 70% 0 0',
+        padding: '40px 20px 20px',
         position: 'relative',
-        overflow: 'hidden',
-        '&:nth-of-type(4n)': {
-            marginRight: 0,
-        },
     },
-    '.item-thumb': {
-        height: '100%',
-        'img': {
-            margin: '0 auto',
-        },
+    'h1': {
+        letterSpacing: '2px',
+        margin: '4px 0 0',
     },
-    '.item-content': {
-        width: '100%',
-        lineHeight: '1.3',
-        color: theme.palette.textColor,
-        backgroundColor: '#000',
-        padding: '20px 24px',
+    '.nothing': {
+        width: 'calc(100% - 60px)',
+        borderTop: '2px solid',
         position: 'absolute',
-        bottom: 0,
-        opacity: .85,
+        bottom: '-17px',
+        overflow: 'hidden',
+        '&:after': {
+            content: '""',
+            width: '35px',
+            height: '35px',
+            display: 'block',
+            backgroundColor: theme.palette.primary.main,
+            borderRadius: '50%',
+            margin: '-20px auto 0',
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        maxWidth: '100%',
+        'svg': {
+            fontSize: '1.6em',
+        },
+        'a': {
+            width: '220px',
+            paddingTop: '50px',
+        },
+        'h1': {
+            fontSize: '1.25em',
+        },
+    },
+}));
+
+//
+const NewsWrapLayout = styled(Grid)(({ theme }) => ({
+    '.MuiGrid-root': {
+        padding: '0 25px',
+    },
+    '.title-box': {
+        fontSize: '1.15em',
+        color: '#280724',
+        textAlign: 'center',
+        borderTop: `1px solid ${theme.palette.primary.main}`,
+        marginBottom: '80px',
+        overflow: 'hidden',
+        '&:before': {
+            content: '""',
+            width: '36px',
+            height: '30px',
+            backgroundColor: theme.palette.primary.main,
+            borderRadius: '50%',
+            display: 'block',
+            margin: '-18px auto 6px',
+        },
         '.title': {
-            fontSize: '1.15em',
             fontWeight: 'normal',
+            color: theme.palette.primary.main,
+            borderBottom: '1px solid',
+            display: 'inline-block',
             margin: '0 0 4px',
         },
     },
-    '.price': {
-        fontWeight: 'bold',
-        color: theme.palette.priceColor,
+    [theme.breakpoints.up('md')]: {
+        padding: '0 20px',
+    },
+    [theme.breakpoints.down('md')]: {
+        '.MuiGrid-root': {
+            marginBottom: '40px',
+            padding: '0',
+        },
+        '.title-box': {
+            fontSize: '1em',
+            marginBottom: '20px',
+        },
     },
 }));
 
-const ItemDocumentLayout = styled('div')(({ theme }) => ({
-    '.itemWrap': {
-        maxHeight: '238px',
-        color: theme.palette.textColor,
-        backgroundColor: theme.palette.card.main,
-        textDecoration: 'none',
-        borderRadius: '16px',
-        display: 'flex',
-        marginBottom: '30px',
-        overflow: 'hidden',
-        '&:hover': {
-            backgroundColor: theme.palette.card.light,
-        },
-    },
-    '.item-content': {
-        lineHeight: '1.8',
-        padding: '30px 40px',
-        flex: 1,
-    },
+//
+const NewsItemWrapLayout = styled(Links)(({ theme }) => ({
+    color: theme.palette.primary.main,
+    display: 'block',
+    marginBottom: '56px',
     '.title': {
-        fontSize: '1.3em',
-        marginTop: 0,
-        marginBottom: '24px',
+        minHeight: '76px',
+        fontWeight: 'normal',
+        color: theme.palette.text.primary,
+        marginTop: '0',
+        WebkitLineClamp: theme.lineClamp(2),
     },
-    'p': {
+    'div': {
         fontSize: '1.15em',
+        textAlign: 'right',
+        color: theme.palette.text.primary,
+        borderTop: `1px solid ${theme.palette.primary.main}`,
+        borderBottom: `4px solid ${theme.palette.primary.main}`,
+        padding: '12px 0',
+    },
+    '.isHot': {
+        color: theme.palette.primary.main,
+        border: `1px solid ${theme.palette.primary.main}`,
+        borderRadius: '6px',
+        float: 'left',
+        padding: '0 36px',
+    },
+    [theme.breakpoints.down('md')]: {
+        marginBottom: '40px',
+        '.title': {
+            lineHeight: '1.4',
+            fontSize: '1.15em',
+            WebkitLineClamp: theme.lineClamp(),
+        },
+        'div': {
+            fontSize: '0.9em',
+        },
+        '.isHot': {
+            fontSize: '1.2em',
+            marginTop: '-4px',
+        },
     },
 }));
 
 export {
-    SlideShowWrapLayout,
-    SlideShowItemLayout,
-    SlideshowInfoLayout,
-    ItemNewArrivalLayout,
-    ItemDocumentLayout,
+    homeStyles,
+    SlideShowLayout,
+    ItemLayout,
+    ItemPartnerLayout,
+    NewsWrapLayout,
+    NewsItemWrapLayout,
 };

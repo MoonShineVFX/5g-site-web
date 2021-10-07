@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 const util = {
     /**
@@ -28,8 +29,7 @@ const util = {
                 }
 
                 return {
-                    // url: `/api${url}`,
-                    url: `/json${url}`,
+                    url: (process.env.NODE_ENV === 'development') ? `//${process.env.HOST}/api${url}` : `/api${url}`,
                     method,
                 };
 
@@ -37,6 +37,7 @@ const util = {
             showErrorMesg = (message, callback) => {
 
                 console.log(message || '出了些狀況，請找研發');
+                // alert(message || '出了些狀況，請找研發');
 
             };
 
@@ -48,13 +49,6 @@ const util = {
                     // result: 1
                     ({ data }) => {
 
-                        // localhost 才有此情境
-                        // if (!data.result && (process.env.NODE_ENV !== 'production')) {
-
-                        //     reject(showErrorMesg('請先登入'));
-
-                        // }
-
                         resolve(data.data);
 
                     },
@@ -62,17 +56,12 @@ const util = {
                     ({ response }) => {
 
                         const {
-                            // status,
-                            data: { message },
+                            data: { errors },
                         } = response;
 
-                        reject(showErrorMesg(message));
-
-                        // reject(showErrorMesg(message, () => {
-
-                        //     window.location = `/error`;
-
-                        // }));
+                        reject(showErrorMesg(
+                            Object.keys(errors).map((key) => `${key}: ${errors[key]}`)
+                        ));
 
                     },
                 )
@@ -81,9 +70,9 @@ const util = {
 
     },
 
-    serviceServer: (url, reqData = {}) => {
+    serviceServer: ({ method = 'post', url }, reqData = {}) => {
 
-        return axios.post(`http://localhost:1001/${url}`, reqData);
+        return axios[method](`http://${process.env.HOST}/api${url}`, reqData);
 
     },
 
@@ -95,6 +84,25 @@ const util = {
      * @return {string}
      */
     renderWithoutValue: (value) => value ? value : '--',
+
+    /**
+     * @author Betty
+     * @param {object[]} tags - 標籤陣列
+     * @return {object} - id 當 key
+     */
+    mappingTags: (tags) => tags.reduce((acc, { id, name }) => {
+
+        acc[id] = name;
+        return acc;
+
+    }, {}),
+
+    /**
+     * @author Betty
+     * @param {string} date - 時間
+     * @return {string} - yyyy.mm.dd (dd)
+     */
+    dateFormat: (date) => dayjs(date).format('YYYY.MM.DD (dd)'),
 
 };
 
