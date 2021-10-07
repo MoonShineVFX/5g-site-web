@@ -1,0 +1,58 @@
+{
+    "result": 1,
+    "message": "",
+    "errors": [],
+    "data": {
+        "banners": [
+            {
+                "id": 11111,
+                "title": "小標題",
+                "imgUrl": "/domain/path/xxx.jpg",
+                "link": "http://google.com.tw"
+            }
+        ],
+        "demoPlaces": [
+            {
+                "id": 22222,
+                "title": "標題",
+                "imgUrl": "/domain/path/xxx.jpg"
+            }
+        ],
+        "news": {
+            "news": [
+                {
+                    "id": 33333,
+                    "title": "標題-33333",
+                    "createTime": "2021-10-01T14:00:00",
+                    "isHot": true
+                },
+                {
+                    "id": 44444,
+                    "title": "標題-44444",
+                    "createTime": "2021-10-01T14:00:00",
+                    "isHot": true
+                },
+                {
+                    "id": 55555,
+                    "title": "標題-55555",
+                    "createTime": "2021-10-01T14:00:00",
+                    "isHot": false
+                }
+            ],
+            "newsIndustries": [
+                {
+                    "id": 66666,
+                    "title": "標題-66666",
+                    "createTime": "2021-10-01T14:00:00",
+                    "isHot": true
+                }
+            ]
+        },
+        "partners": [
+            {
+                "id": 99999,
+                "name": "5G"
+            }
+        ]
+    }
+}
