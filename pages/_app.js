@@ -16,8 +16,8 @@ const styles = {
         lineHeight: '1.6',
         fontSize: '1em',
         fontFamily: 'Noto Sans TC, Robot, 微軟正黑體, Microsoft JhengHei',
-        color: theme.palette.textColor,
-        backgroundColor: theme.palette.bgColor,
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.bg.primary,
         margin: 0,
         '*': {
             boxSizing: 'border-box',
@@ -25,6 +25,7 @@ const styles = {
     },
     a: {
         display: 'inline-block',
+        textDecoration: 'none',
     },
     '.Model-container': {
         width: '100%',
@@ -68,14 +69,17 @@ const WebSite = ({ Component, pageProps }) => {
                     <Header />
                     <Box
                         component="main"
-                        sx={{ display: 'flex' }}
+                        sx={{
+                            minHeight: 'calc(100vh - 559px)', // header: 145px, footer: 414px
+                            display: 'flex',
+                        }}
                     >
                         <Box
                             component="div"
                             className="Model-container"
                             sx={{
-                                paddingTop: '20px',
-                                paddingBottom: '20px',
+                                paddingTop: '40px',
+                                paddingBottom: '40px',
                             }}
                         >
                             <Content>

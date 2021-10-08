@@ -8,18 +8,18 @@ import FontIcon from '../components/FontIcon';
 
 const AppBarLayout = styled('header')(({ theme }) => ({
     maxHeight: '145px',
-    backgroundColor: theme.palette.containerBgColor,
+    backgroundColor: theme.palette.bg.secondary,
     boxShadow: 'none',
-    color: theme.palette.containerTextColor,
+    color: theme.palette.bg.text,
     'a': {
-        color: theme.palette.containerTextColor,
+        color: theme.palette.bg.text,
         textDecoration: 'none',
     },
 }));
 
 const HeaderTopLayout = styled('div')(({ theme }) => ({
     fontSize: '0.9em',
-    borderBottom: '1px solid #9AE5D9',
+    borderBottom: `1px solid ${theme.palette.text.secondary}`,
     '.search': {
         fontSize: '1.2em',
         marginRight: '40px',

@@ -8,7 +8,7 @@ const PaginationLayout = styled(Pagination)(({ theme }) => ({
         justifyContent: 'center',
     },
     '.MuiPaginationItem-root': {
-        color: theme.palette.textColor,
+        color: theme.palette.text.primary,
         opacity: 0.6,
     },
 }));

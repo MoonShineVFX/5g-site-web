@@ -5,17 +5,39 @@
     "data": {
         "banners": [
             {
-                "id": 11111,
-                "title": "小標題",
-                "imgUrl": "/domain/path/xxx.jpg",
+                "id": 156415,
+                "title": "小標題-156415",
+                "imgUrl": "//fakeimg.pl/1196x450",
+                "link": "http://google.com.tw"
+            },
+            {
+                "id": 156416,
+                "title": "小標題-156416",
+                "imgUrl": "//fakeimg.pl/1196x450",
+                "link": "http://google.com.tw"
+            },
+            {
+                "id": 156417,
+                "title": "小標題-156417",
+                "imgUrl": "//fakeimg.pl/1196x450",
                 "link": "http://google.com.tw"
             }
         ],
         "demoPlaces": [
             {
-                "id": 22222,
+                "id": 8131,
                 "title": "標題",
-                "imgUrl": "/domain/path/xxx.jpg"
+                "imgUrl": "//fakeimg.pl/300x300"
+            },
+            {
+                "id": 8132,
+                "title": "標題",
+                "imgUrl": "//fakeimg.pl/300x300"
+            },
+            {
+                "id": 8133,
+                "title": "標題",
+                "imgUrl": "//fakeimg.pl/300x300"
             }
         ],
         "news": {
@@ -50,8 +72,16 @@
         },
         "partners": [
             {
-                "id": 99999,
+                "id": 15451,
                 "name": "5G"
+            },
+            {
+                "id": 15452,
+                "name": "文化"
+            },
+            {
+                "id": 15453,
+                "name": "科技"
             }
         ]
     }

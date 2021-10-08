@@ -7,13 +7,13 @@ const LogoLayout = styled(Links)(({ theme }) => ({
     textDecoration: 'none',
     '.logo-text': {
         fontWeight: 'normal',
-        color: theme.palette.containerTextColor,
+        color: theme.palette.bg.text,
         letterSpacing: '8px',
         margin: '0',
     },
     'div': {
         fontSize: '0.9em',
-        color: '#9AE5D9',
+        color: theme.palette.text.secondary,
     },
 }));
 

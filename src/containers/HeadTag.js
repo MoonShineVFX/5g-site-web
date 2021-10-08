@@ -14,8 +14,8 @@ import Head from 'next/head';
 );
 
 HeadSEO.defaultProps = {
-    title: '模型平台',
-    description: '模型,3D,免費',
+    title: 'ˋ中華電信5G',
+    description: 'ˋ中華電信5G',
 };
 
 HeadSEO.propTypes = {

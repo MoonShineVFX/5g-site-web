@@ -2,11 +2,13 @@ import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import FontIcon from './FontIcon';
+import {
+    ArrowBackIosNew as ArrowBackIosIcon,
+    ArrowForwardIos as ArrowForwardIosIcon,
+} from '@mui/icons-material';
 import { GlobalContext } from '../context/global.state';
 
-const SlideShowLayout = styled('section')(() => ({
+const SlideShowLayout = styled('div')(() => ({
     width: '100%',
     position: 'relative',
 }));
@@ -21,42 +23,58 @@ const SlideShowContainer = styled('div', {
     '.active': {
         display: 'block'
     },
+    'img': {
+        width: '100%',
+    },
 }));
 
 // 點點
 const Dots = styled('span', {
     name: 'slideshow-control-dots',
 })(({ theme }) => ({
-    position: 'absolute',
-    bottom: '16px',
+    display: 'block',
+    textAlign: 'center',
+    marginTop: '20px',
     '> *': {
-        width: '8px',
-        height: '8px',
-        backgroundColor: theme.palette.secondary.dark,
+        width: '16px',
+        height: '16px',
         borderRadius: '50%',
         display: 'inline-block',
-        margin: '2px 6px',
+        margin: '2px 10px',
+        position: 'relative',
         cursor: 'pointer',
+        '&:after': {
+            content: '""',
+            width: '8px',
+            height: '8px',
+            backgroundColor: '#58595B',
+            borderRadius: '50%',
+            display: 'inline-block',
+            opacity: 0.25,
+            position: 'absolute',
+            top: 'calc(50% / 2)',
+            left: 'calc(50% / 2)',
+        },
     },
     '.active': {
-        backgroundColor: theme.palette.secondary.main,
+        border: `1px solid ${theme.palette.primary.main}`,
+        '&:after': {
+            backgroundColor: theme.palette.primary.main,
+            opacity: '1',
+        },
     },
 }));
 
 // 箭頭
-const Arrows = styled('span')(({ theme }) => ({
+const Arrows = styled('span')(() => ({
     '.MuiButton-root': {
         minWidth: 'auto',
         width: '60px',
         height: '60px',
-        color: theme.palette.secondary.contrastText,
-        backgroundColor: theme.palette.secondary.dark,
+        border: '1px solid',
         borderRadius: '50%',
         padding: 0,
         position: 'absolute',
-        '&:hover': {
-            backgroundColor: theme.palette.secondary.main,
-        },
         '&:first-of-type': {
             left: '20px',
         },
@@ -69,7 +87,7 @@ const Arrows = styled('span')(({ theme }) => ({
     },
 }));
 
-const SlideShow = ({ data, showDot, children, ...rest }) => {
+const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
 
     // Context
     const {
@@ -97,6 +115,16 @@ const SlideShow = ({ data, showDot, children, ...rest }) => {
 
     };
 
+    // Dot
+    const handleClickDot = (idx) => {
+
+        globalDispatch({
+            type: 'slideshow',
+            payload: idx,
+        });
+
+    };
+
     return (
 
         <SlideShowLayout {...rest}>
@@ -104,29 +132,38 @@ const SlideShow = ({ data, showDot, children, ...rest }) => {
 
             {
                 showDot &&
-                    <Dots className="Model-x-align">
+                    <Dots>
                         {
-                            data.map((obj, idx) => (
-                                <span key={idx} className={(idx === slideshowActive) ? 'active' : 'hide'}></span>
+                            data.map((_, idx) => (
+
+                                <span
+                                    key={idx}
+                                    className={(idx === slideshowActive) ? 'active' : 'hide'}
+                                    onClick={() => handleClickDot(idx)}
+                                ></span>
+
                             ))
                         }
                     </Dots>
             }
 
-            <Arrows className="slideshow-control-arrows">
-                <Button
-                    className="Model-y-align"
-                    onClick={handleArrowLeft}
-                >
-                    <FontIcon icon={faChevronLeft} />
-                </Button>
-                <Button
-                    className="Model-y-align"
-                    onClick={handleArrowRight}
-                >
-                    <FontIcon icon={faChevronRight} />
-                </Button>
-            </Arrows>
+            {
+                showArrow &&
+                    <Arrows className="slideshow-control-arrows">
+                        <Button
+                            className="Model-y-align"
+                            onClick={handleArrowLeft}
+                        >
+                            <ArrowBackIosIcon />
+                        </Button>
+                        <Button
+                            className="Model-y-align"
+                            onClick={handleArrowRight}
+                        >
+                            <ArrowForwardIosIcon />
+                        </Button>
+                    </Arrows>
+            }
         </SlideShowLayout>
 
     );
@@ -135,12 +172,14 @@ const SlideShow = ({ data, showDot, children, ...rest }) => {
 
 SlideShow.defaultProps = {
     data: [],
-    showDot: false,
+    showDot: true,
+    showArrow: false,
 };
 
 SlideShow.propTypes = {
     data: PropTypes.array,
     showDot: PropTypes.bool,
+    showArrow: PropTypes.bool,
 };
 
 export default SlideShow;

@@ -30,7 +30,7 @@ const NavMenuLayout = styled('nav', {
     marginLeft: '40px',
     'a': {
         textDecoration: 'none',
-        color: theme.palette.containerTextColor,
+        color: theme.palette.bg.text,
         margin: '20px',
         padding: theme.spacing(2),
         opacity: .8,
