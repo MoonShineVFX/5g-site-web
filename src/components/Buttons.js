@@ -22,10 +22,10 @@ const ButtonLayout = styled(Button)(({ theme }) => ({
     },
 }));
 
-const Buttons = ({ text, children }) => (
+const Buttons = ({ outline, text, children }) => (
 
     <ButtonLayout
-        variant="outlined"
+        {...outline && { variant: 'outlined' }}
         endIcon={<ArrowForwardIosIcon />}
     >
         <div>{text ? text : children}</div>
@@ -35,11 +35,13 @@ const Buttons = ({ text, children }) => (
 
 Buttons.defaultProps = {
     text: '更多消息',
+    outline: true,
 };
 
 Buttons.propTypes = {
     text: PropTypes.string,
     children: PropTypes.any,
+    outline: PropTypes.bool,
 };
 
 export default Buttons;

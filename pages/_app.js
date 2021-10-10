@@ -1,6 +1,8 @@
 import { Fragment } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { GlobalStyles, Box } from '@mui/material';
+import 'dayjs/locale/zh-tw';
+import '../src/utils/locale';
 
 // Context
 import { GlobalProvider } from '../src/context/global.state';

@@ -1,7 +1,7 @@
 import { Fragment, useContext } from 'react';
-import { GlobalStyles } from '@mui/material';
-import { styled } from '@mui/system';
+import { Grid } from '@mui/material';
 import { faWifi, faCoffee, faWind } from '@fortawesome/free-solid-svg-icons';
+import dayjs from 'dayjs';
 
 import HeadTag from '../src/containers/HeadTag';
 import { Links, ButtonLink } from '../src/components/Links';
@@ -9,6 +9,14 @@ import FontIcon from '../src/components/FontIcon';
 import SlideShow from '../src/components/SlideShow';
 import SectionTitle from '../src/components/SectionTitle';
 import Item from '../src/components/Item';
+import {
+    homeStyles,
+    ShowMoreButtonLayout,
+    ItemLayout,
+    ItemPartnerLayout,
+    NewsWrapLayout,
+    NewsItemWrapLayout,
+} from '../src/components/home/homeLayout';
 
 import { GlobalContext } from '../src/context/global.state';
 import util from '../src/utils/util';
@@ -37,74 +45,34 @@ const arrangePartnerTag = (data) => data.reduce((acc, { id, name }, idx) => {
 
 }, {});
 
-const styles = {
-    'main > div > section': {
-        marginBottom: '80px',
-        padding: '0 10px',
-        '.section-title': {
-            marginBottom: '80px',
-        },
-    },
-};
+const NewsWrap = ({ title, text, data }) => (
 
-const ShowMoreButtonLayout = styled('div')(({ theme }) => ({
-    textAlign: 'center',
-    marginTop: '60px',
-}));
+    <Grid item xs>
+        <div className="title-box">
+            <h1 className="title">{title}</h1>
+            <div>{text}</div>
+        </div>
+        <div>
+            {
+                data.map((obj) => <NewsItemWrap key={obj.id} data={obj} />)
+            }
+        </div>
+        <ShowMoreButton />
+    </Grid>
 
-const ItemLayout = styled('div')(() => ({
-    display: 'flex',
-    marginLeft: '-10px',
-    marginRight: '-10px',
-    '.itemWrap': {
-        flex: '1',
-        padding: '0 10px',
-    },
-    '.item': {
-        display: 'block',
-    },
-}));
+);
 
-const ItemPartnerLayout = styled(ItemLayout)(({ theme }) => ({
-    maxWidth: '80%',
-    fontSize: '2em',
-    textAlign: 'center',
-    margin: 'auto',
-    '*': {
-        color: theme.palette.primary.main,
-    },
-    'svg': {
-        fontSize: '2.2em',
-    },
-    'a': {
-        width: '240px',
-        border: '1px solid',
-        borderBottom: '0',
-        borderRadius: '70% 70% 0 0',
-        padding: '40px 20px 20px',
-        position: 'relative',
-    },
-    'h1': {
-        letterSpacing: '2px',
-        margin: '4px 0 0',
-    },
-    '.nothing': {
-        width: 'calc(100% - 60px)',
-        borderTop: '2px solid',
-        position: 'absolute',
-        bottom: '-17px',
-        overflow: 'hidden',
-        '&:after': {
-            content: '""',
-            width: '35px',
-            height: '35px',
-            display: 'block',
-            backgroundColor: theme.palette.primary.main,
-            borderRadius: '50%',
-            margin: '-20px auto 0',
-        },
-    },
-}));
+const NewsItemWrap = ({ data: { title, isHot, createTime } }) => (
+
+    <NewsItemWrapLayout title={title}>
+        <h1 className="title">{title}</h1>
+        <div>
+            {isHot && <span className="isHot">TOP</span>}
+            {dayjs(createTime).format('YYYY.MM.DD (dd)')}
+        </div>
+    </NewsItemWrapLayout>
+
+);
 
 // 顯示更多按鈕
 const ShowMoreButton = ({ url }) => (
@@ -118,9 +86,6 @@ const ShowMoreButton = ({ url }) => (
 const Home = ({ pageData }) => {
 
     // console.log('pageData:', pageData);
-
-    // Style
-    const homeStyles = <GlobalStyles styles={styles} />;
 
     // Context
     const { slideshowActive } = useContext(GlobalContext);
@@ -178,6 +143,24 @@ const Home = ({ pageData }) => {
                 </ItemLayout>
 
                 <ShowMoreButton />
+            </section>
+
+            <section>
+                <NewsWrapLayout
+                    container
+                    component="div"
+                >
+                    <NewsWrap
+                        title="新聞快訊"
+                        text="News"
+                        data={pageData.data.news.news}
+                    />
+                    <NewsWrap
+                        title="產業訊息"
+                        text="Information"
+                        data={pageData.data.news.newsIndustries}
+                    />
+                </NewsWrapLayout>
             </section>
 
             <section>

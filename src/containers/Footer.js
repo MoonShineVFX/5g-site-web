@@ -1,6 +1,8 @@
 import { styled } from '@mui/system';
-import { Grid } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import dayjs from 'dayjs';
 import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
 import { Links } from '../components/Links';
@@ -22,7 +24,10 @@ const FooterLayout = styled('footer')(({ theme }) => ({
     color: theme.palette.bg.text,
     backgroundColor: theme.palette.bg.secondary,
     textAlign: 'center',
-    padding: '76px 0 56px',
+    '> div': {
+        padding: '76px 0 56px',
+        position: 'relative',
+    },
     '.footer-social': {
         margin: '60px auto 20px',
         fontSize: '1.8em',
@@ -78,77 +83,105 @@ const SponsorGridLayout = styled('p')(({ theme }) => ({
             marginBottom: '6px',
         },
     },
-}))
+}));
+
+const BackToTop = styled(IconButton)(({ theme }) => ({
+    backgroundColor: theme.palette.bg.primary,
+    display: 'block',
+    position: 'absolute',
+    top: '-22px',
+    right: '0',
+    '&:hover': {
+        backgroundColor: theme.palette.bg.primary,
+    },
+}));
 
 //
-const Footer = () => (
+const Footer = () => {
 
-    <FooterLayout>
-        <Grid
-            container
-            components="section"
-            className="Model-container footer-info"
-        >
-            <Grid item xs>
-                <SponsorGridLayout><span className="title withLine">主辦</span>高雄市政府經濟發展局</SponsorGridLayout>
-                <SponsorGridLayout><span className="title withLine">協辦</span>財團法人資訊工業策進會</SponsorGridLayout>
-            </Grid>
+    // 回到最上方
+    const targetScrollToTop = () => window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+    });
 
-            <Grid item xs>
-                <div className="align-box">
-                    <SponsorGridLayout className="info">
-                        <span className="title">聯絡我們</span>
-                        802 高雄市苓雅區四維三路2號9樓 <br/>
-                        info@5goio.org <br/>
-                        Tel: +886 7 3368333 <br/>
-                    </SponsorGridLayout>
-                </div>
-            </Grid>
+    return (
 
-            <Grid item xs className="align-right">
-                <LogoText />
-            </Grid>
-        </Grid>
+        <FooterLayout>
+            <div className="Model-container">
+                <Grid
+                    container
+                    components="section"
+                    className="footer-info"
+                >
+                    <Grid item xs>
+                        <SponsorGridLayout><span className="title withLine">主辦</span>高雄市政府經濟發展局</SponsorGridLayout>
+                        <SponsorGridLayout><span className="title withLine">協辦</span>財團法人資訊工業策進會</SponsorGridLayout>
+                    </Grid>
 
-        <Grid
-            container
-            components="section"
-            className="Model-container footer-social"
-        >
-            <Grid item xs></Grid>
-            <Grid item xs>
-                <div className="align-box">
-                    {
-                        socialMedia.map(({ url, icon }, idx) => (
+                    <Grid item xs>
+                        <div className="align-box">
+                            <SponsorGridLayout className="info">
+                                <span className="title">聯絡我們</span>
+                                802 高雄市苓雅區四維三路2號9樓 <br/>
+                                info@5goio.org <br/>
+                                Tel: +886 7 3368333 <br/>
+                            </SponsorGridLayout>
+                        </div>
+                    </Grid>
 
-                            <Links
-                                key={idx}
-                                href={url}
-                            >
-                                <FontIcon icon={icon} />
-                            </Links>
+                    <Grid item xs className="align-right">
+                        <LogoText />
+                    </Grid>
+                </Grid>
 
-                        ))
-                    }
-                </div>
-            </Grid>
-            <Grid item xs className="align-right privacy">
-                <p><Links>資安說明</Links></p>
-                <p><Links>隱私權政策</Links></p>
-            </Grid>
-        </Grid>
+                <Grid
+                    container
+                    components="section"
+                    className="footer-social"
+                >
+                    <Grid item xs></Grid>
+                    <Grid item xs>
+                        <div className="align-box">
+                            {
+                                socialMedia.map(({ url, icon }, idx) => (
 
-        <Grid
-            container
-            components="section"
-            className="Model-container footer-copyright"
-        >
-            <Grid item xs>
-                <p>© 2021 All rights reserved. Moonshine</p>
-            </Grid>
-        </Grid>
-    </FooterLayout>
+                                    <Links
+                                        key={idx}
+                                        href={url}
+                                    >
+                                        <FontIcon icon={icon} />
+                                    </Links>
 
-);
+                                ))
+                            }
+                        </div>
+                    </Grid>
+                    <Grid item xs className="align-right privacy">
+                        <p><Links>資安說明</Links></p>
+                        <p><Links>隱私權政策</Links></p>
+                    </Grid>
+                </Grid>
+
+                <Grid
+                    container
+                    components="section"
+                    className="footer-copyright"
+                >
+                    <Grid item xs>
+                        <p>© {dayjs().format('YYYY')} All rights reserved. Moonshine</p>
+                    </Grid>
+                </Grid>
+
+                <BackToTop onClick={targetScrollToTop}>
+                    <FontIcon icon={faChevronUp} />
+                </BackToTop>
+            </div>
+        </FooterLayout>
+
+    );
+
+};
 
 export default Footer;

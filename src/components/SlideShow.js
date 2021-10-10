@@ -52,8 +52,9 @@ const Dots = styled('span', {
             display: 'inline-block',
             opacity: 0.25,
             position: 'absolute',
-            top: 'calc(50% / 2)',
-            left: 'calc(50% / 2)',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
         },
     },
     '.active': {
@@ -180,6 +181,7 @@ SlideShow.propTypes = {
     data: PropTypes.array,
     showDot: PropTypes.bool,
     showArrow: PropTypes.bool,
+    children: PropTypes.any,
 };
 
 export default SlideShow;
