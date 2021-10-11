@@ -75,8 +75,6 @@ const ItemPartnerLayout = styled(ItemLayout)(({ theme }) => ({
 }));
 
 const NewsWrapLayout = styled(Grid)(({ theme }) => ({
-    marginLeft: '-25px',
-    marginRight: '-25px',
     '.MuiGrid-root': {
         padding: '0 25px',
     },

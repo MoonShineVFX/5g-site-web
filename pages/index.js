@@ -163,7 +163,7 @@ const Home = ({ pageData }) => {
                 </NewsWrapLayout>
             </section>
 
-            <section>
+            {/* <section>
                 <SectionTitle
                     primaryText="文化科技聯盟"
                     secondaryText="Alliances"
@@ -177,14 +177,14 @@ const Home = ({ pageData }) => {
                                 <Links url={`/partner/${id}`}>
                                     <FontIcon icon={arrangePartnerTag(pageData.data.partners)[idx].icon} />
                                     <h1>{name}</h1>
-                                    <span className="5g-x-align nothing"></span>
+                                    <span className="web-x-align nothing"></span>
                                 </Links>
                             </div>
 
                         ))
                     }
                 </ItemPartnerLayout>
-            </section>
+            </section> */}
         </Fragment>
 
     );

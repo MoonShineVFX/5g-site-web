@@ -54,11 +54,11 @@ const HeaderLayout = styled(Toolbar)(({ theme }) => ({
             display: 'none',
         },
     },
-    [theme.breakpoints.up('md')]: {
-        '.header-navbar': {
-            marginRight: '-20px',
-        },
-    },
+    // [theme.breakpoints.up('lg')]: {
+    //     '.header-navbar': {
+    //         marginRight: '-20px',
+    //     },
+    // },
 }));
 
 //
@@ -66,7 +66,7 @@ const Header = () => (
 
     <AppBarLayout>
         <HeaderTopLayout>
-            <Toolbar className="5g-container">
+            <Toolbar className="web-container">
                 <Links>聯絡我們</Links>
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
@@ -78,7 +78,7 @@ const Header = () => (
             </Toolbar>
         </HeaderTopLayout>
 
-        <HeaderLayout className="5g-container">
+        <HeaderLayout className="web-container">
             <LogoText />
             <Box sx={{ flexGrow: 1 }} />
             <Box className="header-navbar">

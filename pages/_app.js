@@ -29,31 +29,44 @@ const styles = {
         display: 'inline-block',
         textDecoration: 'none',
     },
-    '.5g-container': {
-        width: '100%',
+    '.web-container': {
         maxWidth: '1200px',
         margin: 'auto',
+        [theme.breakpoints.up('md')]: {
+            paddingTop: '40px',
+            paddingBottom: '40px',
+        },
     },
-    '.5g-align': {
+    '.web-align': {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
     },
-    '.5g-x-align': {
+    '.web-x-align': {
         left: '50%',
         transform: 'translateX(-50%)',
     },
-    '.5g-y-align': {
+    '.web-y-align': {
         top: '50%',
         transform: 'translateY(-50%)',
     },
-    '.5g-clear-box': {
+    '.web-clear-box': {
         '&:after': {
             content: '""',
             display: 'block',
             clear: 'both',
         },
     },
+    [theme.breakpoints.up('md')]: {
+        'header, main, footer': {
+            minWidth: '1200px',
+        },
+    },
+    // [theme.breakpoints.down('md')]: {
+    //     '.web-container': {
+    //         paddingTop: '20px',
+    //     },
+    // },
 };
 
 //
@@ -78,11 +91,7 @@ const WebSite = ({ Component, pageProps }) => {
                     >
                         <Box
                             component="div"
-                            className="5g-container"
-                            sx={{
-                                paddingTop: '40px',
-                                paddingBottom: '40px',
-                            }}
+                            className="web-container"
                         >
                             <Content>
                                 <Component {...pageProps} />
