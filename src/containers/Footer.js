@@ -109,7 +109,7 @@ const Footer = () => {
     return (
 
         <FooterLayout>
-            <div className="Model-container">
+            <div className="5g-container">
                 <Grid
                     container
                     components="section"

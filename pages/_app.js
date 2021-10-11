@@ -29,25 +29,25 @@ const styles = {
         display: 'inline-block',
         textDecoration: 'none',
     },
-    '.Model-container': {
+    '.5g-container': {
         width: '100%',
         maxWidth: '1200px',
         margin: 'auto',
     },
-    '.Model-align': {
+    '.5g-align': {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
     },
-    '.Model-x-align': {
+    '.5g-x-align': {
         left: '50%',
         transform: 'translateX(-50%)',
     },
-    '.Model-y-align': {
+    '.5g-y-align': {
         top: '50%',
         transform: 'translateY(-50%)',
     },
-    '.Model-clear-box': {
+    '.5g-clear-box': {
         '&:after': {
             content: '""',
             display: 'block',
@@ -78,7 +78,7 @@ const WebSite = ({ Component, pageProps }) => {
                     >
                         <Box
                             component="div"
-                            className="Model-container"
+                            className="5g-container"
                             sx={{
                                 paddingTop: '40px',
                                 paddingBottom: '40px',

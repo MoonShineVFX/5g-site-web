@@ -177,7 +177,7 @@ const Home = ({ pageData }) => {
                                 <Links url={`/partner/${id}`}>
                                     <FontIcon icon={arrangePartnerTag(pageData.data.partners)[idx].icon} />
                                     <h1>{name}</h1>
-                                    <span className="Model-x-align nothing"></span>
+                                    <span className="5g-x-align nothing"></span>
                                 </Links>
                             </div>
 

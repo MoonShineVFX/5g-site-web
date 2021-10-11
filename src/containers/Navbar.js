@@ -31,8 +31,8 @@ const NavMenuLayout = styled('nav', {
     'a': {
         textDecoration: 'none',
         color: theme.palette.bg.text,
-        margin: '20px',
-        padding: theme.spacing(2),
+        marginLeft: '40px',
+        padding: '10px 0 10px 10px',
         opacity: .8,
         transition: 'all .5s ease',
         '&:hover': {

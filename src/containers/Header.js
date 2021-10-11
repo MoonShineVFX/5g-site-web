@@ -32,12 +32,32 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
             padding: '0',
         },
     },
+    [theme.breakpoints.down('md')]: {
+        '.search': {
+            display: 'none',
+        },
+    },
 }));
 
 const HeaderLayout = styled(Toolbar)(({ theme }) => ({
     height: '100px',
+    [theme.breakpoints.up('xs')]: {
+        '.search': {
+            display: 'block',
+        },
+    },
     [theme.breakpoints.up('sm')]: {
         padding: '0',
+    },
+    [theme.breakpoints.up('md')]: {
+        '.search': {
+            display: 'none',
+        },
+    },
+    [theme.breakpoints.up('md')]: {
+        '.header-navbar': {
+            marginRight: '-20px',
+        },
     },
 }));
 
@@ -46,7 +66,7 @@ const Header = () => (
 
     <AppBarLayout>
         <HeaderTopLayout>
-            <Toolbar className="Model-container">
+            <Toolbar className="5g-container">
                 <Links>聯絡我們</Links>
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
@@ -58,14 +78,15 @@ const Header = () => (
             </Toolbar>
         </HeaderTopLayout>
 
-        <HeaderLayout className="Model-container">
+        <HeaderLayout className="5g-container">
             <LogoText />
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{
-                display: { xs: 'flex', md: 'flex' },
-                marginRight: { lg: '-28px' },
-            }}>
+            <Box className="header-navbar">
                 <Navbar />
+
+                <span className="search">
+                    <FontIcon icon={faSearch} />
+                </span>
             </Box>
         </HeaderLayout>
     </AppBarLayout>
