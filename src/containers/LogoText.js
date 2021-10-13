@@ -19,7 +19,7 @@ const LogoLayout = styled(Links)(({ theme }) => ({
 
 const LogoText = () => (
 
-    <LogoLayout>
+    <LogoLayout className="logoText">
         <h2 className="logo-text">高雄市</h2>
         <div>地方文化特色整合</div>
         <div>5G應用與落地計畫</div>

@@ -19,6 +19,7 @@ const socialMedia = [
     },
 ];
 
+//
 const FooterLayout = styled('footer')(({ theme }) => ({
     fontSize: '0.9em',
     color: theme.palette.bg.text,
@@ -59,8 +60,42 @@ const FooterLayout = styled('footer')(({ theme }) => ({
             marginRight: '0',
         },
     },
+    [theme.breakpoints.down('md')]: {
+        '> div': {
+            padding: '40px 20px',
+        },
+        '.align-box, .align-right': {
+            textAlign: 'center',
+            paddingLeft: '0',
+        },
+        '.footer-info > div:not(.logo)': {
+            fontSize: '0.8em',
+            marginBottom: '20px',
+        },
+        '.logo': {
+            order: '-1',
+            marginBottom: '40px',
+        },
+        '.footer-social': {
+            margin: '0',
+        },
+        '.social': {
+            order: '2',
+            marginTop: '20px',
+        },
+        '.privacy': {
+            'p': {
+                display: 'inline-block',
+                margin: '0 15px',
+            },
+            'a': {
+                fontSize: '0.6em',
+            },
+        },
+    },
 }));
 
+//
 const SponsorGridLayout = styled('p')(({ theme }) => ({
     textAlign: 'left',
     marginTop: '0',
@@ -85,6 +120,7 @@ const SponsorGridLayout = styled('p')(({ theme }) => ({
     },
 }));
 
+// 回到最上方
 const BackToTop = styled(IconButton)(({ theme }) => ({
     backgroundColor: theme.palette.bg.primary,
     display: 'block',
@@ -93,6 +129,10 @@ const BackToTop = styled(IconButton)(({ theme }) => ({
     right: '0',
     '&:hover': {
         backgroundColor: theme.palette.bg.primary,
+    },
+    [theme.breakpoints.down('md')]: {
+        left: '50%',
+        transform: 'translateX(-50%)',
     },
 }));
 
@@ -115,12 +155,12 @@ const Footer = () => {
                     components="section"
                     className="footer-info"
                 >
-                    <Grid item xs>
+                    <Grid item xs={12} md={4}>
                         <SponsorGridLayout><span className="title withLine">主辦</span>高雄市政府經濟發展局</SponsorGridLayout>
                         <SponsorGridLayout><span className="title withLine">協辦</span>財團法人資訊工業策進會</SponsorGridLayout>
                     </Grid>
 
-                    <Grid item xs>
+                    <Grid item xs={12} md={4}>
                         <div className="align-box">
                             <SponsorGridLayout className="info">
                                 <span className="title">聯絡我們</span>
@@ -131,7 +171,7 @@ const Footer = () => {
                         </div>
                     </Grid>
 
-                    <Grid item xs className="align-right">
+                    <Grid item xs={12} md={4} className="align-right logo">
                         <LogoText />
                     </Grid>
                 </Grid>
@@ -141,8 +181,8 @@ const Footer = () => {
                     components="section"
                     className="footer-social"
                 >
-                    <Grid item xs></Grid>
-                    <Grid item xs>
+                    <Grid item xs={12} md={4}></Grid>
+                    <Grid item xs={12} md={4} className="social">
                         <div className="align-box">
                             {
                                 socialMedia.map(({ url, icon }, idx) => (
@@ -158,7 +198,7 @@ const Footer = () => {
                             }
                         </div>
                     </Grid>
-                    <Grid item xs className="align-right privacy">
+                    <Grid item xs={12} md={4} className="align-right privacy">
                         <p><Links>資安說明</Links></p>
                         <p><Links>隱私權政策</Links></p>
                     </Grid>

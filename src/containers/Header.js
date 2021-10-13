@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/system';
 import { Toolbar, Box } from '@mui/material';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Links } from '../components/Links';
 import Navbar from './Navbar';
 import LogoText from './LogoText';
@@ -25,14 +26,13 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
         marginRight: '40px',
     },
     '.MuiToolbar-root': {
-        [theme.breakpoints.up('sm')]: {
-            height: '45px',
-            minHeight: 'auto',
-            lineHeight: '45px',
-            padding: '0',
-        },
+        height: '45px',
+        minHeight: 'auto',
+        lineHeight: '45px',
+        padding: '0',
     },
     [theme.breakpoints.down('md')]: {
+        padding: '0 20px',
         '.search': {
             display: 'none',
         },
@@ -41,56 +41,140 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
 
 const HeaderLayout = styled(Toolbar)(({ theme }) => ({
     height: '100px',
-    [theme.breakpoints.up('xs')]: {
-        '.search': {
-            display: 'block',
-        },
-    },
     [theme.breakpoints.up('sm')]: {
         padding: '0',
     },
     [theme.breakpoints.up('md')]: {
-        '.search': {
+        '.search, .menu, .grid-center .logoText': {
             display: 'none',
         },
+        '.grid-left .logoText': {
+            display: 'block',
+        },
     },
-    // [theme.breakpoints.up('lg')]: {
-    //     '.header-navbar': {
-    //         marginRight: '-20px',
-    //     },
-    // },
+    [theme.breakpoints.down('md')]: {
+        padding: '0',
+        '.search, .menu, .grid-center .logoText': {
+            display: 'block',
+        },
+        '.grid-left .logoText': {
+            display: 'none',
+        },
+        '.nav-menu-wrap': {
+            display: 'none',
+        },
+        'svg': {
+            fontSize: '1.6em',
+        },
+        '.menu, .search': {
+            padding: '20px',
+        },
+    },
+}));
+
+const SideNavLayout = styled('div')(({ theme }) => ({
+    display: 'none',
+    '.nav-menu-wrap': {
+        marginLeft: '0',
+    },
+    [theme.breakpoints.down('md')]: {
+        '&.active': {
+            width: '100%',
+            height: 'calc(100vh - 145px)', // header: 145px
+            display: 'block',
+            position: 'fixed',
+            top: '145px',
+            left: '0',
+            zIndex: '100',
+        },
+        '.mask': {
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, .65)',
+        },
+        '.nav-menu-wrap': {
+            textAlign: 'center',
+            backgroundColor: theme.palette.primary.main,
+            padding: '20px',
+            zIndex: '1',
+        },
+        'a': {
+            display: 'block',
+            margin: '0 auto 16px',
+        },
+    },
 }));
 
 //
-const Header = () => (
+const Header = () => {
 
-    <AppBarLayout>
-        <HeaderTopLayout>
-            <Toolbar className="web-container">
-                <Links>聯絡我們</Links>
-                <Box sx={{ flexGrow: 1 }} />
-                <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+    // State
+    const [active, setActive] = useState(false);
+
+    useEffect(() => {
+
+        document.body.style.overflow = active ? 'hidden' : '';
+
+    });
+
+    // 關閉
+    const handleHide = () => setActive(false);
+
+    //
+    const handleClick = () => setActive(!active);
+
+    return (
+
+        <AppBarLayout>
+            <HeaderTopLayout>
+                <Toolbar className="web-container">
+                    <Links>聯絡我們</Links>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+                        <span className="search">
+                            <FontIcon icon={faSearch} />
+                        </span>
+                        <Links>網站導覽</Links>
+                    </Box>
+                </Toolbar>
+            </HeaderTopLayout>
+
+            <HeaderLayout className="web-container">
+                <Box className="grid-left">
+                    <span
+                        className="menu"
+                        onClick={handleClick}
+                    >
+                        <FontIcon icon={faBars} />
+                    </span>
+                    <LogoText />
+                </Box>
+
+                <Box
+                    className="grid-center"
+                    sx={{ flexGrow: 1 }}
+                >
+                    <LogoText />
+                </Box>
+
+                <Box className="grid-right">
+                    <Navbar />
                     <span className="search">
                         <FontIcon icon={faSearch} />
                     </span>
-                    <Links>網站導覽</Links>
                 </Box>
-            </Toolbar>
-        </HeaderTopLayout>
+            </HeaderLayout>
 
-        <HeaderLayout className="web-container">
-            <LogoText />
-            <Box sx={{ flexGrow: 1 }} />
-            <Box className="header-navbar">
+            <SideNavLayout
+                className={`mWeb-menu ${active ? 'active' : ''}`}
+            >
                 <Navbar />
+                <div className="mask" onClick={handleHide}></div>
+            </SideNavLayout>
+        </AppBarLayout>
 
-                <span className="search">
-                    <FontIcon icon={faSearch} />
-                </span>
-            </Box>
-        </HeaderLayout>
-    </AppBarLayout>
+    );
 
-);
+};
 
 export default Header;

@@ -24,10 +24,10 @@ const navMenus = [
     },
 ];
 
-const NavMenuLayout = styled('nav', {
-    name: 'nav-menu-wrap',
-})(({ theme }) => ({
+//
+const NavMenuLayout = styled('nav')(({ theme }) => ({
     marginLeft: '40px',
+    position: 'relative',
     'a': {
         textDecoration: 'none',
         color: theme.palette.bg.text,
@@ -42,9 +42,9 @@ const NavMenuLayout = styled('nav', {
 }));
 
 //
-const Navbar = () => (
+const Navbar = ({ ...rest }) => (
 
-    <NavMenuLayout>
+    <NavMenuLayout className="nav-menu-wrap" {...rest}>
         {
             navMenus.map(({ key, text }) => (
 
