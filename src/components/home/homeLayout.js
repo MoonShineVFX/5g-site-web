@@ -11,6 +11,9 @@ const styles = {
             marginBottom: '80px',
         },
     },
+    '.breadcrumb': {
+        display: 'none',
+    },
     [theme.breakpoints.down('md')]: {
         'main > div > section': {
             marginBottom: '10px',

@@ -74,9 +74,6 @@ const HeaderLayout = styled(Toolbar)(({ theme }) => ({
 
 const SideNavLayout = styled('div')(({ theme }) => ({
     display: 'none',
-    '.nav-menu-wrap': {
-        marginLeft: '0',
-    },
     [theme.breakpoints.down('md')]: {
         '&.active': {
             width: '100%',
@@ -98,7 +95,7 @@ const SideNavLayout = styled('div')(({ theme }) => ({
             padding: '20px',
             zIndex: '1',
         },
-        'a': {
+        'span': {
             display: 'block',
             margin: '0 auto 16px',
         },

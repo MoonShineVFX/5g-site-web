@@ -10,6 +10,7 @@ import { GlobalProvider } from '../src/context/global.state';
 import theme from '../src/utils/theme';
 import HeadTag from '../src/containers/HeadTag';
 import Header from '../src/containers/Header';
+import Breadcrumb from '../src/components/Breadcrumb';
 import Content from '../src/containers/Content';
 import Footer from '../src/containers/Footer';
 
@@ -72,6 +73,8 @@ const WebSite = ({ Component, pageProps }) => {
 
                 <GlobalProvider>
                     <Header />
+                    <Breadcrumb />
+
                     <Box
                         component="main"
                         sx={{

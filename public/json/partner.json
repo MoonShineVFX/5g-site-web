@@ -1,0 +1,59 @@
+{
+    "result": 1,
+    "message": "",
+    "errors": [],
+    "data": {
+        "tags": [
+            {
+                "id": 15452,
+                "name": "5G領域"
+            },
+            {
+                "id": 15453,
+                "name": "文化領域"
+            },
+            {
+                "id": 15454,
+                "name": "科技領域"
+            }
+        ],
+        "list": [
+            {
+                "id": 156415,
+                "imgUrl": "//fakeimg.pl/157x152",
+                "link": "http://google.com.tw",
+                "name": "夥伴名稱-156415",
+                "phone": "02-27458186 #717",
+                "email": "service@ditstartup.com",
+                "description": "夥伴介紹-156415",
+                "tags": [
+                    15453
+                ]
+            },
+            {
+                "id": 156416,
+                "imgUrl": "//fakeimg.pl/157x152",
+                "link": "http://google.com.tw",
+                "name": "夥伴名稱-156416",
+                "phone": "02-27458186 #717",
+                "email": "service@ditstartup.com",
+                "description": "夥伴介紹-156416",
+                "tags": [
+                    15452
+                ]
+            },
+            {
+                "id": 156417,
+                "imgUrl": "//fakeimg.pl/157x152",
+                "link": "http://google.com.tw",
+                "name": "夥伴名稱-156417",
+                "phone": "02-27458186 #717",
+                "email": "service@ditstartup.com",
+                "description": "夥伴介紹-156417",
+                "tags": [
+                    15454
+                ]
+            }
+        ]
+    }
+}
