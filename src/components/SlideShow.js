@@ -29,9 +29,7 @@ const SlideShowContainer = styled('div', {
 }));
 
 // 點點
-const Dots = styled('span', {
-    name: 'slideshow-control-dots',
-})(({ theme }) => ({
+const Dots = styled('span')(({ theme }) => ({
     display: 'block',
     textAlign: 'center',
     marginTop: '20px',
@@ -63,6 +61,9 @@ const Dots = styled('span', {
             backgroundColor: theme.palette.primary.main,
             opacity: '1',
         },
+    },
+    [theme.breakpoints.down('md')]: {
+        marginTop: '10px',
     },
 }));
 
@@ -133,7 +134,7 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
 
             {
                 showDot &&
-                    <Dots>
+                    <Dots className="slideshow-control-dots">
                         {
                             data.map((_, idx) => (
 

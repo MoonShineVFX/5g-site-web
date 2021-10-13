@@ -8,18 +8,21 @@
                 "id": 156415,
                 "title": "小標題-156415",
                 "imgUrl": "//fakeimg.pl/1196x450",
+                "imgUrlSmall": "//fakeimg.pl/640x800",
                 "link": "http://google.com.tw"
             },
             {
                 "id": 156416,
                 "title": "小標題-156416",
                 "imgUrl": "//fakeimg.pl/1196x450",
+                "imgUrlSmall": "//fakeimg.pl/640x800",
                 "link": "http://google.com.tw"
             },
             {
                 "id": 156417,
                 "title": "小標題-156417",
                 "imgUrl": "//fakeimg.pl/1196x450",
+                "imgUrlSmall": "//fakeimg.pl/640x800",
                 "link": "http://google.com.tw"
             }
         ],

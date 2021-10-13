@@ -48,6 +48,24 @@ const SectionTitleWrapLayout = styled('div')(({ theme }) => ({
             },
         },
     },
+    [theme.breakpoints.down('md')]: {
+        '.wrap': {
+            maxWidth: '180px',
+            height: '70px',
+            padding: '10px 0',
+            '&:after': {
+                height: '140px',
+                top: '-70px',
+            },
+        },
+        '.primary-title': {
+            fontSize: '1.4em',
+            marginBottom: '0',
+        },
+        '.secondary-title': {
+            fontSize: '0.8em',
+        },
+    },
 }));
 
 const SectionTitle = ({ primaryText, secondaryText }) => (

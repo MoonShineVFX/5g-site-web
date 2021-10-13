@@ -32,6 +32,10 @@ const ItemLayout = styled(Links)(({ theme }) => ({
         fontWeight: 'normal',
         margin: 0,
         padding: '20px 24px',
+        [theme.breakpoints.down('md')]: {
+            fontSize: '1.2em',
+            padding: '20px',
+        },
     },
 }));
 

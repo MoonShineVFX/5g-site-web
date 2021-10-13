@@ -1,5 +1,6 @@
 import { GlobalStyles, Grid } from '@mui/material';
 import { styled } from '@mui/system';
+import theme from '../../utils/theme';
 import { Links } from '../Links';
 
 const styles = {
@@ -10,6 +11,15 @@ const styles = {
             marginBottom: '80px',
         },
     },
+    [theme.breakpoints.down('md')]: {
+        'main > div > section': {
+            marginBottom: '10px',
+            padding: '20px',
+            '.section-title': {
+                marginBottom: '40px',
+            },
+        },
+    },
 };
 
 // Home Style
@@ -18,6 +28,9 @@ const homeStyles = <GlobalStyles styles={styles} />;
 const ShowMoreButtonLayout = styled('div')(({ theme }) => ({
     textAlign: 'center',
     marginTop: '60px',
+    [theme.breakpoints.down('768')]: {
+        marginTop: '30px',
+    },
 }));
 
 const ItemLayout = styled('div')(() => ({
@@ -31,10 +44,16 @@ const ItemLayout = styled('div')(() => ({
     '.item': {
         display: 'block',
     },
+    [theme.breakpoints.down('768')]: {
+        display: 'block',
+        '.itemWrap': {
+            marginBottom: '20px',
+        },
+    },
 }));
 
 const ItemPartnerLayout = styled(ItemLayout)(({ theme }) => ({
-    maxWidth: '80%',
+    maxWidth: '900px',
     fontSize: '2em',
     textAlign: 'center',
     margin: 'auto',
@@ -72,6 +91,22 @@ const ItemPartnerLayout = styled(ItemLayout)(({ theme }) => ({
             margin: '-20px auto 0',
         },
     },
+    [theme.breakpoints.down('md')]: {
+        maxWidth: '100%',
+        '.itemWrap': {
+            marginBottom: '60px',
+        },
+        'svg': {
+            fontSize: '1.6em',
+        },
+        'a': {
+            width: '220px',
+            paddingTop: '50px',
+        },
+        'h1': {
+            fontSize: '1.25em',
+        },
+    },
 }));
 
 const NewsWrapLayout = styled(Grid)(({ theme }) => ({
@@ -102,6 +137,16 @@ const NewsWrapLayout = styled(Grid)(({ theme }) => ({
             margin: '0 0 4px',
         },
     },
+    [theme.breakpoints.down('md')]: {
+        '.MuiGrid-root': {
+            marginBottom: '40px',
+            padding: '0',
+        },
+        '.title-box': {
+            fontSize: '1em',
+            marginBottom: '20px',
+        },
+    },
 }));
 
 const NewsItemWrapLayout = styled(Links)(({ theme }) => ({
@@ -121,15 +166,32 @@ const NewsItemWrapLayout = styled(Links)(({ theme }) => ({
     'div': {
         fontSize: '1.15em',
         textAlign: 'right',
+        color: theme.palette.text.primary,
         borderTop: `1px solid ${theme.palette.primary.main}`,
         borderBottom: `4px solid ${theme.palette.primary.main}`,
         padding: '12px 0',
     },
     '.isHot': {
+        color: theme.palette.primary.main,
         border: `1px solid ${theme.palette.primary.main}`,
         borderRadius: '6px',
         float: 'left',
         padding: '0 36px',
+    },
+    [theme.breakpoints.down('md')]: {
+        marginBottom: '40px',
+        '.title': {
+            lineHeight: '1.4',
+            fontSize: '1.15em',
+            WebkitLineClamp: '3',
+        },
+        'div': {
+            fontSize: '0.9em',
+        },
+        '.isHot': {
+            fontSize: '1.2em',
+            marginTop: '-4px',
+        },
     },
 }));
 

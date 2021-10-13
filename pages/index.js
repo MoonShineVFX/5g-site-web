@@ -1,6 +1,6 @@
 import { Fragment, useContext } from 'react';
 import { Grid } from '@mui/material';
-import { faWifi, faCoffee, faWind } from '@fortawesome/free-solid-svg-icons';
+import { faBroadcastTower, faCoffee, faWind } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 
 import HeadTag from '../src/containers/HeadTag';
@@ -37,7 +37,7 @@ const arrangePartnerTag = (data) => data.reduce((acc, { id, name }, idx) => {
             break;
 
         default:
-            acc[idx].icon = faWifi;
+            acc[idx].icon = faBroadcastTower;
             break;
     }
 
@@ -45,9 +45,10 @@ const arrangePartnerTag = (data) => data.reduce((acc, { id, name }, idx) => {
 
 }, {});
 
+//
 const NewsWrap = ({ title, text, data }) => (
 
-    <Grid item xs>
+    <Grid item xs={12} md={6}>
         <div className="title-box">
             <h1 className="title">{title}</h1>
             <div>{text}</div>
@@ -62,6 +63,7 @@ const NewsWrap = ({ title, text, data }) => (
 
 );
 
+//
 const NewsItemWrap = ({ data: { title, isHot, createTime } }) => (
 
     <NewsItemWrapLayout title={title}>
@@ -99,7 +101,7 @@ const Home = ({ pageData }) => {
             <section>
                 <SlideShow data={pageData.data.banners}>
                     {
-                        pageData.data.banners.map(({ id, title, imgUrl, link }, idx) => (
+                        pageData.data.banners.map(({ id, title, imgUrl, imgUrlSmall, link }, idx) => (
 
                             <div
                                 key={id}
@@ -163,7 +165,7 @@ const Home = ({ pageData }) => {
                 </NewsWrapLayout>
             </section>
 
-            {/* <section>
+            <section>
                 <SectionTitle
                     primaryText="文化科技聯盟"
                     secondaryText="Alliances"
@@ -184,7 +186,7 @@ const Home = ({ pageData }) => {
                         ))
                     }
                 </ItemPartnerLayout>
-            </section> */}
+            </section>
         </Fragment>
 
     );

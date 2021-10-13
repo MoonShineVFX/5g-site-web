@@ -57,16 +57,6 @@ const styles = {
             clear: 'both',
         },
     },
-    [theme.breakpoints.up('md')]: {
-        'header, main, footer': {
-            minWidth: '1200px',
-        },
-    },
-    // [theme.breakpoints.down('md')]: {
-    //     '.web-container': {
-    //         paddingTop: '20px',
-    //     },
-    // },
 };
 
 //
