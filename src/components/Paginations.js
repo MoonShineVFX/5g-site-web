@@ -4,7 +4,7 @@ import { styled } from '@mui/system';
 
 //
 const PaginationLayout = styled(Pagination)(({ theme }) => ({
-    marginTop: '100px',
+    margin: '40px 0',
     '.MuiPagination-ul': {
         justifyContent: 'center',
     },

@@ -3,17 +3,13 @@ import PropTypes from 'prop-types';
 import Buttons from './Buttons';
 
 //
-const Links = ({ url, children, ...rest }) => {
-
-    console.log('links rest', rest)
-    return (
+const Links = ({ url, children, ...rest }) => (
 
     <Link href={url}>
         <a href={url} {...rest}>{children}</a>
     </Link>
 
 );
-}
 
 //
 const ButtonLink = ({ url, text }) => (

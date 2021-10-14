@@ -120,11 +120,12 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
     },
     [theme.breakpoints.down('md')]: {
         '.menu-outer': {
-            maxWidth: '30%',
             margin: '0 auto 20px',
         },
         '.title': {
+            maxWidth: '300px',
             fontSize: '1.5em',
+            margin: 'auto',
             position: 'relative',
             '&:before': {
                 content: '""',

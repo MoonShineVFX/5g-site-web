@@ -7,6 +7,7 @@ import { GlobalContext } from '../context/global.state';
 //
 const BreadcrumbLayout = styled('div')(({ theme }) => ({
     backgroundColor: '#D2D2D2',
+    padding: '0 20px',
     cursor: 'default',
     '*': {
         fontSize: '0.9em',

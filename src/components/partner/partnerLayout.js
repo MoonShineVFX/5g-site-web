@@ -1,31 +1,20 @@
-import { GlobalStyles, Grid } from '@mui/material';
+import { GlobalStyles } from '@mui/material';
 import { styled } from '@mui/system';
 import theme from '../../utils/theme';
-import { Links } from '../Links';
 
 const styles = {
-    // 'main > div > section': {
-    //     marginBottom: '100px',
-    //     padding: '0 10px',
-    //     '.section-title': {
-    //         marginBottom: '80px',
-    //     },
-    // },
-    // [theme.breakpoints.down('md')]: {
-    //     'main > div > section': {
-    //         marginBottom: '10px',
-    //         padding: '20px',
-    //         '.section-title': {
-    //             marginBottom: '40px',
-    //         },
-    //     },
-    // },
+    [theme.breakpoints.down('md')]: {
+        'main > div': {
+            padding: '20px 20px 40px',
+        },
+    },
 };
 
 // Partner Style
 const partnerStyles = <GlobalStyles styles={styles} />;
 
-const MenusLayout = styled('div')(({ theme }) => ({
+//
+const MenusLayout = styled('section')(({ theme }) => ({
     textAlign: 'center',
     borderTop: `1px solid ${theme.palette.primary.main}`,
     borderBottom: `1px solid ${theme.palette.primary.main}`,
@@ -52,20 +41,33 @@ const MenusLayout = styled('div')(({ theme }) => ({
                 transform: 'translateY(-50%)',
         },
     },
-    // [theme.breakpoints.down('768')]: {
-    //     marginTop: '30px',
-    // },
+    [theme.breakpoints.down('md')]: {
+        marginTop: '20px',
+        marginBottom: '20px',
+        'a': {
+            minWidth: '100px',
+            fontSize: '1.15em',
+            margin: '0 10px',
+            padding: '10px',
+        },
+        '.active:before': {
+            width: '18px',
+            height: '26px',
+            left: '-9px',
+        },
+    },
 }));
 
-const PartnersLayout = styled('div')(({ theme }) => ({
+//
+const PartnersLayout = styled('section')(({ theme }) => ({
     padding: '0 40px',
     '.item': {
         fontSize: '1.15em',
-        // flex: '0 0 calc(100% / 2 - 16px)',
+        color: theme.palette.text.primary,
         border: `1px solid ${theme.palette.primary.main}`,
         borderBottomWidth: '4px',
-        // margin: '0 8px 20px',
-        // padding: '20px 40px',
+        margin: '0 8px 20px',
+        padding: '20px 40px',
     },
     '.top': {
         borderBottom: `1px solid ${theme.palette.primary.main}`,
@@ -88,29 +90,46 @@ const PartnersLayout = styled('div')(({ theme }) => ({
         color: theme.palette.primary.main,
         margin: '0 0 20px',
     },
+    '.email': {
+        textDecoration: 'underline',
+    },
     'p': {
-        minHeight: '88px',
-        display: '-webkit-box',
-        WebkitLineClamp: '3',
-        WebkitBoxOrient: 'vertical',
         margin: '0',
-        overflow: 'hidden',
     },
     [theme.breakpoints.up('md')]: {
         display: 'flex',
         flexWrap: 'wrap',
         margin: '0 -8px',
         '.item': {
-            // fontSize: '1.15em',
             flex: '0 0 calc(100% / 2 - 16px)',
-            // border: `1px solid ${theme.palette.primary.main}`,
-            // borderBottomWidth: '4px',
-            margin: '0 8px 20px',
-            padding: '20px 40px',
+        },
+        'p': {
+            minHeight: '88px',
+            display: '-webkit-box',
+            WebkitLineClamp: '3',
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
         },
     },
     [theme.breakpoints.down('md')]: {
-        padding: '0 20px',
+        padding: '0',
+        '.item': {
+            fontSize: '0.9em',
+            display: 'block',
+            margin: '0 0 20px',
+            padding: '20px 24px',
+        },
+        '.name': {
+            marginBottom: '10px',
+        },
+    },
+    [theme.breakpoints.down('sm')]: {
+        '.top span': {
+            display: 'block',
+        },
+        '.thumb': {
+            margin: '0 auto 20px',
+        },
     },
 }));
 

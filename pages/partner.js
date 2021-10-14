@@ -20,10 +20,7 @@ import { GlobalContext } from '../src/context/global.state';
 import util from '../src/utils/util';
 
 //
-const MenuItem = ({ type = 'all', text, ...rest }) => {
-
-    console.log('rest:', rest)
-    return (
+const MenuItem = ({ type = 'all', text, ...rest }) => (
 
     <Links
         url={`/partner?page=1&type=${type}`}
@@ -33,7 +30,6 @@ const MenuItem = ({ type = 'all', text, ...rest }) => {
     </Links>
 
 );
-}
 
 //
 const PartnerItem = ({
