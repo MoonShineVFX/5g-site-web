@@ -95,9 +95,8 @@ const SideNavLayout = styled('div')(({ theme }) => ({
             padding: '20px',
             zIndex: '1',
         },
-        'span': {
+        '.menu-outer': {
             display: 'block',
-            margin: '0 auto 16px',
         },
     },
 }));

@@ -10,6 +10,10 @@ import {
 // Global
 const globalInitState = {
     page: '',
+    menu: {
+        level1: '',
+        level2: '',
+    },
     slideshowActive: 0,
 };
 
@@ -35,6 +39,7 @@ const GlobalProvider = ({ children }) => {
     const [lightboxState, lightboxDispatch] = useReducer(lightboxReducer, lightboxInitState);
     const {
         page,
+        menu,
         slideshowActive,
     } = globalState;
 
@@ -66,6 +71,7 @@ const GlobalProvider = ({ children }) => {
         <Provider value={{
             // 全域資料
             page,
+            menu,
             slideshowActive,
             getGlobalData,
 

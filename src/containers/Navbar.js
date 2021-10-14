@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import { styled } from '@mui/system';
 import { Links } from '../components/Links';
+import { GlobalContext } from '../context/global.state';
 
+//
 const navMenus = [
     {
         key: '',
@@ -69,78 +72,141 @@ const navMenus = [
 //
 const NavMenuLayout = styled('nav')(({ theme }) => ({
     position: 'relative',
-    'span': {
-        height: '100px',
+    '.menu-outer': {
         fontSize: '1em',
         color: theme.palette.bg.text,
-        display: 'inline-block',
-        padding: '0 30px',
-        position: 'relative',
-        transition: 'all .2s ease',
         cursor: 'default',
-        '&:before': {
-            content: '""',
-            height: '100%',
-            display: 'inline-block',
-            verticalAlign: 'middle',
-        },
-        '&:hover': {
-            color: theme.palette.text.primary,
-            backgroundColor: theme.palette.text.secondary,
-            '.sub-menus': {
-                width: '100%',
-                backgroundColor: '#BEBEBE',
-                textAlign: 'center',
-                opacity: '1',
-                zIndex: '1',
-                transition: 'all .3s ease',
-            },
-        },
-    },
-    '.sub-menus': {
-        opacity: '0',
-        position: 'absolute',
-        top: '100px',
-        left: '0',
     },
     'a': {
         textDecoration: 'none',
         display: 'block',
         padding: '8px 12px',
     },
+    [theme.breakpoints.up('md')]: {
+        '.menu-outer': {
+            height: '100px',
+            display: 'inline-block',
+            padding: '0 30px',
+            position: 'relative',
+            transition: 'all .2s ease',
+            '&:before': {
+                content: '""',
+                height: '100%',
+                display: 'inline-block',
+                verticalAlign: 'middle',
+            },
+            '&:hover': {
+                color: theme.palette.text.primary,
+                backgroundColor: theme.palette.text.secondary,
+                '.sub-menus': {
+                    width: '100%',
+                    backgroundColor: '#BEBEBE',
+                    textAlign: 'center',
+                    opacity: '1',
+                    zIndex: '1',
+                    transition: 'all .3s ease',
+                },
+            },
+        },
+        '.title': {
+            display: 'inline-block',
+        },
+        '.sub-menus': {
+            opacity: '0',
+            position: 'absolute',
+            top: '100px',
+            left: '0',
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        '.menu-outer': {
+            maxWidth: '30%',
+            margin: '0 auto 20px',
+        },
+        '.title': {
+            fontSize: '1.5em',
+            position: 'relative',
+            '&:before': {
+                content: '""',
+                width: '100%',
+                height: '1px',
+                backgroundColor: theme.palette.bg.text,
+                display: 'inline-block',
+                position: 'absolute',
+                top: '18px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+            },
+            'span': {
+                backgroundColor: theme.palette.primary.main,
+                padding: '0 20px',
+                position: 'relative',
+                zIndex: '1',
+            },
+        },
+        'a': {
+            fontSize: '1.15em',
+            color: theme.palette.text.secondary,
+            padding: '8px 20px',
+        },
+    },
 }));
 
 //
-const Navbar = ({ ...rest }) => (
+const Navbar = ({ ...rest }) => {
 
-    <NavMenuLayout className="nav-menu-wrap" {...rest}>
-        {
-            navMenus.map(({ key, text, subItems }, idx) => (
+    // Context
+    const { menu, globalDispatch } = useContext(GlobalContext);
 
-                <span
-                    key={idx}
-                >
-                    {text}
-                    <div className="sub-menus">
-                        {
-                            subItems.map((sub) => (
+    // 紀錄 menu 名稱
+    const handleClickMenu = (text) => {
 
-                                <Links
-                                    key={sub.key}
-                                    url={`/${key ? `${key}/` : ''}${sub.key}`}
-                                >
-                                    {sub.text}
-                                </Links>
+        globalDispatch({
+            type: 'menu',
+            payload: {
+                ...menu,
+                level2: text,
+            },
+        });
 
-                            ))
-                        }
-                    </div>
-                </span>
+    };
 
-            ))
-        }
-    </NavMenuLayout>
+    return (
 
-);
+        <NavMenuLayout className="nav-menu-wrap" {...rest}>
+            {
+                navMenus.map(({ key, text, subItems }, idx) => (
+
+                    <span
+                        key={idx}
+                        className="menu-outer"
+                    >
+                        <div className="title">
+                            <span>{text}</span>
+                        </div>
+                        <div className="sub-menus">
+                            {
+                                subItems.map((sub) => (
+
+                                    <Links
+                                        key={sub.key}
+                                        url={`/${key ? `${key}/` : ''}${sub.key}`}
+                                        onClick={() => handleClickMenu(sub.text)}
+                                    >
+                                        {sub.text}
+                                    </Links>
+
+                                ))
+                            }
+                        </div>
+                    </span>
+
+                ))
+            }
+        </NavMenuLayout>
+
+    );
+
+};
 
 export default Navbar;

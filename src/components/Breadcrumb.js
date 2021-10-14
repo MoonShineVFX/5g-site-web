@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import { styled } from '@mui/system';
 import { Links } from './Links';
 import { GlobalContext } from '../context/global.state';
 
+//
 const BreadcrumbLayout = styled('div')(({ theme }) => ({
     backgroundColor: '#D2D2D2',
     cursor: 'default',
@@ -20,15 +20,11 @@ const BreadcrumbLayout = styled('div')(({ theme }) => ({
     },
 }));
 
+//
 const Breadcrumb = ({ children, ...rest }) => {
 
-    // Router
-    const router = useRouter();
-
     // Context
-    const { page } = useContext(GlobalContext);
-
-    console.log('router:', router)
+    const { menu } = useContext(GlobalContext);
 
     return (
 
@@ -37,7 +33,7 @@ const Breadcrumb = ({ children, ...rest }) => {
             {...rest}
         >
             <div className="web-container">
-                <Links url="/">首頁</Links> / {page} / <span></span>
+                <Links url="/">首頁</Links> / {menu.level1} / <span>{menu.level2}</span>
             </div>
         </BreadcrumbLayout>
 
