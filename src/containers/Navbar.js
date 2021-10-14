@@ -62,7 +62,7 @@ const navMenus = [
         text: '合作夥伴',
         subItems: [
             {
-                key: 'partner',
+                key: 'partner?page=1&type=all',
                 text: '文化科技聯盟',
             },
         ],

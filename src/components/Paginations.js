@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Pagination } from '@mui/material';
 import { styled } from '@mui/system';
 
+//
 const PaginationLayout = styled(Pagination)(({ theme }) => ({
     marginTop: '100px',
     '.MuiPagination-ul': {
@@ -11,8 +12,12 @@ const PaginationLayout = styled(Pagination)(({ theme }) => ({
         color: theme.palette.text.primary,
         opacity: 0.6,
     },
+    'svg': {
+        fontSize: '3em',
+    },
 }));
 
+//
 const Paginations = ({
     length,
     perPage,
@@ -33,7 +38,7 @@ const Paginations = ({
 
 Paginations.defaultProps = {
     currPage: 1,
-    perPage: 40, // 一頁 40 筆
+    perPage: 12, // 一頁 12 筆
 };
 
 Paginations.propTypes = {
