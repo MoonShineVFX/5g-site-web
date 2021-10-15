@@ -87,8 +87,6 @@ const Partner = ({ pageData }) => {
             },
         });
 
-        if (router.query.type) setType(router.query.type);
-
     }, []);
 
     // Click menu
@@ -113,7 +111,7 @@ const Partner = ({ pageData }) => {
             <MenusLayout>
                 <MenuItem
                     text="全部"
-                    className={(type === 'all') ? 'active' : ''}
+                    className={(router.query.type === 'all') ? 'active' : ''}
                 />
 
                 {
@@ -123,7 +121,7 @@ const Partner = ({ pageData }) => {
                             key={id}
                             type={id}
                             text={name}
-                            className={(type === id) ? 'active' : ''}
+                            className={(+router.query.type === id) ? 'active' : ''}
                             onClick={() => handleClickMenu(id)}
                         />
 
@@ -175,6 +173,7 @@ export async function getStaticProps () {
     }
 
     return {
+        revalidate: 30,
         props: {
             pageData: {
                 title: '合作夥伴',

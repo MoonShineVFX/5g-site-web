@@ -209,6 +209,7 @@ export async function getStaticProps () {
     }
 
     return {
+        revalidate: 30,
         props: {
             pageData: {
                 title: '首頁',
