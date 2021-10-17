@@ -1,17 +1,5 @@
-import { GlobalStyles } from '@mui/material';
 import { styled } from '@mui/system';
-import theme from '../../utils/theme';
-
-const styles = {
-    [theme.breakpoints.down('md')]: {
-        'main > div': {
-            padding: '20px 20px 40px',
-        },
-    },
-};
-
-// Partner Style
-const partnerStyles = <GlobalStyles styles={styles} />;
+import { Links } from '../Links';
 
 //
 const MenusLayout = styled('section')(({ theme }) => ({
@@ -19,37 +7,41 @@ const MenusLayout = styled('section')(({ theme }) => ({
     borderTop: `1px solid ${theme.palette.primary.main}`,
     borderBottom: `1px solid ${theme.palette.primary.main}`,
     marginBottom: '40px',
-    'a': {
-        fontSize: '1.5em',
-        color: theme.palette.text.primary,
-        padding: '20px',
-        margin: '0 20px',
-        position: 'relative',
-        overflow: 'hidden',
+    [theme.breakpoints.down('md')]: {
+        marginBottom: '20px',
     },
-    '.active': {
+}));
+
+const MenuItemLayout = styled(Links)(({ theme }) => ({
+    fontSize: '1.5em',
+    color: theme.palette.text.primary,
+    padding: '20px',
+    margin: '0 20px',
+    position: 'relative',
+    overflow: 'hidden',
+    transition: 'all 0.3s ease',
+    '&.active': {
         color: theme.palette.primary.main,
         '&:before': {
-                content: '""',
-                width: '28px',
-                height: '34px',
-                backgroundColor: theme.palette.primary.main,
-                borderRadius: '50%',
-                position: 'absolute',
-                left: '-17px',
-                top: '50%',
-                transform: 'translateY(-50%)',
+            content: '""',
+            width: '28px',
+            height: '34px',
+            backgroundColor: theme.palette.primary.main,
+            borderRadius: '50%',
+            position: 'absolute',
+            left: '-17px',
+            top: '50%',
+            transform: 'translateY(-50%)',
         },
     },
+    '&:hover': {
+        opacity: '0.85',
+    },
     [theme.breakpoints.down('md')]: {
-        marginTop: '20px',
-        marginBottom: '20px',
-        'a': {
-            minWidth: '100px',
-            fontSize: '1.15em',
-            margin: '0 10px',
-            padding: '10px',
-        },
+        minWidth: '100px',
+        fontSize: '1.15em',
+        margin: '0 10px',
+        padding: '10px',
         '.active:before': {
             width: '18px',
             height: '26px',
@@ -105,10 +97,6 @@ const PartnersLayout = styled('section')(({ theme }) => ({
         },
         'p': {
             minHeight: '88px',
-            display: '-webkit-box',
-            WebkitLineClamp: '3',
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
         },
     },
     [theme.breakpoints.down('md')]: {
@@ -122,6 +110,9 @@ const PartnersLayout = styled('section')(({ theme }) => ({
         '.name': {
             marginBottom: '10px',
         },
+        'p': {
+            display: 'block',
+        },
     },
     [theme.breakpoints.down('sm')]: {
         '.top span': {
@@ -134,7 +125,7 @@ const PartnersLayout = styled('section')(({ theme }) => ({
 }));
 
 export {
-    partnerStyles,
     MenusLayout,
+    MenuItemLayout,
     PartnersLayout,
 };

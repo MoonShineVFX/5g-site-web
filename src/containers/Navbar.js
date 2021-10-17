@@ -20,11 +20,11 @@ const navMenus = [
         text: '最新消息',
         subItems: [
             {
-                key: 'news',
+                key: '?page=1&type=news',
                 text: '新聞快訊',
             },
             {
-                key: 'newsIndustry',
+                key: '?page=1&type=newsIndustry',
                 text: '產業訊息',
             },
         ],
@@ -102,9 +102,9 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
                     width: '100%',
                     backgroundColor: '#BEBEBE',
                     textAlign: 'center',
-                    opacity: '1',
+                    display: 'block',
                     zIndex: '1',
-                    transition: 'all .3s ease',
+                    transition: 'all .25s ease',
                 },
             },
         },
@@ -112,7 +112,7 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
             display: 'inline-block',
         },
         '.sub-menus': {
-            opacity: '0',
+            display: 'none',
             position: 'absolute',
             top: '100px',
             left: '0',

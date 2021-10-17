@@ -59,6 +59,22 @@ const styles = {
             clear: 'both',
         },
     },
+    '.web-line-clamp': {
+        display: '-webkit-box',
+        WebkitLineClamp: theme.lineClamp(),
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+    },
+    [theme.breakpoints.down('md')]: {
+        'main > div': {
+            padding: '40px 20px',
+        },
+    },
+    [theme.breakpoints.between('md', '1220')]: {
+        '.breadcrumb, main, footer': {
+            padding: '0 20px',
+        },
+    },
 };
 
 //

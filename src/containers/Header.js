@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { styled } from '@mui/system';
-import { Toolbar, Box } from '@mui/material';
+import { Toolbar, Box, useMediaQuery } from '@mui/material';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Links } from '../components/Links';
 import Navbar from './Navbar';
@@ -15,6 +15,11 @@ const AppBarLayout = styled('header')(({ theme }) => ({
     'a': {
         color: theme.palette.bg.text,
         textDecoration: 'none',
+    },
+    [theme.breakpoints.between('md', '1220')]: {
+        '> div': {
+            padding: '0 20px',
+        },
     },
 }));
 
@@ -41,8 +46,14 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
 
 const HeaderLayout = styled(Toolbar)(({ theme }) => ({
     height: '100px',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('1220')]: {
         padding: '0',
+    },
+    [theme.breakpoints.between('md', '1220')]: {
+        overflow: 'hidden',
+        '.grid-right': {
+            marginRight: '-20px',
+        },
     },
     [theme.breakpoints.up('md')]: {
         '.search, .menu, .grid-center .logoText': {
@@ -104,20 +115,25 @@ const SideNavLayout = styled('div')(({ theme }) => ({
 //
 const Header = () => {
 
+    const matches = useMediaQuery((theme) => theme.breakpoints.down('md'));
+
     // State
     const [active, setActive] = useState(false);
 
     useEffect(() => {
 
+        if (!matches) setActive(false);
         document.body.style.overflow = active ? 'hidden' : '';
 
-    });
+    }, [matches, active]);
 
     // 關閉
     const handleHide = () => setActive(false);
 
     //
     const handleClick = () => setActive(!active);
+
+    console.log('matches:', matches)
 
     return (
 
@@ -161,9 +177,7 @@ const Header = () => {
                 </Box>
             </HeaderLayout>
 
-            <SideNavLayout
-                className={`mWeb-menu ${active ? 'active' : ''}`}
-            >
+            <SideNavLayout className={`mWeb-menu ${active ? 'active' : ''}`}>
                 <Navbar />
                 <div className="mask" onClick={handleHide}></div>
             </SideNavLayout>

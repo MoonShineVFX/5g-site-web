@@ -1,33 +1,28 @@
-import {
-    Fragment,
-    useContext,
-    useEffect,
-    useState,
-} from 'react';
-
+import { Fragment, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import HeadTag from '../src/containers/HeadTag';
 import { Links } from '../src/components/Links';
 import Paginations from '../src/components/Paginations';
 
 import {
-    partnerStyles,
     MenusLayout,
+    MenuItemLayout,
     PartnersLayout,
 } from '../src/components/partner/partnerLayout';
 
 import { GlobalContext } from '../src/context/global.state';
 import util from '../src/utils/util';
+import useQuery from '../src/utils/useQuery';
 
 //
 const MenuItem = ({ type = 'all', text, ...rest }) => (
 
-    <Links
+    <MenuItemLayout
         url={`/partner?page=1&type=${type}`}
         {...rest}
     >
         {text}
-    </Links>
+    </MenuItemLayout>
 
 );
 
@@ -59,7 +54,7 @@ const PartnerItem = ({
                 <div className="email">{email}</div>
             </span>
         </div>
-        <p>{description}</p>
+        <p className="web-line-clamp">{description}</p>
     </Links>
 
 );
@@ -69,12 +64,10 @@ const Partner = ({ pageData }) => {
 
     // console.log('pageData:', pageData);
     const router = useRouter();
+    const query = useQuery();
 
     // Context
     const { menu, globalDispatch } = useContext(GlobalContext);
-
-    // State
-    const [type, setType] = useState('all');
 
     useEffect(() => {
 
@@ -89,15 +82,15 @@ const Partner = ({ pageData }) => {
 
     }, []);
 
-    // Click menu
-    const handleClickMenu = (type) => setType(type);
-
     // Click page
     const handleChangePage = (e, page) => {
 
+        // ...
+        if (page === null) return;
+
         router.push({
-            pathname: '/partner',
-            query: { ...router.query, page },
+            pathname: router.pathname,
+            query: { ...query, page },
         });
 
     };
@@ -105,13 +98,12 @@ const Partner = ({ pageData }) => {
     return (
 
         <Fragment>
-            {partnerStyles}
             <HeadTag title={`${pageData.title}-${pageData.currPageTitle}`} />
 
             <MenusLayout>
                 <MenuItem
                     text="全部"
-                    className={(router.query.type === 'all') ? 'active' : ''}
+                    className={(query?.type === 'all') ? 'active' : ''}
                 />
 
                 {
@@ -121,8 +113,7 @@ const Partner = ({ pageData }) => {
                             key={id}
                             type={id}
                             text={name}
-                            className={(+router.query.type === id) ? 'active' : ''}
-                            onClick={() => handleClickMenu(id)}
+                            className={(+query?.type === id) ? 'active' : ''}
                         />
 
                     ))
@@ -142,15 +133,11 @@ const Partner = ({ pageData }) => {
                 }
             </PartnersLayout>
 
-            {
-                // router 一開始是空的
-                router.query.page &&
-                    <Paginations
-                        length={pageData.data.list.length}
-                        currPage={+router.query.page}
-                        onChange={handleChangePage}
-                    />
-            }
+            <Paginations
+                length={pageData.data.list.length}
+                currPage={+query?.page}
+                onChange={handleChangePage}
+            />
         </Fragment>
 
     );

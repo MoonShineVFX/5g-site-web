@@ -1,63 +1,110 @@
-import { GlobalStyles } from '@mui/material';
+import { Grid } from '@mui/material';
 import { styled } from '@mui/system';
-import theme from '../../utils/theme';
-
-const styles = {
-    // [theme.breakpoints.down('md')]: {
-    //     'main > div': {
-    //         padding: '20px 20px 40px',
-    //     },
-    // },
-};
-
-// News Style
-const newsStyles = <GlobalStyles styles={styles} />;
+import { MenuItemLayout } from '../partner/partnerLayout';
 
 //
-const MenusLayout = styled('section')(({ theme }) => ({
-    textAlign: 'center',
-    borderTop: `1px solid ${theme.palette.primary.main}`,
-    borderBottom: `1px solid ${theme.palette.primary.main}`,
-    marginBottom: '40px',
-    'a': {
-        fontSize: '1.5em',
-        color: theme.palette.text.primary,
-        padding: '20px',
-        margin: '0 20px',
-        position: 'relative',
-        overflow: 'hidden',
+const MenusLayout = styled(Grid)(({ theme }) => ({
+    '.menu-wrap': {
+        width: '100%',
     },
-    '.active': {
-        color: theme.palette.primary.main,
-        '&:before': {
-                content: '""',
-                width: '28px',
-                height: '34px',
-                backgroundColor: theme.palette.primary.main,
-                borderRadius: '50%',
-                position: 'absolute',
-                left: '-17px',
-                top: '50%',
-                transform: 'translateY(-50%)',
+    'aside': {
+        borderTop: `1px solid ${theme.palette.primary.main}`,
+        borderBottom: `1px solid ${theme.palette.primary.main}`,
+        marginBottom: '40px',
+    },
+    [theme.breakpoints.up('md')]: {
+        '.menu-wrap': {
+            maxWidth: '160px',
+            marginRight: '60px',
         },
+        'aside': {
+            padding: '8px 0',
+        },
+        '.paginations .MuiPagination-ul': {
+            justifyContent: 'left',
+        },
+    },
+}));
+
+//
+const ItemLayout = styled(MenuItemLayout)(({ theme }) => ({
+    fontSize: '1.15em',
+    textAlign: 'center',
+    padding: '16px',
+    [theme.breakpoints.up('xs')]: {
+        margin: '0 10px 0 0',
+    },
+    [theme.breakpoints.up('md')]: {
+        display: 'block',
     },
     [theme.breakpoints.down('md')]: {
-        marginTop: '20px',
-        marginBottom: '20px',
-        'a': {
-            minWidth: '100px',
-            fontSize: '1.15em',
-            margin: '0 10px',
-            padding: '10px',
+        padding: '10px 20px',
+    },
+}));
+
+//
+const SelectOptLayout = styled('select')(({ theme }) => ({
+    minWidth: '260px',
+    fontSize: '1.15em',
+    backgroundColor: theme.palette.bg.primary,
+    borderColor: theme.palette.primary.main,
+    marginBottom: '40px',
+    padding: '4px 12px',
+    outline: '0',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+        opacity: '0.85',
+    },
+}));
+
+//
+const ItemsWrapLayout = styled('div')(({ theme }) => ({
+    fontSize: '1.15em',
+    '.item': {
+        color: theme.palette.text.primary,
+        borderLeft: `5px solid ${theme.palette.primary.main}`,
+        display: 'block',
+        marginBottom: '40px',
+        padding: '4px 12px',
+    },
+    '.date': {
+        fontSize: '0.9em',
+        color: theme.palette.primary.main,
+    },
+    '.title': {
+        fontSize: '2em',
+        margin: '0',
+    },
+    '.tags': {
+        color: theme.palette.primary.main,
+        'span': {
+            fontSize: '0.6em',
+            border: `1px solid ${theme.palette.primary.main}`,
+            borderRadius: '8px',
+            marginRight: '10px',
+            padding: '2px 20px',
         },
-        '.active:before': {
-            width: '18px',
-            height: '26px',
-            left: '-9px',
+    },
+    'p': {
+        marginBottom: '0',
+    },
+    [theme.breakpoints.down('md')]: {
+        fontSize: '0.9em',
+        '.item:last-child': {
+            marginBottom: '0',
+        },
+        '.date': {
+            fontSize: '0.8em',
+        },
+        '.title': {
+            fontSize: '1.7em',
         },
     },
 }));
 
 export {
-    newsStyles,
+    MenusLayout,
+    ItemLayout,
+    SelectOptLayout,
+    ItemsWrapLayout,
 };

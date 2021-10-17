@@ -1,12 +1,12 @@
 import { GlobalStyles, Grid } from '@mui/material';
 import { styled } from '@mui/system';
 import theme from '../../utils/theme';
+import SlideShow from '../SlideShow';
 import { Links } from '../Links';
 
 const styles = {
     'main > div > section': {
         marginBottom: '100px',
-        padding: '0 10px',
         '.section-title': {
             marginBottom: '80px',
         },
@@ -14,10 +14,13 @@ const styles = {
     '.breadcrumb': {
         display: 'none',
     },
+    [theme.breakpoints.up('md')]: {
+
+    },
     [theme.breakpoints.down('md')]: {
         'main > div > section': {
             marginBottom: '10px',
-            padding: '20px',
+            padding: '0',
             '.section-title': {
                 marginBottom: '40px',
             },
@@ -27,6 +30,12 @@ const styles = {
 
 // Home Style
 const homeStyles = <GlobalStyles styles={styles} />;
+
+const SlideShowLayout = styled(SlideShow)(({ theme }) => ({
+    [theme.breakpoints.up('md')]: {
+        padding: '0 30px',
+    },
+}));
 
 const ShowMoreButtonLayout = styled('div')(({ theme }) => ({
     textAlign: 'center',
@@ -46,6 +55,9 @@ const ItemLayout = styled('div')(() => ({
     },
     '.item': {
         display: 'block',
+    },
+    [theme.breakpoints.up('md')]: {
+        padding: '0 24px',
     },
     [theme.breakpoints.down('768')]: {
         display: 'block',
@@ -140,6 +152,9 @@ const NewsWrapLayout = styled(Grid)(({ theme }) => ({
             margin: '0 0 4px',
         },
     },
+    [theme.breakpoints.up('md')]: {
+        padding: '0 20px',
+    },
     [theme.breakpoints.down('md')]: {
         '.MuiGrid-root': {
             marginBottom: '40px',
@@ -161,10 +176,7 @@ const NewsItemWrapLayout = styled(Links)(({ theme }) => ({
         fontWeight: 'normal',
         color: theme.palette.text.primary,
         marginTop: '0',
-        display: '-webkit-box',
-        WebkitLineClamp: '2',
-        WebkitBoxOrient: 'vertical',
-        overflow: 'hidden',
+        WebkitLineClamp: theme.lineClamp(2),
     },
     'div': {
         fontSize: '1.15em',
@@ -186,7 +198,7 @@ const NewsItemWrapLayout = styled(Links)(({ theme }) => ({
         '.title': {
             lineHeight: '1.4',
             fontSize: '1.15em',
-            WebkitLineClamp: '3',
+            WebkitLineClamp: theme.lineClamp(),
         },
         'div': {
             fontSize: '0.9em',
@@ -200,6 +212,7 @@ const NewsItemWrapLayout = styled(Links)(({ theme }) => ({
 
 export {
     homeStyles,
+    SlideShowLayout,
     ShowMoreButtonLayout,
     ItemLayout,
     ItemPartnerLayout,

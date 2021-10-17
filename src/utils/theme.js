@@ -1,8 +1,8 @@
 import { createTheme } from '@mui/material/styles';
 
 export default createTheme({
+    lineClamp: (line = 3) => line,
     spacing: 4,
-    borderRadius: '30px',
     palette: {
         primary: {
             main: '#144274',

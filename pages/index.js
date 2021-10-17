@@ -6,11 +6,11 @@ import dayjs from 'dayjs';
 import HeadTag from '../src/containers/HeadTag';
 import { Links, ButtonLink } from '../src/components/Links';
 import FontIcon from '../src/components/FontIcon';
-import SlideShow from '../src/components/SlideShow';
 import SectionTitle from '../src/components/SectionTitle';
 import Item from '../src/components/Item';
 import {
     homeStyles,
+    SlideShowLayout,
     ShowMoreButtonLayout,
     ItemLayout,
     ItemPartnerLayout,
@@ -54,9 +54,7 @@ const NewsWrap = ({ title, text, data }) => (
             <div>{text}</div>
         </div>
         <div>
-            {
-                data.map((obj) => <NewsItemWrap key={obj.id} data={obj} />)
-            }
+            {data.map((obj) => <NewsItemWrap key={obj.id} data={obj} />)}
         </div>
         <ShowMoreButton />
     </Grid>
@@ -67,7 +65,7 @@ const NewsWrap = ({ title, text, data }) => (
 const NewsItemWrap = ({ data: { title, isHot, createTime } }) => (
 
     <NewsItemWrapLayout title={title}>
-        <h1 className="title">{title}</h1>
+        <h1 className="title web-line-clamp">{title}</h1>
         <div>
             {isHot && <span className="isHot">TOP</span>}
             {dayjs(createTime).format('YYYY.MM.DD (dd)')}
@@ -99,7 +97,7 @@ const Home = ({ pageData }) => {
             <HeadTag title={pageData.title} />
 
             <section>
-                <SlideShow data={pageData.data.banners}>
+                <SlideShowLayout data={pageData.data.banners}>
                     {
                         pageData.data.banners.map(({ id, title, imgUrl, imgUrlSmall, link }, idx) => (
 
@@ -119,7 +117,7 @@ const Home = ({ pageData }) => {
 
                         ))
                     }
-                </SlideShow>
+                </SlideShowLayout>
             </section>
 
             <section>

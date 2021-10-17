@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Pagination } from '@mui/material';
+import { Pagination, useMediaQuery } from '@mui/material';
 import { styled } from '@mui/system';
 
 //
@@ -24,17 +24,24 @@ const Paginations = ({
     currPage,
     onChange,
     ...rest
-}) => (
+}) => {
 
-    <PaginationLayout
-        page={currPage}
-        count={Math.ceil(length / perPage)}
-        size="large"
-        onChange={onChange}
-        {...rest}
-    />
+    const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
 
-);
+    return (
+
+        <PaginationLayout
+            className="paginations"
+            page={currPage || 1}
+            count={Math.ceil(length / perPage)}
+            size={matches ? 'large' : 'small'}
+            onChange={onChange}
+            {...rest}
+        />
+
+    );
+
+};
 
 Paginations.defaultProps = {
     currPage: 1,
