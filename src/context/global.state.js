@@ -13,6 +13,7 @@ const globalInitState = {
     menu: {
         level1: '',
         level2: '',
+        level1Link: '',
     },
     slideshowActive: 0,
 };

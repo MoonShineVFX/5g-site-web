@@ -14,8 +14,8 @@ import Head from 'next/head';
 );
 
 HeadSEO.defaultProps = {
-    title: 'ˋ中華電信5G',
-    description: 'ˋ中華電信5G',
+    title: '中華電信5G',
+    description: '中華電信5G',
 };
 
 HeadSEO.propTypes = {

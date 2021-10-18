@@ -11,14 +11,14 @@ import {
 } from '../src/components/partner/partnerLayout';
 
 import { GlobalContext } from '../src/context/global.state';
-import util from '../src/utils/util';
 import useQuery from '../src/utils/useQuery';
+import util from '../src/utils/util';
 
 //
-const MenuItem = ({ type = 'all', text, ...rest }) => (
+const MenuItem = ({ cate = 'all', text, ...rest }) => (
 
     <MenuItemLayout
-        url={`/partner?page=1&type=${type}`}
+        url={`/partner?page=1&cate=${cate}`}
         {...rest}
     >
         {text}
@@ -77,6 +77,7 @@ const Partner = ({ pageData }) => {
                 ...menu,
                 level1: pageData.title,
                 level2: pageData.currPageTitle,
+                level1Link: '',
             },
         });
 
@@ -103,7 +104,7 @@ const Partner = ({ pageData }) => {
             <MenusLayout>
                 <MenuItem
                     text="全部"
-                    className={(query?.type === 'all') ? 'active' : ''}
+                    className={(query?.cate === 'all') ? 'active' : ''}
                 />
 
                 {
@@ -111,9 +112,9 @@ const Partner = ({ pageData }) => {
 
                         <MenuItem
                             key={id}
-                            type={id}
+                            cate={id}
                             text={name}
-                            className={(+query?.type === id) ? 'active' : ''}
+                            className={(+query?.cate === id) ? 'active' : ''}
                         />
 
                     ))

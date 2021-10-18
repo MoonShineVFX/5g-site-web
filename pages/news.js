@@ -12,11 +12,12 @@ import {
     ItemLayout,
     SelectOptLayout,
     ItemsWrapLayout,
+    TagsLayout,
 } from '../src/components/news/newsLayout';
 
 import { GlobalContext } from '../src/context/global.state';
-import util from '../src/utils/util';
 import useQuery from '../src/utils/useQuery';
+import util from '../src/utils/util';
 
 const config = {
     news: '新聞快訊',
@@ -34,9 +35,9 @@ const NewsItem = ({
     >
         <span className="date">{dayjs(createTime).format('YYYY/MM/DD')}</span>
         <h1 className="title">{title}</h1>
-        <div className="tags">
+        <TagsLayout>
             {tags.map((id) => <span key={id}>{id}</span>)}
-        </div>
+        </TagsLayout>
         <p>{description}</p>
     </Links>
 
@@ -61,16 +62,17 @@ const News = ({ pageData }) => {
             payload: {
                 ...menu,
                 level1: pageData.title,
-                level2: config[query.type] || pageData.currPageTitle,
+                level2: config[query.cate] || pageData.currPageTitle,
+                level1Link: '',
             },
         });
 
-    }, [globalDispatch, query]);
+    }, []);
 
     // Click page
     const handleChangePage = (e, page) => {
 
-        // "..."
+        // page "..."
         if (page === null) return;
 
         router.push({
@@ -83,7 +85,7 @@ const News = ({ pageData }) => {
     // Select option
     const handleChangeOpt = ({ target: { value } }) => {
 
-        let param = (value === '') ? { page: query.page, type: query.type } : { ...query, tag: value };
+        let param = (value === '') ? { page: query.page, cate: query.cate } : { ...query, tag: value };
 
         router.push({
             pathname: router.pathname,
@@ -95,7 +97,7 @@ const News = ({ pageData }) => {
     return (
 
         <Fragment>
-            <HeadTag title={`${pageData.title}-${pageData.currPageTitle}`} />
+            <HeadTag title={`${pageData.title}-${config[query?.cate] || pageData.currPageTitle}`} />
 
             <MenusLayout
                 container
@@ -113,8 +115,8 @@ const News = ({ pageData }) => {
 
                                 <ItemLayout
                                     key={key}
-                                    url={`/news?page=1&type=${key}`}
-                                    className={(query?.type === key) ? 'active' : ''}
+                                    url={`/news?page=1&cate=${key}`}
+                                    className={(query?.cate === key) ? 'active' : ''}
                                 >
                                     {config[key]}
                                 </ItemLayout>
@@ -144,7 +146,10 @@ const News = ({ pageData }) => {
                         {
                             pageData.data.list.map((data) => (
 
-                                <NewsItem key={data.id} data={data} />
+                                <NewsItem
+                                    key={data.id}
+                                    data={data}
+                                />
 
                             ))
                         }

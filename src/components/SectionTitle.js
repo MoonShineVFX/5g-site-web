@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
 
+//
 const SectionTitleWrapLayout = styled('div')(({ theme }) => ({
     textAlign: 'center',
     borderTop: `1px solid ${theme.palette.primary.main}`,
@@ -68,6 +69,7 @@ const SectionTitleWrapLayout = styled('div')(({ theme }) => ({
     },
 }));
 
+//
 const SectionTitle = ({ primaryText, secondaryText }) => (
 
     <SectionTitleWrapLayout className={`section-title ${secondaryText ? '' : 'no-second'}`}>

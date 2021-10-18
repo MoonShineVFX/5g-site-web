@@ -4,14 +4,14 @@ import { faBroadcastTower, faCoffee, faWind } from '@fortawesome/free-solid-svg-
 import dayjs from 'dayjs';
 
 import HeadTag from '../src/containers/HeadTag';
-import { Links, ButtonLink } from '../src/components/Links';
+import { Links } from '../src/components/Links';
 import FontIcon from '../src/components/FontIcon';
 import SectionTitle from '../src/components/SectionTitle';
 import Item from '../src/components/Item';
+import ShowMoreButton from '../src/components/ShowMoreButton';
 import {
     homeStyles,
     SlideShowLayout,
-    ShowMoreButtonLayout,
     ItemLayout,
     ItemPartnerLayout,
     NewsWrapLayout,
@@ -46,7 +46,7 @@ const arrangePartnerTag = (data) => data.reduce((acc, { id, name }, idx) => {
 }, {});
 
 //
-const NewsWrap = ({ title, text, data }) => (
+const NewsWrap = ({ title, text, cate, data }) => (
 
     <Grid item xs={12} md={6}>
         <div className="title-box">
@@ -56,30 +56,24 @@ const NewsWrap = ({ title, text, data }) => (
         <div>
             {data.map((obj) => <NewsItemWrap key={obj.id} data={obj} />)}
         </div>
-        <ShowMoreButton />
+        <ShowMoreButton url={`/news?page=1&cate=${cate}`} />
     </Grid>
 
 );
 
 //
-const NewsItemWrap = ({ data: { title, isHot, createTime } }) => (
+const NewsItemWrap = ({ data: { id, title, isHot, createTime } }) => (
 
-    <NewsItemWrapLayout title={title}>
+    <NewsItemWrapLayout
+        url={`/news/${id}`}
+        title={title}
+    >
         <h1 className="title web-line-clamp">{title}</h1>
         <div>
             {isHot && <span className="isHot">TOP</span>}
             {dayjs(createTime).format('YYYY.MM.DD (dd)')}
         </div>
     </NewsItemWrapLayout>
-
-);
-
-// 顯示更多按鈕
-const ShowMoreButton = ({ url }) => (
-
-    <ShowMoreButtonLayout>
-        <ButtonLink ulr={url} />
-    </ShowMoreButtonLayout>
 
 );
 
@@ -153,11 +147,13 @@ const Home = ({ pageData }) => {
                     <NewsWrap
                         title="新聞快訊"
                         text="News"
+                        cate="news"
                         data={pageData.data.news.news}
                     />
                     <NewsWrap
                         title="產業訊息"
                         text="Information"
+                        cate="newsIndustry"
                         data={pageData.data.news.newsIndustries}
                     />
                 </NewsWrapLayout>

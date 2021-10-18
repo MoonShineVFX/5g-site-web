@@ -37,14 +37,6 @@ const SlideShowLayout = styled(SlideShow)(({ theme }) => ({
     },
 }));
 
-const ShowMoreButtonLayout = styled('div')(({ theme }) => ({
-    textAlign: 'center',
-    marginTop: '60px',
-    [theme.breakpoints.down('768')]: {
-        marginTop: '30px',
-    },
-}));
-
 const ItemLayout = styled('div')(() => ({
     display: 'flex',
     marginLeft: '-10px',
@@ -213,7 +205,6 @@ const NewsItemWrapLayout = styled(Links)(({ theme }) => ({
 export {
     homeStyles,
     SlideShowLayout,
-    ShowMoreButtonLayout,
     ItemLayout,
     ItemPartnerLayout,
     NewsWrapLayout,

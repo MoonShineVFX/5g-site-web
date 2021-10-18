@@ -133,8 +133,6 @@ const Header = () => {
     //
     const handleClick = () => setActive(!active);
 
-    console.log('matches:', matches)
-
     return (
 
         <AppBarLayout>

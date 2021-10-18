@@ -7,8 +7,8 @@ import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
 import { Links } from '../components/Links';
 
-// 串流平台 > 改為後台設定
-const socialMedia = [
+// 社群 > 改為後台設定
+const socials = [
     {
         url: 'https://www.facebook.com/MoonShineAnimation',
         icon: faFacebook,
@@ -185,7 +185,7 @@ const Footer = () => {
                     <Grid item xs={12} md={4} className="social">
                         <div className="align-box">
                             {
-                                socialMedia.map(({ url, icon }, idx) => (
+                                socials.map(({ url, icon }, idx) => (
 
                                     <Links
                                         key={idx}

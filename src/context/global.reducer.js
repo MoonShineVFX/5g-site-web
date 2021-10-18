@@ -28,9 +28,7 @@ const globalReducer = (state, { type, payload }) => {
             };
 
         default:
-            return {
-                ...state,
-            };
+            return { ...state };
     }
 
 };

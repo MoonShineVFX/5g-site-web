@@ -20,11 +20,11 @@ const navMenus = [
         text: '最新消息',
         subItems: [
             {
-                key: '?page=1&type=news',
+                key: '?page=1&cate=news',
                 text: '新聞快訊',
             },
             {
-                key: '?page=1&type=newsIndustry',
+                key: '?page=1&cate=newsIndustry',
                 text: '產業訊息',
             },
         ],
@@ -62,7 +62,7 @@ const navMenus = [
         text: '合作夥伴',
         subItems: [
             {
-                key: 'partner?page=1&type=all',
+                key: 'partner?page=1&cate=all',
                 text: '文化科技聯盟',
             },
         ],
@@ -191,7 +191,7 @@ const Navbar = ({ ...rest }) => {
 
                                     <Links
                                         key={sub.key}
-                                        url={`/${key ? `${key}/` : ''}${sub.key}`}
+                                        url={`/${key ? `${key}${`${key !== 'news' ? '/' : ''}`}` : ''}${sub.key}`}
                                         onClick={() => handleClickMenu(sub.text)}
                                     >
                                         {sub.text}
