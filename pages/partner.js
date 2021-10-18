@@ -63,6 +63,8 @@ const PartnerItem = ({
 const Partner = ({ pageData }) => {
 
     // console.log('pageData:', pageData);
+
+    // Router
     const router = useRouter();
     const query = useQuery();
 

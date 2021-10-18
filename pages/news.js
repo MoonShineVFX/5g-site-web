@@ -47,6 +47,8 @@ const NewsItem = ({
 const News = ({ pageData }) => {
 
     // console.log('pageData:', pageData);
+
+    // Router
     const router = useRouter();
     const query = useQuery();
 
