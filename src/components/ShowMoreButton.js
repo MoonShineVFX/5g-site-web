@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { ButtonLink } from './Links';
 import { styled } from '@mui/system';
+import { ButtonLink } from './Links';
 
 //
 const ShowMoreButtonLayout = styled('div')(({ theme }) => ({
@@ -12,20 +12,22 @@ const ShowMoreButtonLayout = styled('div')(({ theme }) => ({
 }));
 
 //
-const ShowMoreButton = ({ url, ...rest }) => (
+const ShowMoreButton = ({ url, newPage, ...rest }) => (
 
     <ShowMoreButtonLayout {...rest}>
-        <ButtonLink url={url} />
+        <ButtonLink url={url} newPage={newPage} />
     </ShowMoreButtonLayout>
 
 );
 
-ShowMoreButton.propTypes = {
+ShowMoreButton.defaultProps = {
     url:'',
+    newPage: false,
 };
 
 ShowMoreButton.propTypes = {
     url: PropTypes.string,
+    newPage: PropTypes.bool,
 };
 
 export default ShowMoreButton;

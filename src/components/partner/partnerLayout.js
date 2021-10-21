@@ -12,6 +12,7 @@ const MenusLayout = styled('section')(({ theme }) => ({
     },
 }));
 
+//
 const MenuItemLayout = styled(Links)(({ theme }) => ({
     fontSize: '1.5em',
     color: theme.palette.text.primary,
@@ -75,7 +76,10 @@ const PartnersLayout = styled('section')(({ theme }) => ({
         height: '114px',
         borderRadius: '40%',
         marginRight: '30px',
-        overflow: 'hidden',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        // overflow: 'hidden',
     },
     '.name': {
         fontSize: '1.25em',

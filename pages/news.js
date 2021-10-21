@@ -27,6 +27,7 @@ const config = {
 //
 const NewsItem = ({
     data: { id, title, description, createTime, tags },
+    tagList,
 }) => (
 
     <Links
@@ -36,7 +37,7 @@ const NewsItem = ({
         <span className="date">{dayjs(createTime).format('YYYY/MM/DD')}</span>
         <h1 className="title">{title}</h1>
         <TagsLayout>
-            {tags.map((id) => <span key={id}>{id}</span>)}
+            {tags.map((id) => <span key={id}>{util.mappingTags(tagList)[id]}</span>)}
         </TagsLayout>
         <p>{description}</p>
     </Links>
@@ -45,8 +46,6 @@ const NewsItem = ({
 
 //
 const News = ({ pageData }) => {
-
-    // console.log('pageData:', pageData);
 
     // Router
     const router = useRouter();
@@ -151,6 +150,7 @@ const News = ({ pageData }) => {
                                 <NewsItem
                                     key={data.id}
                                     data={data}
+                                    tagList={pageData.data.tags}
                                 />
 
                             ))
@@ -158,7 +158,7 @@ const News = ({ pageData }) => {
                     </ItemsWrapLayout>
 
                     <Paginations
-                        length={pageData.data.list.length}
+                        length={pageData.data.count}
                         currPage={+query?.page}
                         perPage={15}
                         onChange={handleChangePage}
@@ -173,10 +173,14 @@ const News = ({ pageData }) => {
 
 export default News;
 
-export async function getStaticProps () {
+export async function getServerSideProps ({ query }) {
 
-    const res = await fetch('http://localhost:1001/json/news.json');
-    const data = await res.json();
+    const res = await util.serviceServer({
+        method: 'get',
+        url: `/web_news?page=${query.page}&cate=${query.cate}${query.tag ? `&tag=${query.tag}` : ''}`,
+    });
+
+    const { data } = res;
 
     if (!data.result) {
 
@@ -187,7 +191,6 @@ export async function getStaticProps () {
     }
 
     return {
-        revalidate: 30,
         props: {
             pageData: {
                 title: '最新消息',

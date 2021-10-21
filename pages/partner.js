@@ -15,10 +15,10 @@ import useQuery from '../src/utils/useQuery';
 import util from '../src/utils/util';
 
 //
-const MenuItem = ({ cate = 'all', text, ...rest }) => (
+const MenuItem = ({ tag = 'all', text, ...rest }) => (
 
     <MenuItemLayout
-        url={`/partner?page=1&cate=${cate}`}
+        url={`/partner?page=1&tag=${tag}`}
         {...rest}
     >
         {text}
@@ -40,14 +40,15 @@ const PartnerItem = ({
 
     <Links
         url={link}
-        target="_blank"
         className="item"
         title={name}
+        newPage={true}
     >
         <div className="top">
-            <span className="thumb">
-                <img src={imgUrl} alt={name} />
-            </span>
+            <span
+                className="thumb"
+                style={{ backgroundImage: `url(${imgUrl})` }}
+            />
             <span>
                 <h2 className="name">{name}</h2>
                 <div>{phone}</div>
@@ -61,8 +62,6 @@ const PartnerItem = ({
 
 //
 const Partner = ({ pageData }) => {
-
-    // console.log('pageData:', pageData);
 
     // Router
     const router = useRouter();
@@ -106,7 +105,7 @@ const Partner = ({ pageData }) => {
             <MenusLayout>
                 <MenuItem
                     text="全部"
-                    className={(query?.cate === 'all') ? 'active' : ''}
+                    className={(query?.tag === 'all') ? 'active' : ''}
                 />
 
                 {
@@ -114,9 +113,9 @@ const Partner = ({ pageData }) => {
 
                         <MenuItem
                             key={id}
-                            cate={id}
+                            tag={id}
                             text={name}
-                            className={(+query?.cate === id) ? 'active' : ''}
+                            className={(+query?.tag === id) ? 'active' : ''}
                         />
 
                     ))
@@ -125,22 +124,29 @@ const Partner = ({ pageData }) => {
 
             <PartnersLayout>
                 {
-                    pageData.data.list.map((data) => (
+                    pageData.data.list.length ? (
 
-                        <PartnerItem
-                            key={data.id}
-                            data={data}
-                        />
+                        pageData.data.list.map((data) => (
 
-                    ))
+                            <PartnerItem
+                                key={data.id}
+                                data={data}
+                            />
+
+                        ))
+
+                    ) : '目前沒有資料...'
                 }
             </PartnersLayout>
 
-            <Paginations
-                length={pageData.data.list.length}
-                currPage={+query?.page}
-                onChange={handleChangePage}
-            />
+            {
+                !!(pageData.data.list.length) &&
+                    <Paginations
+                        length={pageData.data.count}
+                        currPage={+query?.page}
+                        onChange={handleChangePage}
+                    />
+            }
         </Fragment>
 
     );
@@ -149,10 +155,18 @@ const Partner = ({ pageData }) => {
 
 export default Partner;
 
-export async function getStaticProps () {
+export async function getServerSideProps ({ query, res, req }) {
 
-    const res = await fetch('http://localhost:1001/json/partner.json');
-    const data = await res.json();
+    const response = await util.serviceServer({
+        method: 'get',
+        url: `/web_partners?page=${query.page}&tag=${query.tag}`,
+    });
+
+    // console.log('betty query:', query)
+    // console.log('betty res:', res)
+    // console.log('betty req:', req)
+
+    const { data } = response;
 
     if (!data.result) {
 
@@ -163,7 +177,6 @@ export async function getStaticProps () {
     }
 
     return {
-        revalidate: 30,
         props: {
             pageData: {
                 title: '合作夥伴',

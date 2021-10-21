@@ -26,6 +26,14 @@ const socials = [faFacebook, faInstagram, faLink];
 // 時間格式
 const dateFormat = (date) => dayjs(date).format('YYYY.MM.DD (dd)');
 
+// 對應標籤文字
+const mappingTags = (tags) => tags.reduce((acc, { id, name }) => {
+
+    acc[id] = name;
+    return acc;
+
+}, {});
+
 // 其他新聞 next/prev
 const Item = ({
     data: { id, title, createTime },
@@ -48,15 +56,17 @@ const Item = ({
 //
 const NewsDetail = ({ pageData }) => {
 
+    // console.log('pageData:', pageData);
     const {
         title,
         detail,
         categoryKey,
         categoryName,
-        tags,
+        ownTags,
         createTime,
         updateTime,
         otherNews,
+        tags,
     } = pageData.data;
 
     // Context
@@ -83,7 +93,7 @@ const NewsDetail = ({ pageData }) => {
 
             <DetailHeaderLayout>
                 <TagsLayout className="detail-tags web-clear-box">
-                    {tags.map(({ id, name }) => <span key={id}>{name}</span>)}
+                    {ownTags.map((id) => <span key={id}>{mappingTags(tags)[id]}</span>)}
                 </TagsLayout>
                 <h1 className="title">{title}</h1>
 
@@ -136,14 +146,32 @@ const NewsDetail = ({ pageData }) => {
 
 export default NewsDetail;
 
-export async function getServerSideProps ({ params }) {
+export async function getStaticPaths () {
 
-    const res = await util.serviceServer({
-        method: 'get',
-        url: `/web_news/${params.id}`,
-    });
+    // const res = await admin.serviceServer({ url: '/news' });
+    // const { data } = res;
 
-    const { data } = res;
+    const res = await fetch('http://localhost:1001/json/news.json');
+    const data = await res.json();
+    const paths = data.data.list.map((obj) => ({
+        params: { id: String(obj.id) },
+    }));
+
+    return { paths, fallback: false };
+
+}
+
+export async function getStaticProps ({ params }) {
+
+    // const res = await admin.serviceServer({
+    //     method: 'get',
+    //     url: `/news/${params.id}`,
+    // });
+
+    // const { data } = res;
+
+    const res = await fetch('http://localhost:1001/json/news/4891321.json');
+    const data = await res.json();
 
     if (!data.result) {
 
@@ -155,6 +183,7 @@ export async function getServerSideProps ({ params }) {
 
     return {
         props: {
+            revalidate: 30,
             pageData: {
                 title: '最新消息',
                 data: data.data,

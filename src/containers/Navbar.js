@@ -44,15 +44,15 @@ const navMenus = [
         ],
     },
     {
-        key: 'area',
+        key: 'place',
         text: '場域空間',
         subItems: [
             {
-                key: '5g',
+                key: '?cate=5g',
                 text: '5G示範場域',
             },
             {
-                key: 'tech',
+                key: '?cate=tech',
                 text: '互動科技示範場域',
             },
         ],
@@ -62,7 +62,7 @@ const navMenus = [
         text: '合作夥伴',
         subItems: [
             {
-                key: 'partner?page=1&cate=all',
+                key: 'partner?page=1&tag=all',
                 text: '文化科技聯盟',
             },
         ],
@@ -191,7 +191,7 @@ const Navbar = ({ ...rest }) => {
 
                                     <Links
                                         key={sub.key}
-                                        url={`/${key ? `${key}${`${key !== 'news' ? '/' : ''}`}` : ''}${sub.key}`}
+                                        url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place') ? '/' : ''}`}` : ''}${sub.key}`}
                                         onClick={() => handleClickMenu(sub.text)}
                                     >
                                         {sub.text}

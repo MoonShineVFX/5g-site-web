@@ -3,18 +3,24 @@ import PropTypes from 'prop-types';
 import Buttons from './Buttons';
 
 //
-const Links = ({ url, children, ...rest }) => (
+const Links = ({ url, newPage, children, ...rest }) => (
 
     <Link href={url}>
-        <a href={url} {...rest}>{children}</a>
+        <a
+            href={url}
+            {...newPage && { target: '_blank'}}
+            {...rest}
+        >
+            {children}
+        </a>
     </Link>
 
 );
 
 //
-const ButtonLink = ({ url, text }) => (
+const ButtonLink = ({ url, text, newPage, ...rest }) => (
 
-    <Links url={url}>
+    <Links url={url} newPage={newPage} {...rest}>
         <Buttons text={text} />
     </Links>
 
@@ -32,6 +38,7 @@ Links.propTypes = {
 ButtonLink.propTypes = {
     url: PropTypes.string,
     text: PropTypes.string,
+    newPage: PropTypes.bool,
 };
 
 export { Links, ButtonLink };

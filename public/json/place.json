@@ -1,0 +1,34 @@
+{
+    "result": 1,
+    "message": "",
+    "errors": [],
+    "data": {
+        "list": [
+            {
+                "id": 48912321,
+                "title": "標題-48912321",
+                "imgUrl": "//fakeimg.pl/600x337"
+            },
+            {
+                "id": 48912322,
+                "title": "標題-48912322",
+                "imgUrl": "//fakeimg.pl/600x337"
+            },
+            {
+                "id": 48912323,
+                "title": "標題-48912323",
+                "imgUrl": "//fakeimg.pl/600x337"
+            },
+            {
+                "id": 48912324,
+                "title": "標題-48912324",
+                "imgUrl": "//fakeimg.pl/600x337"
+            },
+            {
+                "id": 48912325,
+                "title": "標題-48912325",
+                "imgUrl": "//fakeimg.pl/600x337"
+            }
+        ]
+    }
+}

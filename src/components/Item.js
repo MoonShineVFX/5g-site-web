@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
 import { Links } from './Links';
 
+//
 const ItemLayout = styled(Links)(({ theme }) => ({
     color: theme.palette.text.primary,
     textDecoration: 'none',
@@ -39,13 +40,14 @@ const ItemLayout = styled(Links)(({ theme }) => ({
     },
 }));
 
+//
 const Item = ({ title, imgUrl, ...rest }) => (
 
     <ItemLayout className="item" {...rest}>
         <div className="thumb">
             <img src={imgUrl} alt={title} />
         </div>
-        <h2 className="title">{title}</h2>
+        <h2 className="web-line-clamp title">{title}</h2>
     </ItemLayout>
 
 );

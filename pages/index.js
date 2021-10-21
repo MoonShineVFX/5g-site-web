@@ -128,7 +128,7 @@ const Home = ({ pageData }) => {
                                 <Item
                                     title={title}
                                     imgUrl={imgUrl}
-                                    url={`/demo_place/${id}`}
+                                    url={`/place/${id}`}
                                 />
                             </div>
 
