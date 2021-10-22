@@ -76,10 +76,7 @@ const PartnersLayout = styled('section')(({ theme }) => ({
         height: '114px',
         borderRadius: '40%',
         marginRight: '30px',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        // overflow: 'hidden',
+        overflow: 'hidden',
     },
     '.name': {
         fontSize: '1.25em',

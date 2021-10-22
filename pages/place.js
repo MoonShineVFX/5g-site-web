@@ -79,6 +79,9 @@ const Place = ({ pageData }) => {
                                     title={title}
                                     imgUrl={imgUrl}
                                     url={`/place/${id}`}
+                                    width="563"
+                                    height="312"
+                                    newPage={true}
                                 />
                             </Grid>
 

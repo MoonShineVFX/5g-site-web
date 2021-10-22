@@ -10,24 +10,13 @@ const ItemLayout = styled(Links)(({ theme }) => ({
     borderBottomWidth: '3px',
     '&:hover': {
         'img': {
-            transform: 'translateY(-50%) scale(1.3)',
+            transform: 'scale(1.1)',
         },
     },
     '.thumb': {
-        height: '204px',
+        textAlign: 'center',
         borderBottom: `1px solid ${theme.palette.primary.main}`,
-        position: 'relative',
         overflow: 'hidden',
-    },
-    'img': {
-        height: '100%',
-        margin: '0 auto',
-        position: 'absolute',
-        left: '0',
-        right: '0',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        transition: 'all .75s ease',
     },
     '.title': {
         fontWeight: 'normal',
@@ -41,11 +30,17 @@ const ItemLayout = styled(Links)(({ theme }) => ({
 }));
 
 //
-const Item = ({ title, imgUrl, ...rest }) => (
+const Item = ({ title, imgUrl, width, height, ...rest }) => (
 
     <ItemLayout className="item" {...rest}>
         <div className="thumb">
-            <img src={imgUrl} alt={title} />
+            <img
+                src={imgUrl}
+                alt={title}
+                title={title}
+                width={width}
+                height={height}
+            />
         </div>
         <h2 className="web-line-clamp title">{title}</h2>
     </ItemLayout>
@@ -55,6 +50,8 @@ const Item = ({ title, imgUrl, ...rest }) => (
 Item.propTypes = {
     title: PropTypes.string,
     imgUrl: PropTypes.string,
+    width: PropTypes.string,
+    height: PropTypes.string,
 };
 
 export default Item;

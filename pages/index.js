@@ -93,7 +93,7 @@ const Home = ({ pageData }) => {
             <section>
                 <SlideShowLayout data={pageData.data.banners}>
                     {
-                        pageData.data.banners.map(({ id, title, imgUrl, imgUrlSmall, link }, idx) => (
+                        pageData.data.banners.map(({ id, title, imgUrl, link }, idx) => (
 
                             <div
                                 key={id}
@@ -102,10 +102,17 @@ const Home = ({ pageData }) => {
                                 {title}
                                 <Links
                                     url={link}
-                                    target="_blank"
                                     title={title}
+                                    newPage={true}
+                                    className="item"
                                 >
-                                    <img src={imgUrl} alt={title} />
+                                    <img
+                                        src={imgUrl}
+                                        alt={title}
+                                        title={title}
+                                        width="1140"
+                                        height="428"
+                                    />
                                 </Links>
                             </div>
 
@@ -120,17 +127,25 @@ const Home = ({ pageData }) => {
                     secondaryText="Locations"
                 />
 
-                <ItemLayout>
+                <ItemLayout container spacing={5}>
                     {
                         pageData.data.demoPlaces.map(({ id, title, imgUrl }) => (
 
-                            <div key={id} className="itemWrap">
+                            <Grid
+                                key={id}
+                                item
+                                xs={12}
+                                md={4}
+                                className="itemWrap"
+                            >
                                 <Item
                                     title={title}
                                     imgUrl={imgUrl}
                                     url={`/place/${id}`}
+                                    width="368"
+                                    height="191"
                                 />
-                            </div>
+                            </Grid>
 
                         ))
                     }
@@ -165,17 +180,23 @@ const Home = ({ pageData }) => {
                     secondaryText="Alliances"
                 />
 
-                <ItemPartnerLayout>
+                <ItemPartnerLayout container>
                     {
                         pageData.data.partners.map(({ id, name }, idx) => (
 
-                            <div key={id} className="itemWrap">
+                            <Grid
+                                key={id}
+                                item
+                                xs={12}
+                                md={4}
+                                className="itemWrap"
+                            >
                                 <Links url={`/partner/${id}`}>
                                     <FontIcon icon={arrangePartnerTag(pageData.data.partners)[idx].icon} />
                                     <h1>{name}</h1>
                                     <span className="web-x-align nothing"></span>
                                 </Links>
-                            </div>
+                            </Grid>
 
                         ))
                     }

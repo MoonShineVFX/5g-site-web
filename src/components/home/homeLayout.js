@@ -19,7 +19,7 @@ const styles = {
     },
     [theme.breakpoints.down('md')]: {
         'main > div > section': {
-            marginBottom: '10px',
+            marginBottom: '40px',
             padding: '0',
             '.section-title': {
                 marginBottom: '40px',
@@ -32,34 +32,35 @@ const styles = {
 const homeStyles = <GlobalStyles styles={styles} />;
 
 const SlideShowLayout = styled(SlideShow)(({ theme }) => ({
+    '.item': {
+        height: '428px',
+    },
     [theme.breakpoints.up('md')]: {
         padding: '0 30px',
     },
-}));
-
-const ItemLayout = styled('div')(() => ({
-    display: 'flex',
-    marginLeft: '-10px',
-    marginRight: '-10px',
-    '.itemWrap': {
-        flex: '1',
-        padding: '0 10px',
+    [theme.breakpoints.down('sm')]: {
+        '.item': {
+            height: '360px',
+        },
     },
-    '.item': {
-        display: 'block',
-    },
-    [theme.breakpoints.up('md')]: {
-        padding: '0 24px',
-    },
-    [theme.breakpoints.down('768')]: {
-        display: 'block',
-        '.itemWrap': {
-            marginBottom: '20px',
+    [theme.breakpoints.down('420')]: {
+        '.item': {
+            height: '300px',
         },
     },
 }));
 
-const ItemPartnerLayout = styled(ItemLayout)(({ theme }) => ({
+const ItemLayout = styled(Grid)({
+    padding: '0 24px',
+    '.item': {
+        display: 'block',
+    },
+    '.thumb': {
+        height: '191px',
+    },
+});
+
+const ItemPartnerLayout = styled(Grid)(({ theme }) => ({
     maxWidth: '900px',
     fontSize: '2em',
     textAlign: 'center',
@@ -69,6 +70,10 @@ const ItemPartnerLayout = styled(ItemLayout)(({ theme }) => ({
     },
     'svg': {
         fontSize: '2.2em',
+    },
+    '.itemWrap': {
+        marginBottom: '80px',
+        padding: '0 10px',
     },
     'a': {
         width: '240px',
@@ -100,9 +105,6 @@ const ItemPartnerLayout = styled(ItemLayout)(({ theme }) => ({
     },
     [theme.breakpoints.down('md')]: {
         maxWidth: '100%',
-        '.itemWrap': {
-            marginBottom: '60px',
-        },
         'svg': {
             fontSize: '1.6em',
         },

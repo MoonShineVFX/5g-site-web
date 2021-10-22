@@ -45,10 +45,14 @@ const PartnerItem = ({
         newPage={true}
     >
         <div className="top">
-            <span
-                className="thumb"
-                style={{ backgroundImage: `url(${imgUrl})` }}
-            />
+            <span className="thumb">
+                <img
+                    src={imgUrl}
+                    alt={name}
+                    width="152"
+                    height="114"
+                />
+            </span>
             <span>
                 <h2 className="name">{name}</h2>
                 <div>{phone}</div>

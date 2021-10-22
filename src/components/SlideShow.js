@@ -14,17 +14,12 @@ const SlideShowLayout = styled('div')(() => ({
 }));
 
 // 容器
-const SlideShowContainer = styled('div', {
-    name: 'slideshow-container',
-})(() => ({
+const SlideShowContainer = styled('div')(({ theme }) => ({
     '.hide': {
         display: 'none',
     },
     '.active': {
         display: 'block'
-    },
-    'img': {
-        width: '100%',
     },
 }));
 
@@ -68,26 +63,23 @@ const Dots = styled('span')(({ theme }) => ({
 }));
 
 // 箭頭
-const Arrows = styled('span')(() => ({
+const Arrows = styled('span')({
     '.MuiButton-root': {
         minWidth: 'auto',
-        width: '60px',
-        height: '60px',
-        border: '1px solid',
-        borderRadius: '50%',
-        padding: 0,
+        marginTop: '-30px',
+        padding: '4px',
         position: 'absolute',
         '&:first-of-type': {
-            left: '20px',
+            left: '-64px',
         },
         '& + .MuiButton-root': {
-            right: '20px',
+            right: '-64px',
         },
     },
     'svg': {
-        fontSize: '26px',
+        fontSize: '46px',
     },
-}));
+});
 
 const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
 
@@ -129,7 +121,7 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
 
     return (
 
-        <SlideShowLayout {...rest}>
+        <SlideShowLayout className="slide-show" {...rest}>
             <SlideShowContainer>{children}</SlideShowContainer>
 
             {

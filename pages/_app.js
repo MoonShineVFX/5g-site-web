@@ -65,6 +65,12 @@ const styles = {
         WebkitBoxOrient: 'vertical',
         overflow: 'hidden',
     },
+    'img': {
+        maxWidth: '100%',
+        maxHeight: '100%',
+        objectFit: 'cover',
+        transition: 'all .75s ease',
+    },
     [theme.breakpoints.down('md')]: {
         'main > div': {
             padding: '40px 20px',

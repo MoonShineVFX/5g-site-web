@@ -1,76 +1,50 @@
 import { Fragment, useContext, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faLink, faMapMarkerAlt, faFileAlt, faReply } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 
 import HeadTag from '../../src/containers/HeadTag';
+import { Links } from '../../src/components/Links';
 import FontIcon from '../../src/components/FontIcon';
-import SectionTitle from '../../src/components/SectionTitle';
+import SlideShow from '../../src/components/SlideShow';
 
-import { NewsItemWrapLayout } from '../../src/components/home/homeLayout';
 import {
-    TagsLayout,
-    DetailHeaderLayout,
-    MainContentLayout,
-    OtherNewsWrapLayout,
-    ShowMoreButtonLayout,
-} from '../../src/components/news/newsLayout';
+    SlideShowLayout,
+    SectionLayout,
+} from '../../src/components/place/placeLayout';
 
 import { GlobalContext } from '../../src/context/global.state';
 import util from '../../src/utils/util';
 
 // 社群 icon
 const socials = [faFacebook, faInstagram, faLink];
-
-// 時間格式
-const dateFormat = (date) => dayjs(date).format('YYYY.MM.DD (dd)');
-
-// 對應標籤文字
-const mappingTags = (tags) => tags.reduce((acc, { id, name }) => {
-
-    acc[id] = name;
-    return acc;
-
-}, {});
-
-// 其他新聞 next/prev
-const Item = ({
-    data: { id, title, createTime },
-}) => (
-
-    <Grid item xs={12} md={6}>
-        <NewsItemWrapLayout
-            url={`/news/${id}`}
-            className="item"
-        >
-            <h2 className="title">{title}</h2>
-            <div className="date">
-                <span>{dateFormat(createTime)}</span>
-            </div>
-        </NewsItemWrapLayout>
-    </Grid>
-
-);
-
 //
-const NewsDetail = ({ pageData }) => {
+const PlaceDetail = ({ pageData }) => {
 
     // console.log('pageData:', pageData);
     const {
-        title,
-        detail,
         categoryKey,
         categoryName,
-        ownTags,
-        createTime,
-        updateTime,
-        otherNews,
-        tags,
+        images,
+        title,
+        locationUrl,
+        description,
+        contact,
+        links,
+        files,
+        byMRT,
+        byBus,
+        byDrive,
+        videoUrl,
     } = pageData.data;
 
     // Context
-    const { menu, globalDispatch } = useContext(GlobalContext);
+    const {
+        menu,
+        slideshowActive,
+        globalDispatch,
+    } = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -80,7 +54,7 @@ const NewsDetail = ({ pageData }) => {
                 ...menu,
                 level1: pageData.title,
                 level2: categoryName,
-                level1Link: `/news?page=1&cate=${categoryKey}`,
+                level1Link: `/place?cate=${categoryKey}`,
             },
         });
 
@@ -91,77 +65,145 @@ const NewsDetail = ({ pageData }) => {
         <Fragment>
             <HeadTag title={`${categoryName}-${title}`} />
 
-            <DetailHeaderLayout>
-                <TagsLayout className="detail-tags web-clear-box">
-                    {ownTags.map((id) => <span key={id}>{mappingTags(tags)[id]}</span>)}
-                </TagsLayout>
-                <h1 className="title">{title}</h1>
-
-                <Grid container>
-                    <Grid item xs={12} md={6}>
-                        {dateFormat(createTime)}
-                        {updateTime && <span className="update-time">，更新於 {dateFormat(updateTime)}</span>}
-                    </Grid>
-
-                    <Grid
-                        item
-                        xs={12}
-                        md={6}
-                        className="info-socials"
-                    >
+            <SlideShowLayout>
+                <div className="wrap">
+                    <SlideShow data={images} showArrow={true}>
                         {
-                            socials.map((icon, idx) => (
+                            images.map(({ id, imgUrl }, idx) => (
 
-                                <span key={idx}>
-                                    <FontIcon icon={icon} />
-                                </span>
+                                <div
+                                    key={id}
+                                    className={(idx === slideshowActive) ? 'active' : 'hide'}
+                                >
+                                    <div className="item">
+                                        <img
+                                            src={imgUrl}
+                                            alt={id}
+                                            title={id}
+                                            width="778"
+                                            height="438"
+                                        />
+                                    </div>
+                                </div>
 
                             ))
                         }
+                    </SlideShow>
+
+                    <Links url={`/place?cate=${categoryKey}`} className="back-button">
+                        <span>
+                            <FontIcon icon={faReply} />
+                            <div>回列表</div>
+                        </span>
+                    </Links>
+                </div>
+            </SlideShowLayout>
+
+            <SectionLayout className="section-information">
+                <Grid container>
+                    <Grid item xs={12} md={6}>
+                        <h1 className="title">
+                            {title}
+                            <Links url={locationUrl} newPage={true} title={title}>
+                                <FontIcon icon={faMapMarkerAlt} />
+                            </Links>
+                        </h1>
+
+                        <p className="description">{description}</p>
+
+                        <div className="contact">
+                            <h2>聯絡資訊</h2>
+                            <p className="label">{contact.unit}</p>
+                            <p>{contact.name}</p>
+                            <p className="label">聯絡電話</p>
+                            <p>{contact.phone}</p>
+                            <p className="label">傳真</p>
+                            <p>{contact.fax}</p>
+                            <p className="label">E-mail</p>
+                            <p>{contact.email}</p>
+                        </div>
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                        socials
                     </Grid>
                 </Grid>
-            </DetailHeaderLayout>
+            </SectionLayout>
 
-            <MainContentLayout>
-                <div dangerouslySetInnerHTML={{__html: detail}} />
-            </MainContentLayout>
+            <SectionLayout className="section-relative">
+                <div>
+                    <h2 className="title">相關連結</h2>
+                    <div>
+                        {
+                            links.map(({ name, url }, idx) => (
 
-            <OtherNewsWrapLayout>
-                <SectionTitle
-                    primaryText="其他快訊"
-                    secondaryText="More News"
-                />
+                                <div key={idx} className="item">
+                                    <span>
+                                        {name}
+                                        <Links url={url} newPage={true}>{url}</Links>
+                                    </span>
+                                </div>
 
-                <Grid container spacing={5}>
-                    {otherNews.map((data) => <Item key={data.id} data={data} />)}
-                </Grid>
-            </OtherNewsWrapLayout>
+                            ))
+                        }
+                    </div>
+                </div>
 
-            <ShowMoreButtonLayout url={`/news?page=1&cate=${categoryKey}`} />
+                <div>
+                    <h2 className="title">相關文件</h2>
+                    <ul className="items-document">
+                        {
+                            files.map(({ name, url }, idx) => (
+
+                                <li key={idx}>
+                                    {name}
+                                    {/* Betty: 要再確認是實體路徑還是要另外打 ajax 要整個檔案內容 */}
+                                    <Links url={url} newPage={true}>
+                                        <FontIcon icon={faFileAlt} />
+                                    </Links>
+                                </li>
+
+                            ))
+                        }
+                    </ul>
+                </div>
+            </SectionLayout>
+
+            <SectionLayout className='section-traffic'>
+                <h2 className="title">交通資訊</h2>
+                <div className="items-traffic">
+                    <div>
+                        <h4 className="title">捷運</h4>
+                        <p>{byMRT}</p>
+                    </div>
+
+                    <div>
+                        <h4 className="title">公車</h4>
+                        <p>{byBus}</p>
+                    </div>
+
+                    <div>
+                        <h4 className="title">開車</h4>
+                        <p>{byDrive}</p>
+                    </div>
+                </div>
+            </SectionLayout>
+
+            {
+                videoUrl &&
+                    <SectionLayout className="section-video">
+                        {/* <iframe src={videoUrl} title={videoUrl} /> */}
+                    </SectionLayout>
+            }
         </Fragment>
 
     );
 
 };
 
-export default NewsDetail;
+export default PlaceDetail;
 
-export async function getStaticPaths () {
-
-    // const res = await admin.serviceServer({ url: '/news' });
-    // const { data } = res;
-
-    const res = await fetch('http://localhost:1001/json/news.json');
-    const data = await res.json();
-    const paths = data.data.list.map((obj) => ({
-        params: { id: String(obj.id) },
-    }));
-
-    return { paths, fallback: false };
-
-}
-
-export async function getStaticProps ({ params }) {
+export async function getServerSideProps ({ params }) {
 
     // const res = await admin.serviceServer({
     //     method: 'get',
@@ -170,7 +212,7 @@ export async function getStaticProps ({ params }) {
 
     // const { data } = res;
 
-    const res = await fetch('http://localhost:1001/json/news/4891321.json');
+    const res = await fetch('http://localhost:1001/json/place/8313.json');
     const data = await res.json();
 
     if (!data.result) {
@@ -183,9 +225,8 @@ export async function getStaticProps ({ params }) {
 
     return {
         props: {
-            revalidate: 30,
             pageData: {
-                title: '最新消息',
+                title: '5G示範場域',
                 data: data.data,
             },
         },
