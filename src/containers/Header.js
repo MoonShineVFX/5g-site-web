@@ -19,6 +19,7 @@ const AppBarLayout = styled('header')(({ theme }) => ({
     [theme.breakpoints.between('md', '1220')]: {
         '> div': {
             padding: '0 20px',
+            overflow: 'initial',
         },
     },
 }));

@@ -210,7 +210,7 @@ const Home = ({ pageData }) => {
 
 export default Home;
 
-export async function getStaticProps () {
+export async function getServerSideProps () {
 
     const res = await fetch('http://localhost:1001/json/home.json');
     const data = await res.json();
@@ -224,7 +224,6 @@ export async function getStaticProps () {
     }
 
     return {
-        revalidate: 30,
         props: {
             pageData: {
                 title: '首頁',

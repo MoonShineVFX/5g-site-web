@@ -157,12 +157,15 @@ const News = ({ pageData }) => {
                         }
                     </ItemsWrapLayout>
 
-                    <Paginations
-                        length={pageData.data.count}
-                        currPage={+query?.page}
-                        perPage={15}
-                        onChange={handleChangePage}
-                    />
+                    {
+                        !!(pageData.data.count && (pageData.data.count > 15)) &&
+                            <Paginations
+                                length={pageData.data.count}
+                                currPage={+query?.page}
+                                perPage={15}
+                                onChange={handleChangePage}
+                            />
+                    }
                 </Grid>
             </MenusLayout>
         </Fragment>

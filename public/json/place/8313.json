@@ -4,8 +4,7 @@
     "errors": [],
     "data": {
         "id": 8313,
-        "categoryKey": "tech",
-        "categoryName": "互動科技示範場域",
+        "type": "tech",
         "title": "駁二大義區C7動漫倉庫",
         "locationUrl": "https://www.google.com.tw/maps/place/%E5%A4%A2%E6%83%B3%E5%8B%95%E7%95%AB/@25.0510988,121.5928083,17z/data=!3m2!4b1!5s0x3442ab6558ba3521:0xbe34660725096e72!4m5!3m4!1s0x3442aba32bd21781:0x592cb0b7781a69d3!8m2!3d25.051094!4d121.594997",
         "description": "PAIR位於大義區C9倉庫，有8間10坪的駐村藝術家創作工作室，以及一間共同交流空間，具備如講座、交誼、廚房、會議、洗衣等複合功能，提供進駐藝術家及團隊一個充滿藝文能量的展演及交流平台。",

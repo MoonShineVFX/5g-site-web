@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import HeadTag from '../src/containers/HeadTag';
 import { Links } from '../src/components/Links';
 import Paginations from '../src/components/Paginations';
+import EmptyDataMesg from '../src/components/EmptyDataMesg';
 
 import {
     MenusLayout,
@@ -76,6 +77,8 @@ const Partner = ({ pageData }) => {
 
     useEffect(() => {
 
+        if (!query) return;
+
         globalDispatch({
             type: 'menu',
             payload: {
@@ -139,12 +142,12 @@ const Partner = ({ pageData }) => {
 
                         ))
 
-                    ) : '目前沒有資料...'
+                    ) : <EmptyDataMesg />
                 }
             </PartnersLayout>
 
             {
-                !!(pageData.data.list.length) &&
+                !!(pageData.data.count && (pageData.data.count > 12)) &&
                     <Paginations
                         length={pageData.data.count}
                         currPage={+query?.page}
@@ -159,18 +162,14 @@ const Partner = ({ pageData }) => {
 
 export default Partner;
 
-export async function getServerSideProps ({ query, res, req }) {
+export async function getServerSideProps ({ query }) {
 
-    const response = await util.serviceServer({
+    const res = await util.serviceServer({
         method: 'get',
         url: `/web_partners?page=${query.page}&tag=${query.tag}`,
     });
 
-    // console.log('betty query:', query)
-    // console.log('betty res:', res)
-    // console.log('betty req:', req)
-
-    const { data } = response;
+    const { data } = res;
 
     if (!data.result) {
 

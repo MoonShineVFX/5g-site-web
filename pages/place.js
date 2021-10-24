@@ -1,27 +1,15 @@
 import { Fragment, useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { Grid } from '@mui/material';
-import dayjs from 'dayjs';
-
 import HeadTag from '../src/containers/HeadTag';
-import { Links } from '../src/components/Links';
 import Item from '../src/components/Item';
-
-import { ItemLayout } from '../src/components/home/homeLayout';
-import {
-    MenuLayout,
-    ItemsWrapLayout,
-} from '../src/components/place/placeLayout';
-
+import EmptyDataMesg from '../src/components/EmptyDataMesg';
+import { MenuLayout, ItemsWrapLayout } from '../src/components/place/placeLayout';
 import { GlobalContext } from '../src/context/global.state';
 import useQuery from '../src/utils/useQuery';
 import util from '../src/utils/util';
+import utilConst from '../src/utils/util.const';
 
-//
-const config = {
-    '5g': '5G示範場域',
-    'tech': '互動科技示範場域',
-};
+const { placeConfig } = utilConst;
 
 //
 const Place = ({ pageData }) => {
@@ -29,7 +17,6 @@ const Place = ({ pageData }) => {
     // console.log('pageData:', pageData);
 
     // Router
-    const router = useRouter();
     const query = useQuery();
 
     // Context
@@ -44,7 +31,7 @@ const Place = ({ pageData }) => {
             payload: {
                 ...menu,
                 level1: pageData.title,
-                level2: config[query.cate] || pageData.currPageTitle,
+                level2: placeConfig[query?.type] || pageData.currPageTitle,
                 level1Link: '',
             },
         });
@@ -54,10 +41,10 @@ const Place = ({ pageData }) => {
     return (
 
         <Fragment>
-            <HeadTag title={`${pageData.title}-${config[query?.cate] || pageData.currPageTitle}`} />
+            <HeadTag title={`${pageData.title}-${placeConfig[query?.type] || pageData.currPageTitle}`} />
 
             <MenuLayout>
-                <h1 className="title">{config[query?.cate]}</h1>
+                <h1 className="title">{placeConfig[query?.type]}</h1>
             </MenuLayout>
 
             <ItemsWrapLayout>
@@ -67,25 +54,29 @@ const Place = ({ pageData }) => {
                     columnSpacing="30px"
                 >
                     {
-                        pageData.data.list.map(({ id, title, imgUrl }) => (
+                        pageData.data.list.length ? (
 
-                            <Grid
-                                key={id}
-                                item
-                                xs={12}
-                                md={6}
-                            >
-                                <Item
-                                    title={title}
-                                    imgUrl={imgUrl}
-                                    url={`/place/${id}`}
-                                    width="563"
-                                    height="312"
-                                    newPage={true}
-                                />
-                            </Grid>
+                            pageData.data.list.map(({ id, title, imgUrl }) => (
 
-                        ))
+                                <Grid
+                                    key={id}
+                                    item
+                                    xs={12}
+                                    md={6}
+                                >
+                                    <Item
+                                        title={title}
+                                        imgUrl={imgUrl}
+                                        url={`/place/${id}`}
+                                        width="563"
+                                        height="312"
+                                        newPage={true}
+                                    />
+                                </Grid>
+
+                            ))
+
+                        ) : <EmptyDataMesg />
                     }
                 </Grid>
             </ItemsWrapLayout>
@@ -97,10 +88,17 @@ const Place = ({ pageData }) => {
 
 export default Place;
 
-export async function getStaticProps () {
+export async function getServerSideProps ({ query }) {
 
     const res = await fetch('http://localhost:1001/json/place.json');
     const data = await res.json();
+
+    // const res = await util.serviceServer({
+    //     method: 'get',
+    //     url: `/web_demo_places?type=${query.type}`,
+    // });
+
+    // const { data } = res;
 
     if (!data.result) {
 
@@ -111,7 +109,6 @@ export async function getStaticProps () {
     }
 
     return {
-        revalidate: 30,
         props: {
             pageData: {
                 title: '場域空間',

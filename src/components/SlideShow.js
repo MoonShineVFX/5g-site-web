@@ -81,6 +81,7 @@ const Arrows = styled('span')({
     },
 });
 
+//
 const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
 
     // Context
@@ -132,9 +133,9 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
 
                                 <span
                                     key={idx}
-                                    className={(idx === slideshowActive) ? 'active' : 'hide'}
+                                    className={`dot ${(idx === slideshowActive) ? 'active' : 'hide'}`}
                                     onClick={() => handleClickDot(idx)}
-                                ></span>
+                                />
 
                             ))
                         }
@@ -145,13 +146,13 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
                 showArrow &&
                     <Arrows className="slideshow-control-arrows">
                         <Button
-                            className="web-y-align"
+                            className="web-y-align button-arrow-left"
                             onClick={handleArrowLeft}
                         >
                             <ArrowBackIosIcon />
                         </Button>
                         <Button
-                            className="web-y-align"
+                            className="web-y-align button-arrow-right"
                             onClick={handleArrowRight}
                         >
                             <ArrowForwardIosIcon />

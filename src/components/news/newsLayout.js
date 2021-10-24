@@ -110,7 +110,7 @@ const DetailHeaderLayout = styled('section')(({ theme }) => ({
     fontSize: '0.9em',
     color: theme.palette.text.primary,
     borderBottom: '2px solid',
-    paddingBottom: '20px',
+    paddingBottom: '30px',
     position: 'relative',
     '&:before': {
         content: '""',
@@ -131,13 +131,10 @@ const DetailHeaderLayout = styled('section')(({ theme }) => ({
         margin: '0',
     },
     '.info-socials': {
-        fontSize: '1.7em',
         textAlign: 'right',
-        color: theme.palette.primary.main,
-        '> span': {
-            marginLeft: '20px',
-            padding: '2px 6px',
-        },
+    },
+    '.socials': {
+        marginRight: '-10px',
     },
     [theme.breakpoints.down('md')]: {
         '.detail-tags span': {
@@ -149,9 +146,6 @@ const DetailHeaderLayout = styled('section')(({ theme }) => ({
         },
         '.info-socials': {
             marginTop: '20px',
-            'span': {
-                marginLeft: '10px',
-            },
         },
     },
 }));

@@ -4,9 +4,12 @@ import theme from '../../utils/theme';
 import SlideShow from '../SlideShow';
 import { Links } from '../Links';
 
+//
 const styles = {
     'main > div > section': {
-        marginBottom: '100px',
+        '&:not(:last-child)': {
+            marginBottom: '100px',
+        },
         '.section-title': {
             marginBottom: '80px',
         },
@@ -31,6 +34,7 @@ const styles = {
 // Home Style
 const homeStyles = <GlobalStyles styles={styles} />;
 
+//
 const SlideShowLayout = styled(SlideShow)(({ theme }) => ({
     '.item': {
         height: '428px',
@@ -50,6 +54,7 @@ const SlideShowLayout = styled(SlideShow)(({ theme }) => ({
     },
 }));
 
+//
 const ItemLayout = styled(Grid)({
     padding: '0 24px',
     '.item': {
@@ -60,6 +65,7 @@ const ItemLayout = styled(Grid)({
     },
 });
 
+//
 const ItemPartnerLayout = styled(Grid)(({ theme }) => ({
     maxWidth: '900px',
     fontSize: '2em',
@@ -118,6 +124,7 @@ const ItemPartnerLayout = styled(Grid)(({ theme }) => ({
     },
 }));
 
+//
 const NewsWrapLayout = styled(Grid)(({ theme }) => ({
     '.MuiGrid-root': {
         padding: '0 25px',
@@ -161,6 +168,7 @@ const NewsWrapLayout = styled(Grid)(({ theme }) => ({
     },
 }));
 
+//
 const NewsItemWrapLayout = styled(Links)(({ theme }) => ({
     color: theme.palette.primary.main,
     display: 'block',

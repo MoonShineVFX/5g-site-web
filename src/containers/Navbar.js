@@ -48,11 +48,11 @@ const navMenus = [
         text: '場域空間',
         subItems: [
             {
-                key: '?cate=5g',
+                key: '?type=5g',
                 text: '5G示範場域',
             },
             {
-                key: '?cate=tech',
+                key: '?type=tech',
                 text: '互動科技示範場域',
             },
         ],
@@ -95,7 +95,7 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
                 display: 'inline-block',
                 verticalAlign: 'middle',
             },
-            '&:hover': {
+            '&:hover, &:focus': {
                 color: theme.palette.text.primary,
                 backgroundColor: theme.palette.text.secondary,
                 '.sub-menus': {

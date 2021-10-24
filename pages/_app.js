@@ -36,7 +36,7 @@ const styles = {
         margin: 'auto',
         [theme.breakpoints.up('md')]: {
             paddingTop: '40px',
-            paddingBottom: '40px',
+            paddingBottom: '80px',
         },
     },
     '.web-align': {

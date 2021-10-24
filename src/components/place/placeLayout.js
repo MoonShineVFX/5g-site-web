@@ -1,5 +1,6 @@
 import { styled } from '@mui/system';
 import { MenusLayout } from '../partner/partnerLayout';
+
 //
 const MenuLayout = styled(MenusLayout)(({ theme }) => ({
     '.title': {
@@ -15,7 +16,6 @@ const MenuLayout = styled(MenusLayout)(({ theme }) => ({
 
 //
 const ItemsWrapLayout = styled('section')(({ theme }) => ({
-    marginBottom: '100px',
     padding: '20px',
     '.item': {
         display: 'block',
@@ -35,13 +35,10 @@ const ItemsWrapLayout = styled('section')(({ theme }) => ({
 /** Detail */
 //
 const SlideShowLayout = styled('section')(({ theme }) => ({
-    margin: '40px 0',
     '.wrap': {
-        maxWidth: '940px',
+        width: '940px',
         margin: 'auto',
-        paddingBottom: '20px',
         position: 'relative',
-        overflow: 'hidden',
     },
     '.slide-show': {
         maxWidth: '778px',
@@ -51,21 +48,8 @@ const SlideShowLayout = styled('section')(({ theme }) => ({
         height: '438px',
     },
     '.back-button': {
-        width: '130px',
-        height: '153px',
-        fontSize: '1.15em',
-        textAlign: 'right',
-        color: '#FFF',
-        backgroundColor: theme.palette.primary.main,
         borderRadius: '50%',
         position: 'absolute',
-        left: '-40px',
-        bottom: '0',
-        transition: 'all 0.3s ease',
-        opacity: '0.5',
-        '&:hover': {
-            opacity: '1',
-        },
         '&:before': {
             content: '""',
             height: '100%',
@@ -76,10 +60,94 @@ const SlideShowLayout = styled('section')(({ theme }) => ({
             textAlign: 'center',
             display: 'inline-block',
             verticalAlign: 'middle',
-            marginRight: '22px',
         },
-        'svg': {
-            fontSize: '1.6em',
+    },
+    [theme.breakpoints.up('md')]: {
+        margin: '40px 0',
+        '.wrap': {
+            paddingBottom: '20px',
+            overflow: 'hidden',
+        },
+        '.back-button': {
+            width: '130px',
+            height: '140px',
+            fontSize: '1.15em',
+            textAlign: 'right',
+            color: '#FFF',
+            backgroundColor: theme.palette.primary.main,
+            left: '-36px',
+            bottom: '10px',
+            transition: 'all 0.3s ease',
+            opacity: '0.5',
+            '&:hover': {
+                opacity: '1',
+            },
+            'span': {
+                marginRight: '24px',
+            },
+            'svg': {
+                fontSize: '1.6em',
+            },
+        },
+        '.mobile': {
+            display: 'none',
+        }
+    },
+    [theme.breakpoints.down('1024')]: {
+        '.wrap': {
+            width: '872px',
+        },
+        '.slide-show': {
+            maxWidth: '710px',
+        },
+        '.item': {
+            height: '400px',
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        marginBottom: '20px',
+        '.desktop': {
+            display: 'none',
+        },
+        '.wrap': {
+            width: 'calc(100vw - 40px)', // padding 左右
+            padding: '0 20px',
+        },
+        '.slide-show': {
+            position: 'relative',
+        },
+        '.mobile.back-button': {
+            width: '86px',
+            height: '86px',
+            fontSize: '0.9em',
+            textAlign: 'center',
+            color: theme.palette.primary.main,
+            backgroundColor: 'rgba(196, 196, 196, 0.5)',
+            right: '12px',
+            bottom: '-32px',
+        },
+        '.MuiButton-root.MuiButton-text': {
+            '&.button-arrow-left': {
+                left: '-30px',
+            },
+            '&.button-arrow-right': {
+                right: '-30px',
+            },
+        },
+    },
+    [theme.breakpoints.down('sm')]: {
+        '.item': {
+            height: '320px',
+        },
+        '.mobile.back-button': {
+            width: '60px',
+            height: '60px',
+            fontSize: '0.8em',
+            right: '6px',
+            bottom: '-12px',
+        },
+        '.dot': {
+            margin: '2px 6px',
         },
     },
 }));
@@ -102,6 +170,7 @@ const SectionLayout = styled('section')(({ theme }) => ({
         '.title': {
             fontSize: '2.3em',
             fontWeight: 'normal',
+            marginTop: '0',
         },
         'a': {
             fontSize: '0.8em',
@@ -180,6 +249,26 @@ const SectionLayout = styled('section')(({ theme }) => ({
         textAlign: 'center',
         borderTop: `5px solid ${theme.palette.primary.main}`,
         paddingTop: '80px',
+    },
+    '.grid-socials': {
+        textAlign: 'right',
+    },
+    [theme.breakpoints.down('md')]: {
+        fontSize: '0.9em',
+        '.grid-info': {
+            order: '2',
+        },
+        'h2': {
+            fontSize: '1.25em',
+        },
+        '&.section-information': {
+            '.title': {
+                fontSize: '1.7em',
+            },
+        },
+        '&.section-traffic': {
+            marginBottom: '0',
+        },
     },
 }));
 

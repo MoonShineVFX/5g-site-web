@@ -1,12 +1,11 @@
 import { Fragment, useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { Grid } from '@mui/material';
-import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 
 import HeadTag from '../../src/containers/HeadTag';
-import FontIcon from '../../src/components/FontIcon';
 import SectionTitle from '../../src/components/SectionTitle';
+import Community from '../../src/components/Community';
 
 import { NewsItemWrapLayout } from '../../src/components/home/homeLayout';
 import {
@@ -19,9 +18,6 @@ import {
 
 import { GlobalContext } from '../../src/context/global.state';
 import util from '../../src/utils/util';
-
-// 社群 icon
-const socials = [faFacebook, faInstagram, faLink];
 
 // 時間格式
 const dateFormat = (date) => dayjs(date).format('YYYY.MM.DD (dd)');
@@ -47,6 +43,9 @@ const Item = ({
 
 //
 const NewsDetail = ({ pageData }) => {
+
+    // Router
+    const router = useRouter();
 
     const {
         title,
@@ -99,15 +98,10 @@ const NewsDetail = ({ pageData }) => {
                         md={6}
                         className="info-socials"
                     >
-                        {
-                            socials.map((icon, idx) => (
-
-                                <span key={idx}>
-                                    <FontIcon icon={icon} />
-                                </span>
-
-                            ))
-                        }
+                        <Community
+                            title={title}
+                            shareUrl={router.asPath}
+                        />
                     </Grid>
                 </Grid>
             </DetailHeaderLayout>

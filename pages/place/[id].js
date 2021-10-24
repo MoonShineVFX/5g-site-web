@@ -1,13 +1,14 @@
 import { Fragment, useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { Grid } from '@mui/material';
 import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faLink, faMapMarkerAlt, faFileAlt, faReply } from '@fortawesome/free-solid-svg-icons';
-import dayjs from 'dayjs';
 
 import HeadTag from '../../src/containers/HeadTag';
 import { Links } from '../../src/components/Links';
 import FontIcon from '../../src/components/FontIcon';
 import SlideShow from '../../src/components/SlideShow';
+import Community from '../../src/components/Community';
 
 import {
     SlideShowLayout,
@@ -16,16 +17,31 @@ import {
 
 import { GlobalContext } from '../../src/context/global.state';
 import util from '../../src/utils/util';
+import utilConst from '../../src/utils/util.const';
 
-// 社群 icon
-const socials = [faFacebook, faInstagram, faLink];
+const { placeConfig } = utilConst;
+
+//
+const BackButton = ({ type, className }) => (
+
+    <Links url={`/place?type=${type}`} className={`back-button ${className}`}>
+        <span>
+            <FontIcon icon={faReply} />
+            <div>回列表</div>
+        </span>
+    </Links>
+
+);
+
 //
 const PlaceDetail = ({ pageData }) => {
 
+    // Router
+    const router = useRouter();
+
     // console.log('pageData:', pageData);
     const {
-        categoryKey,
-        categoryName,
+        type,
         images,
         title,
         locationUrl,
@@ -53,8 +69,8 @@ const PlaceDetail = ({ pageData }) => {
             payload: {
                 ...menu,
                 level1: pageData.title,
-                level2: categoryName,
-                level1Link: `/place?cate=${categoryKey}`,
+                level2: placeConfig[type],
+                level1Link: `/place?cate=${type}`,
             },
         });
 
@@ -63,7 +79,7 @@ const PlaceDetail = ({ pageData }) => {
     return (
 
         <Fragment>
-            <HeadTag title={`${categoryName}-${title}`} />
+            <HeadTag title={title} />
 
             <SlideShowLayout>
                 <div className="wrap">
@@ -73,35 +89,30 @@ const PlaceDetail = ({ pageData }) => {
 
                                 <div
                                     key={id}
-                                    className={(idx === slideshowActive) ? 'active' : 'hide'}
+                                    className={`item ${(idx === slideshowActive) ? 'active' : 'hide'}`}
                                 >
-                                    <div className="item">
-                                        <img
-                                            src={imgUrl}
-                                            alt={id}
-                                            title={id}
-                                            width="778"
-                                            height="438"
-                                        />
-                                    </div>
+                                    <img
+                                        src={imgUrl}
+                                        alt={id}
+                                        title={id}
+                                        width="778"
+                                        height="438"
+                                    />
                                 </div>
 
                             ))
                         }
+
+                        <BackButton type={type} className="mobile" />
                     </SlideShow>
 
-                    <Links url={`/place?cate=${categoryKey}`} className="back-button">
-                        <span>
-                            <FontIcon icon={faReply} />
-                            <div>回列表</div>
-                        </span>
-                    </Links>
+                    <BackButton type={type} className="desktop" />
                 </div>
             </SlideShowLayout>
 
             <SectionLayout className="section-information">
                 <Grid container>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={6} className="grid-info">
                         <h1 className="title">
                             {title}
                             <Links url={locationUrl} newPage={true} title={title}>
@@ -124,8 +135,11 @@ const PlaceDetail = ({ pageData }) => {
                         </div>
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
-                        socials
+                    <Grid item xs={12} md={6} className="grid-socials">
+                        <Community
+                            title={title}
+                            shareUrl={router.asPath}
+                        />
                     </Grid>
                 </Grid>
             </SectionLayout>
@@ -190,10 +204,11 @@ const PlaceDetail = ({ pageData }) => {
             </SectionLayout>
 
             {
-                videoUrl &&
-                    <SectionLayout className="section-video">
-                        {/* <iframe src={videoUrl} title={videoUrl} /> */}
-                    </SectionLayout>
+                // videoUrl &&
+                //     <SectionLayout className="section-video">
+                //         <iframe src={videoUrl} title={title} />
+                //         {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/sqgxcCjD04s" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
+                //     </SectionLayout>
             }
         </Fragment>
 
@@ -207,7 +222,7 @@ export async function getServerSideProps ({ params }) {
 
     // const res = await admin.serviceServer({
     //     method: 'get',
-    //     url: `/news/${params.id}`,
+    //     url: `/web_demo_places/${params.id}`,
     // });
 
     // const { data } = res;
@@ -226,7 +241,7 @@ export async function getServerSideProps ({ params }) {
     return {
         props: {
             pageData: {
-                title: '5G示範場域',
+                title: '場域空間',
                 data: data.data,
             },
         },
