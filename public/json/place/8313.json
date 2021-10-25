@@ -47,9 +47,7 @@
                 "url": "/domain/path/L1490507.pdf"
             }
         ],
-        "byMRT": "搭乘「捷運淡水信義線」或「板南線」於台北車站下車，由台北車站M1出口出站後往承德路一段前進，遇華陰街向左轉至36、38號即到達",
-        "byBus": "台北車站(承德)-承德路轉華陰街：2、215、304承德、63、756、811 台北車站(鄭州)-沿市民大道往承德路方向，再轉華陰街： 2、14、218、218直、260、260區、274、310、39、39夜、578、579、582、615、622、641、669、市民小巴9 ",
-        "byDrive": "中山高國道一號→高雄端/中山路出口下交流道→右轉中山四路直行至新光路左轉→成功二路左轉→抵達",
-        "videoUrl": "https://www.youtube.com/watch?v=sqgxcCjD04s"
+        "address": "台北市南港區忠孝東路四段",
+        "videoIframe": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/sqgxcCjD04s\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
     }
 }

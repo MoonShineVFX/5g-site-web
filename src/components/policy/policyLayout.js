@@ -27,6 +27,9 @@ const DetailHeaderWrapLayout = styled(DetailHeaderLayout)(({ theme }) => ({
     },
     '.detail-tags': {
         marginBottom: '10px',
+        [theme.breakpoints.down('md')]: {
+            fontSize: '0.9em',
+        },
     },
 }));
 
@@ -58,6 +61,20 @@ const DetailMenusLayout = styled(MenusLayout)(({ theme }) => ({
     },
     'p': {
         margin: '10px 0 0',
+    },
+    [theme.breakpoints.down('md')]: {
+        '.info-wrap': {
+            paddingRight: '0',
+        },
+        '.menu-wrap': {
+            display: 'none',
+        },
+        '.title': {
+            fontSize: '1.5em',
+        },
+        'p': {
+            fontSize: '0.9em',
+        },
     },
 }));
 
@@ -97,6 +114,16 @@ const MainContentLayout = styled(SectionLayout)(({ theme }) => ({
     },
     '.contact': {
         marginTop: '0',
+    },
+    [theme.breakpoints.down('md')]: {
+        '&.section-information': {
+            '.title': {
+                fontSize: '1em',
+                '&:before': {
+                    verticalAlign: 'middle',
+                },
+            },
+        },
     },
 }));
 

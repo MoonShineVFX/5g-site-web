@@ -8,11 +8,7 @@ import { Links } from '../../src/components/Links';
 import FontIcon from '../../src/components/FontIcon';
 import SlideShow from '../../src/components/SlideShow';
 import Community from '../../src/components/Community';
-
-import {
-    SlideShowLayout,
-    SectionLayout,
-} from '../../src/components/place/placeLayout';
+import { SlideShowLayout, SectionLayout } from '../../src/components/place/placeLayout';
 
 import { GlobalContext } from '../../src/context/global.state';
 import util from '../../src/utils/util';
@@ -28,6 +24,15 @@ const BackButton = ({ type, className }) => (
             <FontIcon icon={faReply} />
             <div>回列表</div>
         </span>
+    </Links>
+
+);
+
+// 外連 google map
+const Location = ({ title, url }) => (
+
+    <Links url={url} newPage={true} title={title}>
+        <FontIcon icon={faMapMarkerAlt} />
     </Links>
 
 );
@@ -49,10 +54,8 @@ const PlaceDetail = ({ pageData }) => {
         contact,
         links,
         files,
-        byMRT,
-        byBus,
-        byDrive,
-        videoUrl,
+        address,
+        videoIframe,
     } = pageData.data;
 
     // Context
@@ -115,9 +118,7 @@ const PlaceDetail = ({ pageData }) => {
                     <Grid item xs={12} md={6} className="grid-info">
                         <h1 className="title">
                             {title}
-                            <Links url={locationUrl} newPage={true} title={title}>
-                                <FontIcon icon={faMapMarkerAlt} />
-                            </Links>
+                            <Location title={title} url={locationUrl} />
                         </h1>
 
                         <p className="description">{description}</p>
@@ -186,29 +187,16 @@ const PlaceDetail = ({ pageData }) => {
             <SectionLayout className='section-traffic'>
                 <h2 className="title">交通資訊</h2>
                 <div className="items-traffic">
-                    <div>
-                        <h4 className="title">捷運</h4>
-                        <p>{byMRT}</p>
-                    </div>
-
-                    <div>
-                        <h4 className="title">公車</h4>
-                        <p>{byBus}</p>
-                    </div>
-
-                    <div>
-                        <h4 className="title">開車</h4>
-                        <p>{byDrive}</p>
-                    </div>
+                    {address}
+                    <Location title={title} url={locationUrl} />
                 </div>
             </SectionLayout>
 
             {
-                // videoUrl &&
-                //     <SectionLayout className="section-video">
-                //         <iframe src={videoUrl} title={title} />
-                //         {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/sqgxcCjD04s" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
-                //     </SectionLayout>
+                videoIframe &&
+                    <SectionLayout className="section-video">
+                        <div dangerouslySetInnerHTML={{__html: videoIframe}} />
+                    </SectionLayout>
             }
         </Fragment>
 
