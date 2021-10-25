@@ -1,0 +1,181 @@
+import { Fragment, useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { Grid } from '@mui/material';
+
+import HeadTag from '../../src/containers/HeadTag';
+import { Links } from '../../src/components/Links';
+import { ItemLayout, TagsLayout } from '../../src/components/news/newsLayout';
+import {
+    DetailHeaderWrapLayout,
+    DetailMenusLayout,
+    MainContentLayout,
+} from '../../src/components/policy/policyLayout';
+
+import { GlobalContext } from '../../src/context/global.state';
+import useQuery from '../../src/utils/useQuery';
+import util from '../../src/utils/util';
+import utilConst from '../../src/utils/util.const';
+
+const { policyConfig } = utilConst;
+
+//
+const PolicyDetail = ({ pageData }) => {
+
+    // Router
+    const router = useRouter();
+    const query = useQuery();
+
+    const {
+        title,
+        description,
+        categoryKey,
+        categoryName,
+        tags,
+        updateTime,
+        applicationWay,
+        applicationObject,
+        amountQuota,
+        contact,
+        link,
+    } = pageData.data;
+
+    // Context
+    const { menu, globalDispatch } = useContext(GlobalContext);
+
+    useEffect(() => {
+
+        globalDispatch({
+            type: 'menu',
+            payload: {
+                ...menu,
+                level1: pageData.title,
+                level2: categoryName,
+                level1Link: `/policy?page=1&cate=${categoryKey}`,
+            },
+        });
+
+    }, []);
+
+    return (
+
+        <Fragment>
+            <HeadTag title={`${categoryName}-${title}`} />
+
+            <DetailHeaderWrapLayout>
+                <TagsLayout className="detail-tags web-clear-box">
+                    {tags.map(({ id, name }) => <span key={id}>{name}</span>)}
+                </TagsLayout>
+
+                <DetailMenusLayout container>
+                    <Grid
+                        item
+                        xs={12}
+                        md
+                        className="info-wrap"
+                    >
+                        {updateTime && <span className="update-time">最後更新日期 {util.dateFormat(updateTime)}</span>}
+                        <h1 className="title">{title}</h1>
+                        <p>{description}</p>
+                    </Grid>
+
+                    <Grid
+                        item
+                        xs={12}
+                        md={2}
+                        className="menu-wrap"
+                    >
+                        <aside>
+                            {
+                                Object.keys(policyConfig).map((key) => (
+
+                                    <ItemLayout
+                                        key={key}
+                                        url={`/policy?page=1&cate=${key}`}
+                                        className={`item ${(categoryKey === key) ? 'active' : ''}`}
+                                        onClick={() => router.push(`/policy?page=1&cate=${query.cate}`)}
+                                    >
+                                        {policyConfig[key]}
+                                    </ItemLayout>
+
+                                ))
+                            }
+                        </aside>
+                    </Grid>
+                </DetailMenusLayout>
+            </DetailHeaderWrapLayout>
+
+            <MainContentLayout className="section-information">
+                <div className="item">
+                    <h4 className="title">申請方式</h4>
+                    <p>{applicationWay}</p>
+                </div>
+
+                <div className="item">
+                    <h4 className="title">申請對象</h4>
+                    <p>{applicationObject}</p>
+                </div>
+
+                <div className="item">
+                    <h4 className="title">資金額度</h4>
+                    <p>{amountQuota}</p>
+                </div>
+
+                <div className="item">
+                    <h4 className="title">諮詢窗口</h4>
+                    <div className="contact">
+                        <p className="label">{contact.unit}</p>
+                        <p>{contact.name}</p>
+                        <p className="label">聯絡電話</p>
+                        <p>{contact.phone}</p>
+                        <p className="label">傳真</p>
+                        <p>{contact.fax}</p>
+                        <p className="label">E-mail</p>
+                        <p>{contact.email}</p>
+                    </div>
+                </div>
+
+                <div className="item">
+                    <h4 className="title">網站連結</h4>
+                    <p>
+                        <Links url={link} className="link">{link}</Links>
+                    </p>
+                </div>
+            </MainContentLayout>
+        </Fragment>
+
+    );
+
+};
+
+export default PolicyDetail;
+
+export async function getServerSideProps ({ params }) {
+
+    // const res = await util.serviceServer({
+    //     method: 'get',
+    //     url: `/web_news/${params.id}`,
+    // });
+
+    // const { data } = res;
+
+    const res = await fetch('http://localhost:1001/json/policy/4891321.json');
+    const data = await res.json();
+
+    if (!data.result) {
+
+        return {
+            notFound: true,
+        };
+
+    }
+
+    return {
+        props: {
+            pageData: {
+                title: '政策資源',
+                data: data.data,
+            },
+        },
+    };
+
+}

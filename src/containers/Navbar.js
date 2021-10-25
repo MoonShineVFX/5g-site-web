@@ -34,11 +34,11 @@ const navMenus = [
         text: '政策資源',
         subItems: [
             {
-                key: 'center',
+                key: '?page=1&cate=center',
                 text: '中央資源',
             },
             {
-                key: 'local',
+                key: '?page=1&cate=local',
                 text: '地方資源',
             },
         ],
@@ -191,7 +191,7 @@ const Navbar = ({ ...rest }) => {
 
                                     <Links
                                         key={sub.key}
-                                        url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place') ? '/' : ''}`}` : ''}${sub.key}`}
+                                        url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place' && key !== 'policy') ? '/' : ''}`}` : ''}${sub.key}`}
                                         onClick={() => handleClickMenu(sub.text)}
                                     >
                                         {sub.text}

@@ -19,9 +19,6 @@ import {
 import { GlobalContext } from '../../src/context/global.state';
 import util from '../../src/utils/util';
 
-// 時間格式
-const dateFormat = (date) => dayjs(date).format('YYYY.MM.DD (dd)');
-
 // 其他新聞 next/prev
 const Item = ({
     data: { id, title, createTime },
@@ -34,7 +31,7 @@ const Item = ({
         >
             <h2 className="title">{title}</h2>
             <div className="date">
-                <span>{dateFormat(createTime)}</span>
+                <span>{util.dateFormat(createTime)}</span>
             </div>
         </NewsItemWrapLayout>
     </Grid>
@@ -88,8 +85,8 @@ const NewsDetail = ({ pageData }) => {
 
                 <Grid container>
                     <Grid item xs={12} md={6}>
-                        {dateFormat(createTime)}
-                        {updateTime && <span className="update-time">，更新於 {dateFormat(updateTime)}</span>}
+                        {util.dateFormat(createTime)}
+                        {updateTime && <span className="update-time">，更新於 {util.dateFormat(updateTime)}</span>}
                     </Grid>
 
                     <Grid

@@ -99,7 +99,6 @@ const Home = ({ pageData }) => {
                                 key={id}
                                 className={(idx === slideshowActive) ? 'active' : 'hide'}
                             >
-                                {title}
                                 <Links
                                     url={link}
                                     title={title}
@@ -151,7 +150,7 @@ const Home = ({ pageData }) => {
                     }
                 </ItemLayout>
 
-                <ShowMoreButton />
+                <ShowMoreButton url={`/place?type=5g`} />
             </section>
 
             <section>
@@ -182,7 +181,7 @@ const Home = ({ pageData }) => {
 
                 <ItemPartnerLayout container>
                     {
-                        pageData.data.partners.map(({ id, name }, idx) => (
+                        pageData.data.partnerTags.map(({ id, name }, idx) => (
 
                             <Grid
                                 key={id}
@@ -191,8 +190,8 @@ const Home = ({ pageData }) => {
                                 md={4}
                                 className="itemWrap"
                             >
-                                <Links url={`/partner/${id}`}>
-                                    <FontIcon icon={arrangePartnerTag(pageData.data.partners)[idx].icon} />
+                                <Links url={`/partner?page=1&tag=${id}`}>
+                                    <FontIcon icon={arrangePartnerTag(pageData.data.partnerTags)[idx].icon} />
                                     <h1>{name}</h1>
                                     <span className="web-x-align nothing"></span>
                                 </Links>
@@ -212,8 +211,8 @@ export default Home;
 
 export async function getServerSideProps () {
 
-    const res = await fetch('http://localhost:1001/json/home.json');
-    const data = await res.json();
+    const res = await util.serviceServer({ method: 'get', url: '/web_index' });
+    const { data } = res;
 
     if (!data.result) {
 

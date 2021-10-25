@@ -1,8 +1,7 @@
 import { Fragment, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Grid } from '@mui/material';
-import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faLink, faMapMarkerAlt, faFileAlt, faReply } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faFileAlt, faReply } from '@fortawesome/free-solid-svg-icons';
 
 import HeadTag from '../../src/containers/HeadTag';
 import { Links } from '../../src/components/Links';
@@ -36,10 +35,11 @@ const BackButton = ({ type, className }) => (
 //
 const PlaceDetail = ({ pageData }) => {
 
+    // console.log('pageData:', pageData);
+
     // Router
     const router = useRouter();
 
-    // console.log('pageData:', pageData);
     const {
         type,
         images,

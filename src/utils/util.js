@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 const util = {
     /**
@@ -95,6 +96,13 @@ const util = {
         return acc;
 
     }, {}),
+
+    /**
+     * @author Betty
+     * @param {string} date - 時間
+     * @return {string} - yyyy.mm.dd (dd)
+     */
+    dateFormat: (date) => dayjs(date).format('YYYY.MM.DD (dd)'),
 
 };
 

@@ -59,6 +59,8 @@ const Community = ({ title, shareUrl, ...rest }) => {
 
         setCopyState(copy);
 
+        console.log('copyToClipboard copy:', copy)
+
         // State 為非同步更新，需給 defer 來延遲以下行為
         setTimeout(() => {
 
@@ -67,11 +69,12 @@ const Community = ({ title, shareUrl, ...rest }) => {
             try {
 
                 document.execCommand('copy');
-                console.log('複製成功');
+                setSuccess(true);
 
             }
             catch {
 
+                setSuccess(false);
                 console.log('複製失敗');
 
             }
@@ -83,12 +86,17 @@ const Community = ({ title, shareUrl, ...rest }) => {
     // 分享按鈕，呼叫裝置內建
     const handleShareButton = (key) => {
 
-        console.log('click:', key);
-
         let url = shareUrl;
-
         if (window.navigator.share) window.navigator.share({ title, url });
         else copyToClipboard(url);
+
+    };
+
+    // 關閉 snackbar
+    const handleClose = (event, reason) => {
+
+        if (reason === 'clickaway') return;
+        setSuccess(false);
 
     };
 
@@ -116,7 +124,6 @@ const Community = ({ title, shareUrl, ...rest }) => {
                                 key={key}
                                 quote={title}
                                 url={shareUrl}
-                                // onClick={() => handleShareButton(key)}
                                 className="item-share"
                             >
                                 <Icon size={30} borderRadius={8} />
@@ -138,17 +145,12 @@ const Community = ({ title, shareUrl, ...rest }) => {
                 }
             </SocialsLayout>
 
-            {
-                success &&
-                    <Snackbar
-                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                        open={success}
-                        // onClose={handleClose}
-                        message={`複製${success ? '成功' : '失敗'}`}
-                        autoHideDuration={500}
-                        // key={vertical + horizontal}
-                    />
-            }
+            <Snackbar
+                open={success}
+                onClose={handleClose}
+                message="複製成功"
+                autoHideDuration={3000}
+            />
         </Fragment>
 
     );

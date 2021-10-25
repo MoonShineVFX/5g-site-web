@@ -1,12 +1,9 @@
 import { Fragment, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Grid } from '@mui/material';
-import dayjs from 'dayjs';
 
 import HeadTag from '../src/containers/HeadTag';
-import { Links } from '../src/components/Links';
 import Paginations from '../src/components/Paginations';
-
 import {
     MenusLayout,
     ItemLayout,
@@ -14,36 +11,37 @@ import {
     ItemsWrapLayout,
     TagsLayout,
 } from '../src/components/news/newsLayout';
+import { PolicyItemLayout } from '../src/components/policy/policyLayout';
 
 import { GlobalContext } from '../src/context/global.state';
 import useQuery from '../src/utils/useQuery';
 import util from '../src/utils/util';
 import utilConst from '../src/utils/util.const';
 
-const { newsConfig } = utilConst;
+const { policyConfig } = utilConst;
 
 //
-const NewsItem = ({
-    data: { id, title, description, createTime, tags },
+const PolicyItem = ({
+    data: { id, title, titleSecondary, description, tags },
     tagList,
 }) => (
 
-    <Links
-        url={`/news/${id}`}
+    <PolicyItemLayout
+        url={`/policy/${id}`}
         className="item"
     >
-        <span className="date">{dayjs(createTime).format('YYYY/MM/DD')}</span>
+        <span className="second-title">{titleSecondary}</span>
         <h1 className="title">{title}</h1>
         <TagsLayout>
             {tags.map((id) => <span key={id}>{util.mappingTags(tagList)[id]}</span>)}
         </TagsLayout>
         <p>{description}</p>
-    </Links>
+    </PolicyItemLayout>
 
 );
 
 //
-const News = ({ pageData }) => {
+const Policy = ({ pageData }) => {
 
     // Router
     const router = useRouter();
@@ -61,7 +59,7 @@ const News = ({ pageData }) => {
             payload: {
                 ...menu,
                 level1: pageData.title,
-                level2: newsConfig[query.cate] || pageData.currPageTitle,
+                level2: policyConfig[query.cate] || pageData.currPageTitle,
                 level1Link: '',
             },
         });
@@ -100,7 +98,7 @@ const News = ({ pageData }) => {
             type: 'menu',
             payload: {
                 ...menu,
-                level2: newsConfig[key],
+                level2: policyConfig[key],
             },
         });
 
@@ -109,7 +107,7 @@ const News = ({ pageData }) => {
     return (
 
         <Fragment>
-            <HeadTag title={`${pageData.title}-${newsConfig[query?.cate] || pageData.currPageTitle}`} />
+            <HeadTag title={`${pageData.title}-${policyConfig[query?.cate] || pageData.currPageTitle}`} />
 
             <MenusLayout
                 container
@@ -123,15 +121,15 @@ const News = ({ pageData }) => {
                 >
                     <aside>
                         {
-                            Object.keys(newsConfig).map((key) => (
+                            Object.keys(policyConfig).map((key) => (
 
                                 <ItemLayout
                                     key={key}
-                                    url={`/news?page=1&cate=${key}`}
+                                    url={`/policy?page=1&cate=${key}`}
                                     className={(query?.cate === key) ? 'active' : ''}
                                     onClick={() => handleClickMenu(key)}
                                 >
-                                    {newsConfig[key]}
+                                    {policyConfig[key]}
                                 </ItemLayout>
 
                             ))
@@ -159,7 +157,7 @@ const News = ({ pageData }) => {
                         {
                             pageData.data.list.map((data) => (
 
-                                <NewsItem
+                                <PolicyItem
                                     key={data.id}
                                     data={data}
                                     tagList={pageData.data.tags}
@@ -186,16 +184,19 @@ const News = ({ pageData }) => {
 
 };
 
-export default News;
+export default Policy;
 
 export async function getServerSideProps ({ query }) {
 
-    const res = await util.serviceServer({
-        method: 'get',
-        url: `/web_news?page=${query.page}&cate=${query.cate}${query.tag ? `&tag=${query.tag}` : ''}`,
-    });
+    // const res = await util.serviceServer({
+    //     method: 'get',
+    //     url: `/web_news?page=${query.page}&cate=${query.cate}${query.tag ? `&tag=${query.tag}` : ''}`,
+    // });
 
-    const { data } = res;
+    // const { data } = res;
+
+    const res = await fetch('http://localhost:1001/json/policy.json');
+    const data = await res.json();
 
     if (!data.result) {
 
@@ -208,8 +209,8 @@ export async function getServerSideProps ({ query }) {
     return {
         props: {
             pageData: {
-                title: '最新消息',
-                currPageTitle: '新聞快訊',
+                title: '政策資源',
+                currPageTitle: '中央資源',
                 data: data.data,
             },
         },
