@@ -11,7 +11,6 @@ import theme from '../src/utils/theme';
 import HeadTag from '../src/containers/HeadTag';
 import Header from '../src/containers/Header';
 import Breadcrumb from '../src/components/Breadcrumb';
-import Content from '../src/containers/Content';
 import Footer from '../src/containers/Footer';
 
 const styles = {
@@ -109,9 +108,7 @@ const WebSite = ({ Component, pageProps }) => {
                             component="div"
                             className="web-container"
                         >
-                            <Content>
-                                <Component {...pageProps} />
-                            </Content>
+                            <Component {...pageProps} />
                         </Box>
                     </Box>
                     <Footer />

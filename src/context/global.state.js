@@ -1,11 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import Service from '../utils/util.service';
-
-import {
-    globalReducer,
-    formStorageReducer,
-    lightboxReducer,
-} from './global.reducer';
+import { globalReducer } from './global.reducer';
 
 // Global
 const globalInitState = {
@@ -18,17 +12,6 @@ const globalInitState = {
     slideshowActive: 0,
 };
 
-// Form values
-const formStorageInitState = {
-    formStorageData: {},
-};
-
-// Lightbox
-const lightboxInitState = {
-    visible: false,
-    currEvent: '',
-};
-
 // Create Context
 const GlobalContext = createContext(null);
 
@@ -36,36 +19,12 @@ const GlobalContext = createContext(null);
 const GlobalProvider = ({ children }) => {
 
     const [globalState, globalDispatch] = useReducer(globalReducer, globalInitState);
-    const [formStorageState, formStorageDispatch] = useReducer(formStorageReducer, formStorageInitState);
-    const [lightboxState, lightboxDispatch] = useReducer(lightboxReducer, lightboxInitState);
     const {
         page,
         menu,
         slideshowActive,
     } = globalState;
-
-    const { formStorageData } = formStorageState;
-    const { visible, currEvent } = lightboxState;
     const { Provider } = GlobalContext;
-
-    // 取得全域資料
-    const getGlobalData = () => {
-
-        Service.common()
-            .then((resData) => {
-
-                const { tag, ...rest } = resData;
-                globalDispatch({
-                    type: 'global_data',
-                    payload: {
-                        tag,
-                        other: rest,
-                    },
-                });
-
-            });
-
-    };
 
     return (
 
@@ -74,19 +33,9 @@ const GlobalProvider = ({ children }) => {
             page,
             menu,
             slideshowActive,
-            getGlobalData,
-
-            // Form 表單暫存
-            formStorageData,
-
-            // Lightbox
-            visible,
-            currEvent,
 
             // Dispatch
             globalDispatch,
-            formStorageDispatch,
-            lightboxDispatch,
         }}>
             {children}
         </Provider>
