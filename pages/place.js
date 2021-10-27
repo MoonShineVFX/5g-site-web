@@ -14,8 +14,6 @@ const { placeConfig } = utilConst;
 //
 const Place = ({ pageData }) => {
 
-    // console.log('pageData:', pageData);
-
     // Router
     const query = useQuery();
 
@@ -90,15 +88,12 @@ export default Place;
 
 export async function getServerSideProps ({ query }) {
 
-    const res = await fetch('http://localhost:1001/json/place.json');
-    const data = await res.json();
+    const res = await util.serviceServer({
+        method: 'get',
+        url: `/web_demo_places?type=${query.type}`,
+    });
 
-    // const res = await util.serviceServer({
-    //     method: 'get',
-    //     url: `/web_demo_places?type=${query.type}`,
-    // });
-
-    // const { data } = res;
+    const { data } = res;
 
     if (!data.result) {
 

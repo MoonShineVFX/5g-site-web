@@ -4,6 +4,7 @@ import { Grid } from '@mui/material';
 
 import HeadTag from '../src/containers/HeadTag';
 import Paginations from '../src/components/Paginations';
+import EmptyDataMesg from '../src/components/EmptyDataMesg';
 import {
     MenusLayout,
     ItemLayout,
@@ -155,15 +156,19 @@ const Policy = ({ pageData }) => {
 
                     <ItemsWrapLayout>
                         {
-                            pageData.data.list.map((data) => (
+                            pageData.data.list.length ? (
 
-                                <PolicyItem
-                                    key={data.id}
-                                    data={data}
-                                    tagList={pageData.data.tags}
-                                />
+                                pageData.data.list.map((data) => (
 
-                            ))
+                                    <PolicyItem
+                                        key={data.id}
+                                        data={data}
+                                        tagList={pageData.data.tags}
+                                    />
+
+                                ))
+
+                            ) : <EmptyDataMesg />
                         }
                     </ItemsWrapLayout>
 
@@ -188,15 +193,12 @@ export default Policy;
 
 export async function getServerSideProps ({ query }) {
 
-    // const res = await util.serviceServer({
-    //     method: 'get',
-    //     url: `/web_news?page=${query.page}&cate=${query.cate}${query.tag ? `&tag=${query.tag}` : ''}`,
-    // });
+    const res = await util.serviceServer({
+        method: 'get',
+        url: `/web_policies?page=${query.page}&cate=${query.cate}${query.tag ? `&tag=${query.tag}` : ''}`,
+    });
 
-    // const { data } = res;
-
-    const res = await fetch('http://localhost:1001/json/policy.json');
-    const data = await res.json();
+    const { data } = res;
 
     if (!data.result) {
 
