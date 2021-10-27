@@ -72,17 +72,14 @@ const About = ({ pageData }) => {
 
 export default About;
 
-export async function getServerSideProps ({ params }) {
+export async function getServerSideProps () {
 
-    // const res = await util.serviceServer({
-    //     method: 'get',
-    //     url: `/web_partners/${params.id}`,
-    // });
+    const res = await util.serviceServer({
+        method: 'get',
+        url: '/web_about',
+    });
 
-    // const { data } = res;
-
-    const res = await fetch('http://localhost:1001/json/about.json');
-    const data = await res.json();
+    const { data } = res;
 
     if (!data.result) {
 

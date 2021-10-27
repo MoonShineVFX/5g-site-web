@@ -59,11 +59,11 @@ const navMenus = [
     },
     {
         key: '',
-        text: '合作夥伴',
+        text: '策略夥伴',
         subItems: [
             {
                 key: 'partner?page=1&tag=all',
-                text: '文化科技聯盟',
+                text: '夥伴介紹',
             },
         ],
     },

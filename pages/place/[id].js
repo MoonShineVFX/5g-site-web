@@ -40,8 +40,6 @@ const Location = ({ title, url }) => (
 //
 const PlaceDetail = ({ pageData }) => {
 
-    // console.log('pageData:', pageData);
-
     // Router
     const router = useRouter();
 
@@ -52,10 +50,12 @@ const PlaceDetail = ({ pageData }) => {
         locationUrl,
         description,
         contact,
-        links,
+        websiteName,
+        websiteUrl,
         files,
-        address,
         videoIframe,
+        byDrive,
+        byMRT,
     } = pageData.data;
 
     // Context
@@ -148,47 +148,46 @@ const PlaceDetail = ({ pageData }) => {
             <SectionLayout className="section-relative">
                 <div>
                     <h2 className="title">相關連結</h2>
-                    <div>
-                        {
-                            links.map(({ name, url }, idx) => (
-
-                                <div key={idx} className="item">
-                                    <span>
-                                        {name}
-                                        <Links url={url} newPage={true}>{url}</Links>
-                                    </span>
-                                </div>
-
-                            ))
-                        }
+                    <div className="item">
+                        <span>
+                            {websiteName}
+                            <Links url={websiteUrl} newPage={true}>{websiteUrl}</Links>
+                        </span>
                     </div>
                 </div>
 
-                <div>
-                    <h2 className="title">相關文件</h2>
-                    <ul className="items-document">
-                        {
-                            files.map(({ name, url }, idx) => (
+                {
+                    !!files.length &&
+                        <div>
+                            <h2 className="title">相關文件</h2>
+                            <ul className="items-document">
+                                {
+                                    files.map(({ name, url }, idx) => (
 
-                                <li key={idx}>
-                                    {name}
-                                    {/* Betty: 要再確認是實體路徑還是要另外打 ajax 要整個檔案內容 */}
-                                    <Links url={url} newPage={true}>
-                                        <FontIcon icon={faFileAlt} />
-                                    </Links>
-                                </li>
+                                        <li key={idx}>
+                                            {name}
+                                            {/* Betty: 要再確認是實體路徑還是要另外打 ajax 要整個檔案內容 */}
+                                            <Links url={url} newPage={true}>
+                                                <FontIcon icon={faFileAlt} />
+                                            </Links>
+                                        </li>
 
-                            ))
-                        }
-                    </ul>
-                </div>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                }
             </SectionLayout>
 
             <SectionLayout className='section-traffic'>
                 <h2 className="title">交通資訊</h2>
                 <div className="items-traffic">
-                    {address}
-                    <Location title={title} url={locationUrl} />
+                    <div className="label">大眾運輸</div>
+                    <p>{byMRT}</p>
+                </div>
+                <div className="items-traffic">
+                    <div className="label">自行開車</div>
+                    <p>{byDrive}</p>
                 </div>
             </SectionLayout>
 

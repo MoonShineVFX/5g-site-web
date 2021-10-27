@@ -21,7 +21,7 @@ import {
 import { GlobalContext } from '../src/context/global.state';
 import util from '../src/utils/util';
 
-// 整理合作夥伴結構
+// 整理策略夥伴結構
 const arrangePartnerTag = (data) => data.reduce((acc, { id, name }, idx) => {
 
     acc[idx] = acc[idx] || {};
@@ -78,8 +78,6 @@ const NewsItemWrap = ({ data: { id, title, isHot, createTime } }) => (
 );
 
 const Home = ({ pageData }) => {
-
-    // console.log('pageData:', pageData);
 
     // Context
     const { slideshowActive } = useContext(GlobalContext);
@@ -175,7 +173,7 @@ const Home = ({ pageData }) => {
 
             <section>
                 <SectionTitle
-                    primaryText="文化科技聯盟"
+                    primaryText="夥伴介紹"
                     secondaryText="Alliances"
                 />
 
