@@ -104,13 +104,14 @@ const NewsDetail = ({ pageData }) => {
             </DetailHeaderLayout>
 
             <MainContentLayout>
-                <div dangerouslySetInnerHTML={{__html: detail}} />
+                <div dangerouslySetInnerHTML={{ __html: detail }} />
             </MainContentLayout>
 
             <OtherNewsWrapLayout>
                 <SectionTitle
                     primaryText="其他快訊"
                     secondaryText="More News"
+                    showMobile={true}
                 />
 
                 <Grid container spacing={5}>

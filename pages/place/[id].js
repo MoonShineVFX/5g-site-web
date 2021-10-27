@@ -195,7 +195,7 @@ const PlaceDetail = ({ pageData }) => {
             {
                 videoIframe &&
                     <SectionLayout className="section-video">
-                        <div dangerouslySetInnerHTML={{__html: videoIframe}} />
+                        <div dangerouslySetInnerHTML={{ __html: videoIframe }} />
                     </SectionLayout>
             }
         </Fragment>
@@ -208,15 +208,12 @@ export default PlaceDetail;
 
 export async function getServerSideProps ({ params }) {
 
-    // const res = await admin.serviceServer({
-    //     method: 'get',
-    //     url: `/web_demo_places/${params.id}`,
-    // });
+    const res = await util.serviceServer({
+        method: 'get',
+        url: `/web_demo_places/${params.id}`,
+    });
 
-    // const { data } = res;
-
-    const res = await fetch('http://localhost:1001/json/place/8313.json');
-    const data = await res.json();
+    const { data } = res;
 
     if (!data.result) {
 
