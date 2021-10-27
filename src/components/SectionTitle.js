@@ -6,6 +6,7 @@ const SectionTitleWrapLayout = styled('div')(({ theme }) => ({
     textAlign: 'center',
     borderTop: `1px solid ${theme.palette.primary.main}`,
     marginBottom: '40px',
+    position: 'relative',
     '.wrap': {
         maxWidth: '256px',
         height: '100px',
@@ -32,6 +33,7 @@ const SectionTitleWrapLayout = styled('div')(({ theme }) => ({
     },
     '.primary-title': {
         fontSize: '1.6em',
+        fontWeight: 'normal',
         color: theme.palette.bg.primary,
         display: 'inline-block',
         marginBottom: '4px',
@@ -48,6 +50,9 @@ const SectionTitleWrapLayout = styled('div')(({ theme }) => ({
                 verticalAlign: 'middle',
             },
         },
+    },
+    '.mobile': {
+        display: 'none',
     },
     [theme.breakpoints.down('md')]: {
         '.wrap': {
@@ -66,16 +71,56 @@ const SectionTitleWrapLayout = styled('div')(({ theme }) => ({
         '.secondary-title': {
             fontSize: '0.8em',
         },
+        '.mobile': {
+            display: 'block',
+            position: 'absolute',
+            top: '0',
+            '.primary-title': {
+                fontSize: '1.5em',
+                color: theme.palette.primary.main,
+                backgroundColor: theme.palette.bg.primary,
+                borderBottom: `1px solid ${theme.palette.primary.main}`,
+                marginTop: '0',
+            },
+            '.secondary-title': {
+                margin: '0',
+            },
+        },
+        '&.m-wrap': {
+            borderTop: '0',
+            paddingTop: '40px',
+            '&.with-second': {
+                paddingTop: '60px',
+            },
+            '.wrap': {
+                maxWidth: '35px',
+                height: '24px',
+                borderRadius: '50%',
+                marginTop: '-13px',
+                '.primary-title, .secondary-title': {
+                    display: 'none',
+                },
+            },
+        },
     },
 }));
 
 //
-const SectionTitle = ({ primaryText, secondaryText }) => (
+const SectionTitle = ({ primaryText, secondaryText, showMobile }) => (
 
-    <SectionTitleWrapLayout className={`section-title ${secondaryText ? '' : 'no-second'}`}>
+    <SectionTitleWrapLayout className={`section-title ${secondaryText ? 'with-second' : 'no-second'} ${showMobile ? 'm-wrap' : ''}`}>
+        {
+            showMobile &&
+                <div className={`mobile web-x-align ${secondaryText ? 'with-secondTitle' : ''}`}>
+                    {
+                        secondaryText && <h3 className="secondary-title">{secondaryText}</h3>
+                    }
+                    <h1 className="primary-title">{primaryText}</h1>
+                </div>
+        }
+
         <div className="wrap">
             <h1 className="primary-title">{primaryText}</h1>
-
             {
                 secondaryText && <h3 className="secondary-title">{secondaryText}</h3>
             }
@@ -87,11 +132,13 @@ const SectionTitle = ({ primaryText, secondaryText }) => (
 SectionTitle.defaultProps = {
     primaryText: '',
     secondaryText: '',
+    showMobile: false,
 };
 
 SectionTitle.propTypes = {
     primaryText: PropTypes.string,
     secondaryText: PropTypes.string,
+    showMobile: PropTypes.bool,
 };
 
 export default SectionTitle;
