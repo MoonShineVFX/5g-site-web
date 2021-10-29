@@ -182,8 +182,8 @@ export async function getServerSideProps ({ query }) {
     return {
         props: {
             pageData: {
-                title: '合作夥伴',
-                currPageTitle: '文化科技聯盟',
+                title: '策略夥伴',
+                currPageTitle: '夥伴介紹',
                 data: data.data,
             },
         },
