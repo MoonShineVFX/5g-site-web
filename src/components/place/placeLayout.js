@@ -236,6 +236,7 @@ const SectionLayout = styled('section')(({ theme }) => ({
         },
     },
     '.items-traffic': {
+        marginBottom: '20px',
         '.title': {
             fontSize: '1.15em',
             marginTop: '36px',
@@ -243,6 +244,7 @@ const SectionLayout = styled('section')(({ theme }) => ({
         },
         'p': {
             whiteSpace: 'pre-wrap',
+            marginTop: '0',
         },
     },
     '&.section-video': {

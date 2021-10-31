@@ -79,8 +79,6 @@ const NewsItemWrap = ({ data: { id, title, isHot, createTime } }) => (
 
 const Home = ({ pageData }) => {
 
-    // console.log('pageData:', pageData);
-
     // Context
     const { slideshowActive } = useContext(GlobalContext);
 
