@@ -27,9 +27,15 @@ const AppBarLayout = styled('header')(({ theme }) => ({
 const HeaderTopLayout = styled('div')(({ theme }) => ({
     fontSize: '0.9em',
     borderBottom: `1px solid ${theme.palette.text.secondary}`,
+    'a': {
+        // Notes: 頁面尚未做，先讓文字顏色與背景相同
+        color: theme.palette.bg.secondary,
+    },
     '.search': {
         fontSize: '1.2em',
         marginRight: '40px',
+        // Notes: 頁面尚未做，先讓文字顏色與背景相同
+        color: theme.palette.bg.secondary,
     },
     '.MuiToolbar-root': {
         height: '45px',
