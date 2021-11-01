@@ -251,6 +251,9 @@ const SectionLayout = styled('section')(({ theme }) => ({
         textAlign: 'center',
         borderTop: `5px solid ${theme.palette.primary.main}`,
         paddingTop: '80px',
+        '.video-wrap > *': {
+            maxWidth: '100%',
+        },
     },
     '.grid-socials': {
         textAlign: 'right',

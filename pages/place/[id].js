@@ -73,7 +73,7 @@ const PlaceDetail = ({ pageData }) => {
                 ...menu,
                 level1: pageData.title,
                 level2: placeConfig[type],
-                level1Link: `/place?cate=${type}`,
+                level1Link: `/place?type=${type}`,
             },
         });
 
@@ -191,7 +191,10 @@ const PlaceDetail = ({ pageData }) => {
             {
                 videoIframe &&
                     <SectionLayout className="section-video">
-                        <div dangerouslySetInnerHTML={{ __html: videoIframe }} />
+                        <div
+                            className="video-wrap"
+                            dangerouslySetInnerHTML={{ __html: videoIframe }}
+                        />
                     </SectionLayout>
             }
         </Fragment>
