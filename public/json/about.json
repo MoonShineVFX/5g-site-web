@@ -1,8 +1,0 @@
-{
-    "result": 1,
-    "message": "",
-    "errors": {},
-    "data": {
-        "detail": "<p style=\"text-align:left;\"></p>\n<p>test~~</p>\n<img src=\"https://storage.googleapis.com/backend-django/articles/pexels-bri-schneiter-346529.jpg\" alt=\"undefined\" style=\"height: auto;width: auto\"/>\n<p></p>\n<img src=\"https://storage.googleapis.com/backend-django/articles/15386001.jpg\" alt=\"cat\" style=\"height: auto;width: auto\"/>\n<p><span style=\"color: rgb(204,204,204);background-color: rgb(45,45,45);font-size: 16px;\"><code>about_update</code></span>&nbsp;</p>\n<p>console.log('11111')</p>\n<p></p>\n<p style=\"text-align:left;\"></p>\n<img src=\"https://storage.googleapis.com/backend-django/articles/14681292999580.jpg\" alt=\"undefined\" style=\"height: 100px;width: auto\"/>\n<p></p>\n<p style=\"text-align:left;\"></p>\n<img src=\"https://storage.googleapis.com/backend-django/articles/173510.jpg\" alt=\"undefined\" style=\"height: auto;width: 100px\"/>\n<p>阿伯溝追~勾追</p>\n<p></p>\n<img src=\"https://storage.googleapis.com/backend-django/articles/photo-1634351395713-0deccec2378b.jfif\" alt=\"undefined\" style=\"height: auto;width: auto\"/>\n<p></p>"
-    }
-}
