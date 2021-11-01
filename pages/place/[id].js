@@ -73,7 +73,7 @@ const PlaceDetail = ({ pageData }) => {
                 ...menu,
                 level1: pageData.title,
                 level2: placeConfig[type],
-                level1Link: `/place?cate=${type}`,
+                level1Link: `/place?type=${type}`,
             },
         });
 
@@ -158,24 +158,20 @@ const PlaceDetail = ({ pageData }) => {
 
                 {
                     !!files.length &&
-                        <div>
-                            <h2 className="title">相關文件</h2>
-                            <ul className="items-document">
-                                {
-                                    files.map(({ name, url }, idx) => (
+                        <ul className="items-document">
+                            {
+                                files.map(({ name, url }, idx) => (
 
-                                        <li key={idx}>
-                                            {name}
-                                            {/* Betty: 要再確認是實體路徑還是要另外打 ajax 要整個檔案內容 */}
-                                            <Links url={url} newPage={true}>
-                                                <FontIcon icon={faFileAlt} />
-                                            </Links>
-                                        </li>
+                                    <li key={idx}>
+                                        <Links url={url} newPage={true}>
+                                            <span className="filename">{name}</span>
+                                            <FontIcon icon={faFileAlt} />
+                                        </Links>
+                                    </li>
 
-                                    ))
-                                }
-                            </ul>
-                        </div>
+                                ))
+                            }
+                        </ul>
                 }
             </SectionLayout>
 
@@ -194,7 +190,10 @@ const PlaceDetail = ({ pageData }) => {
             {
                 videoIframe &&
                     <SectionLayout className="section-video">
-                        <div dangerouslySetInnerHTML={{ __html: videoIframe }} />
+                        <div
+                            className="video-wrap"
+                            dangerouslySetInnerHTML={{ __html: videoIframe }}
+                        />
                     </SectionLayout>
             }
         </Fragment>

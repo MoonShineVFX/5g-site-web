@@ -88,6 +88,7 @@ const PartnersLayout = styled('section')(({ theme }) => ({
     },
     'p': {
         margin: '0',
+        wordBreak: 'break-word',
     },
     [theme.breakpoints.up('md')]: {
         display: 'flex',
@@ -98,6 +99,7 @@ const PartnersLayout = styled('section')(({ theme }) => ({
         },
         'p': {
             minHeight: '88px',
+            WebkitLineClamp: theme.lineClamp(5),
         },
     },
     [theme.breakpoints.down('md')]: {

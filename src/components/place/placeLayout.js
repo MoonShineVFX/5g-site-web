@@ -230,8 +230,11 @@ const SectionLayout = styled('section')(({ theme }) => ({
         },
         '.items-document': {
             paddingInlineStart: '20px',
-            'a': {
-                marginLeft: '4px',
+            '.filename': {
+                marginRight: '6px',
+                '&:hover': {
+                    textDecoration: 'underline',
+                },
             },
         },
     },
@@ -251,6 +254,9 @@ const SectionLayout = styled('section')(({ theme }) => ({
         textAlign: 'center',
         borderTop: `5px solid ${theme.palette.primary.main}`,
         paddingTop: '80px',
+        '.video-wrap > *': {
+            maxWidth: '100%',
+        },
     },
     '.grid-socials': {
         textAlign: 'right',
