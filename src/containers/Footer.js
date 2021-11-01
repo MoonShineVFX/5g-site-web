@@ -57,6 +57,8 @@ const FooterLayout = styled('footer')(({ theme }) => ({
             marginBottom: '4px',
         },
         'a': {
+            // Notes: 頁面尚未做，先讓文字顏色與背景相同
+            color: theme.palette.bg.secondary,
             marginRight: '0',
         },
     },

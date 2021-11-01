@@ -230,8 +230,11 @@ const SectionLayout = styled('section')(({ theme }) => ({
         },
         '.items-document': {
             paddingInlineStart: '20px',
-            'a': {
-                marginLeft: '4px',
+            '.filename': {
+                marginRight: '6px',
+                '&:hover': {
+                    textDecoration: 'underline',
+                },
             },
         },
     },

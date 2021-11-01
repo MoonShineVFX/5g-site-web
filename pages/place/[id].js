@@ -163,9 +163,8 @@ const PlaceDetail = ({ pageData }) => {
                                 files.map(({ name, url }, idx) => (
 
                                     <li key={idx}>
-                                        {name}
-                                        {/* Betty: 要再確認是實體路徑還是要另外打 ajax 要整個檔案內容 */}
                                         <Links url={url} newPage={true}>
+                                            <span className="filename">{name}</span>
                                             <FontIcon icon={faFileAlt} />
                                         </Links>
                                     </li>
