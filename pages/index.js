@@ -173,7 +173,7 @@ const Home = ({ pageData }) => {
 
             <section>
                 <SectionTitle
-                    primaryText="夥伴介紹"
+                    primaryText="策略夥伴"
                     secondaryText="Alliances"
                 />
 

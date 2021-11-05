@@ -44,6 +44,12 @@ const SocialsLayout = styled('span')(({ theme }) => ({
     },
 }));
 
+const SnackbarLayout = styled(Snackbar)({
+    '.MuiSnackbarContent-message': {
+        color: '#FFF',
+    },
+});
+
 //
 const Community = ({ title, shareUrl, ...rest }) => {
 
@@ -58,8 +64,6 @@ const Community = ({ title, shareUrl, ...rest }) => {
     const copyToClipboard = (copy) => {
 
         setCopyState(copy);
-
-        console.log('copyToClipboard copy:', copy)
 
         // State 為非同步更新，需給 defer 來延遲以下行為
         setTimeout(() => {
@@ -145,7 +149,7 @@ const Community = ({ title, shareUrl, ...rest }) => {
                 }
             </SocialsLayout>
 
-            <Snackbar
+            <SnackbarLayout
                 open={success}
                 onClose={handleClose}
                 message="複製成功"

@@ -111,6 +111,7 @@ const PartnersLayout = styled('section')(({ theme }) => ({
             padding: '20px 24px',
         },
         '.name': {
+            marginTop: '10px',
             marginBottom: '10px',
         },
         'p': {

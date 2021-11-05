@@ -109,7 +109,7 @@ const NewsDetail = ({ pageData }) => {
 
             <OtherNewsWrapLayout>
                 <SectionTitle
-                    primaryText="其他快訊"
+                    primaryText={(categoryKey === 'news') ? '其他快訊' : '其他訊息'}
                     secondaryText="More News"
                     showMobile={true}
                 />

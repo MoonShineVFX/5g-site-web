@@ -212,7 +212,7 @@ const Footer = () => {
                     className="footer-copyright"
                 >
                     <Grid item xs>
-                        <p>© {dayjs().format('YYYY')} All rights reserved. Moonshine</p>
+                        <p>© {dayjs().format('YYYY')} All rights reserved.</p>
                     </Grid>
                 </Grid>
 
