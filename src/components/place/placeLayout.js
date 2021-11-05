@@ -47,6 +47,14 @@ const SlideShowLayout = styled('section')(({ theme }) => ({
     '.item': {
         height: '438px',
     },
+    '.MuiButton-root.MuiButton-text': {
+        '&.button-arrow-left': {
+            left: '-64px',
+        },
+        '&.button-arrow-right': {
+            right: '-64px',
+        },
+    },
     '.back-button': {
         borderRadius: '50%',
         position: 'absolute',

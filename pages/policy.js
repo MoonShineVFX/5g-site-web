@@ -30,6 +30,7 @@ const PolicyItem = ({
     <PolicyItemLayout
         url={`/policy/${id}`}
         className="item"
+        newPage
     >
         <span className="second-title">{titleSecondary}</span>
         <h1 className="title">{title}</h1>

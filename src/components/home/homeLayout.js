@@ -17,9 +17,6 @@ const styles = {
     '.breadcrumb': {
         display: 'none',
     },
-    [theme.breakpoints.up('md')]: {
-
-    },
     [theme.breakpoints.down('md')]: {
         'main > div > section': {
             marginBottom: '40px',

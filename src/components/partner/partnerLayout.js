@@ -66,22 +66,31 @@ const PartnersLayout = styled('section')(({ theme }) => ({
         borderBottom: `1px solid ${theme.palette.primary.main}`,
         marginBottom: '20px',
         paddingBottom: '20px',
-        'span': {
-            display: 'inline-block',
-            verticalAlign: 'middle',
-        },
+        display: 'flex',
+        alignItem: 'flex-start',
     },
     '.thumb': {
         width: '152px',
         height: '114px',
         borderRadius: '40%',
-        marginRight: '30px',
+        marginRight: '24px',
         overflow: 'hidden',
     },
+    '.info': {
+        flex: '0 0 calc(100% - 152px - 24px)',
+    },
     '.name': {
-        fontSize: '1.25em',
+        lineHeight: '1.2',
         color: theme.palette.primary.main,
         margin: '0 0 20px',
+    },
+    '.title': {
+        fontSize: '1.35em',
+        margin: '0 0 4px',
+        WebkitLineClamp: theme.lineClamp(1),
+    },
+    '.english-name': {
+        WebkitLineClamp: theme.lineClamp(1),
     },
     '.email': {
         textDecoration: 'underline',
@@ -96,6 +105,7 @@ const PartnersLayout = styled('section')(({ theme }) => ({
         margin: '0 -8px',
         '.item': {
             flex: '0 0 calc(100% / 2 - 16px)',
+            wordBreak: 'break-word',
         },
         'p': {
             minHeight: '88px',
@@ -111,6 +121,7 @@ const PartnersLayout = styled('section')(({ theme }) => ({
             padding: '20px 24px',
         },
         '.name': {
+            marginTop: '10px',
             marginBottom: '10px',
         },
         'p': {

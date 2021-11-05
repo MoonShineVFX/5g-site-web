@@ -86,7 +86,7 @@ const PlaceDetail = ({ pageData }) => {
 
             <SlideShowLayout>
                 <div className="wrap">
-                    <SlideShow data={images} showArrow={true}>
+                    <SlideShow data={images}>
                         {
                             images.map(({ id, imgUrl }, idx) => (
 

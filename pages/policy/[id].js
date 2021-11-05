@@ -151,15 +151,12 @@ export default PolicyDetail;
 
 export async function getServerSideProps ({ params }) {
 
-    // const res = await util.serviceServer({
-    //     method: 'get',
-    //     url: `/web_news/${params.id}`,
-    // });
+    const res = await util.serviceServer({
+        method: 'get',
+        url: `/web_policies/${params.id}`,
+    });
 
-    // const { data } = res;
-
-    const res = await fetch('http://localhost:1001/json/policy/4891321.json');
-    const data = await res.json();
+    const { data } = res;
 
     if (!data.result) {
 

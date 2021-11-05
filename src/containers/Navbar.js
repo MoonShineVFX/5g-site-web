@@ -2,72 +2,9 @@ import { useContext } from 'react';
 import { styled } from '@mui/system';
 import { Links } from '../components/Links';
 import { GlobalContext } from '../context/global.state';
+import utilConst from '../utils/util.const';
 
-//
-const navMenus = [
-    {
-        key: '',
-        text: '關於我們',
-        subItems: [
-            {
-                key: 'about',
-                text: '關於本站',
-            },
-        ],
-    },
-    {
-        key: 'news',
-        text: '最新消息',
-        subItems: [
-            {
-                key: '?page=1&cate=news',
-                text: '新聞快訊',
-            },
-            {
-                key: '?page=1&cate=newsIndustry',
-                text: '產業訊息',
-            },
-        ],
-    },
-    {
-        key: 'policy',
-        text: '政策資源',
-        subItems: [
-            {
-                key: '?page=1&cate=center',
-                text: '中央資源',
-            },
-            {
-                key: '?page=1&cate=local',
-                text: '地方資源',
-            },
-        ],
-    },
-    {
-        key: 'place',
-        text: '場域空間',
-        subItems: [
-            {
-                key: '?type=5g',
-                text: '5G示範場域',
-            },
-            {
-                key: '?type=tech',
-                text: '互動科技示範場域',
-            },
-        ],
-    },
-    {
-        key: '',
-        text: '策略夥伴',
-        subItems: [
-            {
-                key: 'partner?page=1&tag=all',
-                text: '夥伴介紹',
-            },
-        ],
-    },
-];
+const { navMenus } = utilConst;
 
 //
 const NavMenuLayout = styled('nav')(({ theme }) => ({
@@ -185,6 +122,7 @@ const Navbar = ({ ...rest }) => {
                         <div className="title">
                             <span>{text}</span>
                         </div>
+
                         <div className="sub-menus">
                             {
                                 subItems.map((sub) => (

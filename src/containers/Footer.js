@@ -6,6 +6,9 @@ import dayjs from 'dayjs';
 import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
 import { Links } from '../components/Links';
+import utilConst from '../utils/util.const';
+
+const { textConfig: { text_contact_us } } = utilConst;
 
 // 社群 > 改為後台設定
 const socials = [
@@ -27,7 +30,6 @@ const FooterLayout = styled('footer')(({ theme }) => ({
     textAlign: 'center',
     '> div': {
         padding: '76px 0 56px',
-        position: 'relative',
     },
     '.footer-social': {
         margin: '60px auto 20px',
@@ -58,7 +60,7 @@ const FooterLayout = styled('footer')(({ theme }) => ({
         },
         'a': {
             // Notes: 頁面尚未做，先讓文字顏色與背景相同
-            color: theme.palette.bg.secondary,
+            // color: theme.palette.bg.secondary,
             marginRight: '0',
         },
     },
@@ -123,18 +125,19 @@ const SponsorGridLayout = styled('p')(({ theme }) => ({
 }));
 
 // 回到最上方
-const BackToTop = styled(IconButton)(({ theme }) => ({
+const BackToTopLayout = styled(IconButton)(({ theme }) => ({
+    width: '50px',
+    height: '50px',
     backgroundColor: theme.palette.bg.primary,
     display: 'block',
-    position: 'absolute',
-    top: '-22px',
-    right: '0',
+    position: 'fixed',
+    bottom: '40px',
+    right: '40px',
     '&:hover': {
         backgroundColor: theme.palette.bg.primary,
     },
     [theme.breakpoints.down('md')]: {
-        left: '50%',
-        transform: 'translateX(-50%)',
+        right: '10px',
     },
 }));
 
@@ -165,7 +168,7 @@ const Footer = () => {
                     <Grid item xs={12} md={4}>
                         <div className="align-box">
                             <SponsorGridLayout className="info">
-                                <span className="title">聯絡我們</span>
+                                <span id="contact" className="title">{text_contact_us}</span>
                                 802 高雄市苓雅區四維三路2號9樓 <br/>
                                 info@5goio.org <br/>
                                 Tel: +886 7 3368333 <br/>
@@ -201,8 +204,8 @@ const Footer = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12} md={4} className="align-right privacy">
-                        <p><Links>資安說明</Links></p>
-                        <p><Links>隱私權政策</Links></p>
+                        <p><Links url="/security">資安說明</Links></p>
+                        <p><Links url="/privacy">隱私權政策</Links></p>
                     </Grid>
                 </Grid>
 
@@ -212,13 +215,16 @@ const Footer = () => {
                     className="footer-copyright"
                 >
                     <Grid item xs>
-                        <p>© {dayjs().format('YYYY')} All rights reserved. Moonshine</p>
+                        <p>© {dayjs().format('YYYY')} All rights reserved.</p>
                     </Grid>
                 </Grid>
 
-                <BackToTop onClick={targetScrollToTop}>
+                <BackToTopLayout
+                    className="btn-backToTop"
+                    onClick={targetScrollToTop}
+                >
                     <FontIcon icon={faChevronUp} />
-                </BackToTop>
+                </BackToTopLayout>
             </div>
         </FooterLayout>
 
