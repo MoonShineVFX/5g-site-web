@@ -1,11 +1,19 @@
 import { Fragment, useContext, useEffect } from 'react';
+import { GlobalStyles } from '@mui/material';
 import { styled } from '@mui/system';
 
+import theme from '../src/utils/theme';
 import HeadTag from '../src/containers/HeadTag';
 import SectionTitle from '../src/components/SectionTitle';
 import { GlobalContext } from '../src/context/global.state';
 import useQuery from '../src/utils/useQuery';
 import util from '../src/utils/util';
+
+const styles = {
+    '.breadcrumb .level1': {
+        color: theme.palette.primary.main,
+    },
+};
 
 //
 const DetailWrapLayout = styled('section')(({ theme }) => ({
@@ -56,11 +64,12 @@ const Privacy = ({ pageData }) => {
     return (
 
         <Fragment>
+            <GlobalStyles styles={styles} />
             <HeadTag title={pageData.title} />
 
             <DetailWrapLayout>
                 <SectionTitle
-                    primaryText={pageData.currPageTitle}
+                    primaryText={pageData.title}
                     showMobile={true}
                 />
                 <div className="detail-wrap" dangerouslySetInnerHTML={{ __html: pageData.data.detail }} />
@@ -93,7 +102,7 @@ export async function getServerSideProps () {
     return {
         props: {
             pageData: {
-                title: data.data.title,
+                title: '隱私權政策',
                 data: data.data,
             },
         },
