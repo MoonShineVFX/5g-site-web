@@ -15,7 +15,7 @@ const BreadcrumbLayout = styled('div')(({ theme }) => ({
     '.web-container': {
         padding: '8px 0',
     },
-    'span': {
+    '.level2': {
         color: theme.palette.primary.main,
     },
     [theme.breakpoints.down('md')]: {
@@ -36,7 +36,7 @@ const Breadcrumb = ({ children, ...rest }) => {
             {...rest}
         >
             <div className="web-container">
-                <Links url="/">首頁</Links> / {menu.level1Link ? <Links url={menu.level1Link}>{menu.level1}</Links> : menu.level1} / <span>{menu.level2}</span>
+                <Links url="/">首頁</Links> / {menu.level1Link ? <Links url={menu.level1Link}>{menu.level1}</Links> : <span className="level1">{menu.level1}</span>} {menu.level2 ? ` / ` : ''} <span className="level2">{menu.level2}</span>
             </div>
         </BreadcrumbLayout>
 

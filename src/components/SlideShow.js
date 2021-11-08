@@ -24,7 +24,7 @@ const SlideShowContainer = styled('div')(({ theme }) => ({
 }));
 
 // 點點
-const Dots = styled('span')(({ theme }) => ({
+const DotsLayout = styled('span')(({ theme }) => ({
     display: 'block',
     textAlign: 'center',
     marginTop: '20px',
@@ -63,17 +63,17 @@ const Dots = styled('span')(({ theme }) => ({
 }));
 
 // 箭頭
-const Arrows = styled('span')({
+const ArrowsLayout = styled('span')({
     '.MuiButton-root': {
         minWidth: 'auto',
         marginTop: '-30px',
         padding: '4px',
         position: 'absolute',
         '&:first-of-type': {
-            left: '-64px',
+            left: '-34px',
         },
         '& + .MuiButton-root': {
-            right: '-64px',
+            right: '-34px',
         },
     },
     'svg': {
@@ -127,7 +127,7 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
 
             {
                 showDot &&
-                    <Dots className="slideshow-control-dots">
+                    <DotsLayout className="slideshow-control-dots">
                         {
                             data.map((_, idx) => (
 
@@ -139,12 +139,12 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
 
                             ))
                         }
-                    </Dots>
+                    </DotsLayout>
             }
 
             {
                 showArrow &&
-                    <Arrows className="slideshow-control-arrows">
+                    <ArrowsLayout className="slideshow-control-arrows">
                         <Button
                             className="web-y-align button-arrow-left"
                             onClick={handleArrowLeft}
@@ -157,7 +157,7 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
                         >
                             <ArrowForwardIosIcon />
                         </Button>
-                    </Arrows>
+                    </ArrowsLayout>
             }
         </SlideShowLayout>
 
@@ -168,7 +168,7 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
 SlideShow.defaultProps = {
     data: [],
     showDot: true,
-    showArrow: false,
+    showArrow: true,
 };
 
 SlideShow.propTypes = {

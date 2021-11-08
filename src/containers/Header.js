@@ -6,7 +6,16 @@ import { Links } from '../components/Links';
 import Navbar from './Navbar';
 import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
+import utilConst from '../utils/util.const';
 
+const {
+    textConfig: {
+        text_contact_us,
+        text_sitemap,
+    },
+} = utilConst;
+
+//
 const AppBarLayout = styled('header')(({ theme }) => ({
     maxHeight: '145px',
     backgroundColor: theme.palette.bg.secondary,
@@ -24,13 +33,10 @@ const AppBarLayout = styled('header')(({ theme }) => ({
     },
 }));
 
+//
 const HeaderTopLayout = styled('div')(({ theme }) => ({
     fontSize: '0.9em',
     borderBottom: `1px solid ${theme.palette.text.secondary}`,
-    'a': {
-        // Notes: 頁面尚未做，先讓文字顏色與背景相同
-        color: theme.palette.bg.secondary,
-    },
     '.search': {
         fontSize: '1.2em',
         marginRight: '40px',
@@ -51,6 +57,7 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
     },
 }));
 
+//
 const HeaderLayout = styled(Toolbar)(({ theme }) => ({
     height: '100px',
     [theme.breakpoints.up('1220')]: {
@@ -90,6 +97,7 @@ const HeaderLayout = styled(Toolbar)(({ theme }) => ({
     },
 }));
 
+//
 const SideNavLayout = styled('div')(({ theme }) => ({
     display: 'none',
     [theme.breakpoints.down('md')]: {
@@ -145,13 +153,16 @@ const Header = () => {
         <AppBarLayout>
             <HeaderTopLayout>
                 <Toolbar className="web-container">
-                    <Links>聯絡我們</Links>
+                    <Links url="#contact">
+                        {text_contact_us}
+                    </Links>
+
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
                         <span className="search">
                             <FontIcon icon={faSearch} />
                         </span>
-                        <Links>網站導覽</Links>
+                        <Links url="/sitemap">{text_sitemap}</Links>
                     </Box>
                 </Toolbar>
             </HeaderTopLayout>

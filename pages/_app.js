@@ -14,6 +14,9 @@ import Breadcrumb from '../src/components/Breadcrumb';
 import Footer from '../src/containers/Footer';
 
 const styles = {
+    html: {
+        scrollBehavior: 'smooth',
+    },
     body: {
         lineHeight: '1.6',
         fontSize: '1em',
