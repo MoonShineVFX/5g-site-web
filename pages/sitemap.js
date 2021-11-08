@@ -69,6 +69,36 @@ const ItemsLayout = styled('div')(({ theme }) => ({
     '.sub-items > div': {
         paddingLeft: '20px',
     },
+    [theme.breakpoints.down('md')]: {
+        '.item-wrap': {
+            flex: '0 0 calc(100% / 2)',
+            marginBottom: '20px',
+        },
+        '.inner': {
+            minHeight: '124px',
+        },
+        '.title': {
+            fontSize: '1em',
+        },
+        '.sub-items > div': {
+            fontSize: '0.9em',
+            paddingLeft: '0',
+        },
+    },
+    [theme.breakpoints.down('400')]: {
+        '.item-wrap': {
+            flex: '100%',
+        },
+        '.inner': {
+            minHeight: 'auto',
+        },
+        '.title': {
+            fontSize: '1em',
+        },
+        '.sub-items > div': {
+            fontSize: '0.8em',
+        },
+    },
 }));
 
 //
