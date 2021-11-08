@@ -204,8 +204,8 @@ const Footer = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12} md={4} className="align-right privacy">
-                        <p><Links>資安說明</Links></p>
-                        <p><Links>隱私權政策</Links></p>
+                        <p><Links url="/security">資安說明</Links></p>
+                        <p><Links url="/privacy">隱私權政策</Links></p>
                     </Grid>
                 </Grid>
 
