@@ -2,7 +2,6 @@ import { styled } from '@mui/system';
 import { Grid, IconButton } from '@mui/material';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import dayjs from 'dayjs';
 import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
 import { Links } from '../components/Links';
@@ -27,12 +26,13 @@ const FooterLayout = styled('footer')(({ theme }) => ({
     fontSize: '0.9em',
     color: theme.palette.bg.text,
     backgroundColor: theme.palette.bg.secondary,
-    textAlign: 'center',
     '> div': {
         padding: '76px 0 56px',
     },
-    '.footer-social': {
-        margin: '60px auto 20px',
+    '.logoText': {
+        marginBottom: '20px',
+    },
+    '.socialWrap': {
         fontSize: '1.8em',
         'a': {
             color: theme.palette.bg.text,
@@ -59,8 +59,7 @@ const FooterLayout = styled('footer')(({ theme }) => ({
             marginBottom: '4px',
         },
         'a': {
-            // Notes: 頁面尚未做，先讓文字顏色與背景相同
-            // color: theme.palette.bg.secondary,
+            color: theme.palette.bg.text,
             marginRight: '0',
         },
     },
@@ -161,6 +160,7 @@ const Footer = () => {
                     className="footer-info"
                 >
                     <Grid item xs={12} md={4}>
+                        <LogoText />
                         <SponsorGridLayout><span className="title withLine">主辦</span>高雄市政府經濟發展局</SponsorGridLayout>
                         <SponsorGridLayout><span className="title withLine">協辦</span>財團法人資訊工業策進會</SponsorGridLayout>
                     </Grid>
@@ -173,36 +173,24 @@ const Footer = () => {
                                 info@5goio.org <br/>
                                 Tel: +886 7 3368333 <br/>
                             </SponsorGridLayout>
+
+                            <div className="socialWrap">
+                                {
+                                    socials.map(({ url, icon }, idx) => (
+
+                                        <Links
+                                            key={idx}
+                                            href={url}
+                                        >
+                                            <FontIcon icon={icon} />
+                                        </Links>
+
+                                    ))
+                                }
+                            </div>
                         </div>
                     </Grid>
 
-                    <Grid item xs={12} md={4} className="align-right logo">
-                        <LogoText />
-                    </Grid>
-                </Grid>
-
-                <Grid
-                    container
-                    components="section"
-                    className="footer-social"
-                >
-                    <Grid item xs={12} md={4}></Grid>
-                    <Grid item xs={12} md={4} className="social">
-                        <div className="align-box">
-                            {
-                                socials.map(({ url, icon }, idx) => (
-
-                                    <Links
-                                        key={idx}
-                                        href={url}
-                                    >
-                                        <FontIcon icon={icon} />
-                                    </Links>
-
-                                ))
-                            }
-                        </div>
-                    </Grid>
                     <Grid item xs={12} md={4} className="align-right privacy">
                         <p><Links url="/security">資安說明</Links></p>
                         <p><Links url="/privacy">隱私權政策</Links></p>
@@ -215,7 +203,7 @@ const Footer = () => {
                     className="footer-copyright"
                 >
                     <Grid item xs>
-                        <p>© {dayjs().format('YYYY')} All rights reserved.</p>
+                        <p>Copyright © 高雄市政府經濟發展局 All rights reserved.</p>
                     </Grid>
                 </Grid>
 

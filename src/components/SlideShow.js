@@ -70,10 +70,10 @@ const ArrowsLayout = styled('span')({
         padding: '4px',
         position: 'absolute',
         '&:first-of-type': {
-            left: '-34px',
+            left: '-10px',
         },
         '& + .MuiButton-root': {
-            right: '-34px',
+            right: '-10px',
         },
     },
     'svg': {

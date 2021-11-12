@@ -59,6 +59,8 @@ const Privacy = ({ pageData }) => {
             },
         });
 
+        globalDispatch({ type: 'sidenav', payload: false });
+
     }, []);
 
     return (

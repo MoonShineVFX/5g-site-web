@@ -66,6 +66,8 @@ const Policy = ({ pageData }) => {
             },
         });
 
+        globalDispatch({ type: 'sidenav', payload: false });
+
     }, []);
 
     // Click page

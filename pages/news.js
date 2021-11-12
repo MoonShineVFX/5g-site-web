@@ -67,6 +67,8 @@ const News = ({ pageData }) => {
             },
         });
 
+        globalDispatch({ type: 'sidenav', payload: false });
+
     }, []);
 
     // Click page

@@ -50,6 +50,8 @@ const About = ({ pageData }) => {
             },
         });
 
+        globalDispatch({ type: 'sidenav', payload: false });
+
     }, []);
 
     return (

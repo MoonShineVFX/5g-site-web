@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import { faBroadcastTower, faCoffee, faWind } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
@@ -80,7 +80,13 @@ const NewsItemWrap = ({ data: { id, title, isHot, createTime } }) => (
 const Home = ({ pageData }) => {
 
     // Context
-    const { slideshowActive } = useContext(GlobalContext);
+    const { slideshowActive, globalDispatch } = useContext(GlobalContext);
+
+    useEffect(() => {
+
+        globalDispatch({ type: 'sidenav', payload: false });
+
+    });
 
     return (
 

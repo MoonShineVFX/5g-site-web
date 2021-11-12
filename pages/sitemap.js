@@ -124,6 +124,8 @@ const Sitemap = () => {
             },
         });
 
+        globalDispatch({ type: 'sidenav', payload: false });
+
     }, []);
 
     return (

@@ -17,5 +17,4 @@ export default createTheme({
             secondary: '#9AE5D9',
         },
     },
-    components: {},
 });

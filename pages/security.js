@@ -59,6 +59,8 @@ const Security = ({ pageData }) => {
             },
         });
 
+        globalDispatch({ type: 'sidenav', payload: false });
+
     }, []);
 
     return (

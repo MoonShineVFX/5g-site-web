@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useContext } from 'react';
 import { styled } from '@mui/system';
 import { Toolbar, Box, useMediaQuery } from '@mui/material';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,7 @@ import { Links } from '../components/Links';
 import Navbar from './Navbar';
 import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
+import { GlobalContext } from '../context/global.state';
 import utilConst from '../utils/util.const';
 
 const {
@@ -130,23 +131,23 @@ const SideNavLayout = styled('div')(({ theme }) => ({
 //
 const Header = () => {
 
-    const matches = useMediaQuery((theme) => theme.breakpoints.down('md'));
+    // Context
+    const { sideNav, globalDispatch } = useContext(GlobalContext);
 
-    // State
-    const [active, setActive] = useState(false);
+    const matches = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
     useEffect(() => {
 
-        if (!matches) setActive(false);
-        document.body.style.overflow = active ? 'hidden' : '';
+        if (!matches) globalDispatch({ type: 'sidenav', payload: false });
+        document.body.style.overflow = sideNav ? 'hidden' : '';
 
-    }, [matches, active]);
+    }, [matches, globalDispatch, sideNav]);
 
     // 關閉
-    const handleHide = () => setActive(false);
+    const handleHide = () => globalDispatch({ type: 'sidenav', payload: false });
 
-    //
-    const handleClick = () => setActive(!active);
+    // 點擊
+    const handleClick = () => globalDispatch({ type: 'sidenav', payload: !sideNav });
 
     return (
 
@@ -193,7 +194,7 @@ const Header = () => {
                 </Box>
             </HeaderLayout>
 
-            <SideNavLayout className={`mWeb-menu ${active ? 'active' : ''}`}>
+            <SideNavLayout className={`mWeb-menu ${sideNav ? 'active' : ''}`}>
                 <Navbar />
                 <div className="mask" onClick={handleHide}></div>
             </SideNavLayout>
