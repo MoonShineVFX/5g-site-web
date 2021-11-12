@@ -54,6 +54,8 @@ const PolicyDetail = ({ pageData }) => {
             },
         });
 
+        globalDispatch({ type: 'sidenav', payload: false });
+
     }, []);
 
     return (

@@ -10,6 +10,7 @@ const globalInitState = {
         level1Link: '',
     },
     slideshowActive: 0,
+    sideNav: false,
 };
 
 // Create Context
@@ -23,6 +24,7 @@ const GlobalProvider = ({ children }) => {
         page,
         menu,
         slideshowActive,
+        sideNav,
     } = globalState;
     const { Provider } = GlobalContext;
 
@@ -33,6 +35,7 @@ const GlobalProvider = ({ children }) => {
             page,
             menu,
             slideshowActive,
+            sideNav,
 
             // Dispatch
             globalDispatch,
