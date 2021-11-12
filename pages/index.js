@@ -86,7 +86,7 @@ const Home = ({ pageData }) => {
 
         globalDispatch({ type: 'sidenav', payload: false });
 
-    });
+    }, []);
 
     return (
 
