@@ -79,7 +79,7 @@ const ItemPartnerLayout = styled(Grid)(({ theme }) => ({
         padding: '0 10px',
     },
     'a': {
-        width: '240px',
+        width: '260px',
         border: '1px solid',
         borderBottom: '0',
         borderRadius: '70% 70% 0 0',

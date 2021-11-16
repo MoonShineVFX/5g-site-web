@@ -1,7 +1,7 @@
 import { styled } from '@mui/system';
 import { Grid, IconButton } from '@mui/material';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faFacebook, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
 import { Links } from '../components/Links';
@@ -12,11 +12,15 @@ const { textConfig: { text_contact_us } } = utilConst;
 // 社群 > 改為後台設定
 const socials = [
     {
-        url: 'https://www.facebook.com/MoonShineAnimation',
+        url: 'https://www.facebook.com/chunghwasystem',
         icon: faFacebook,
     },
     {
-        url: 'https://www.instagram.com/moonshine.tw/?hl=zh-tw',
+        url: 'https://www.linkedin.com/company/%E4%B8%AD%E8%8F%AF%E7%B3%BB%E7%B5%B1%E6%95%B4%E5%90%88-%E8%82%A1-%E5%85%AC%E5%8F%B8',
+        icon: faLinkedinIn,
+    },
+    {
+        url: 'https://www.instagram.com/',
         icon: faInstagram,
     },
 ];
@@ -181,6 +185,7 @@ const Footer = () => {
                                         <Links
                                             key={idx}
                                             href={url}
+                                            newPage
                                         >
                                             <FontIcon icon={icon} />
                                         </Links>
