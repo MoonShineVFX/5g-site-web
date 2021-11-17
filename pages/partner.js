@@ -57,8 +57,8 @@ const PartnerItem = ({
             </span>
             <span className="info">
                 <div className="name">
-                    <h2 className="title web-line-clamp">{name}</h2>
-                    <div className="english-name web-line-clamp">{nameEnglish}</div>
+                    <h2 className="title">{name}</h2>
+                    <div>{nameEnglish}</div>
                 </div>
                 <div>{phone}</div>
                 <div className="email">{email}</div>
