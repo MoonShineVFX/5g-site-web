@@ -184,6 +184,9 @@ const SectionLayout = styled('section')(({ theme }) => ({
             fontSize: '0.8em',
             marginLeft: '4px',
         },
+        '.description': {
+            wordBreak: 'break-word',
+        },
     },
     '.description': {
         borderTop: '1px solid',

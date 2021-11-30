@@ -191,7 +191,7 @@ const Footer = () => {
                                             newPage
                                         >
                                             <img
-                                                src={`${name}.png`}
+                                                src={`/${name}.png`}
                                                 alt={name}
                                                 title={name}
                                                 width="30"
