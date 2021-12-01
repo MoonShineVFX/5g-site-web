@@ -1,6 +1,12 @@
 import { styled } from '@mui/system';
 import { Links } from '../components/Links';
 
+const slogn = {
+    text1: '高雄市',
+    text2: '地方文化特色整合',
+    text3: '5G應用與落地計畫',
+};
+
 const LogoLayout = styled(Links)(({ theme }) => ({
     lineHeight: '1.4',
     textAlign: 'center',
@@ -19,10 +25,14 @@ const LogoLayout = styled(Links)(({ theme }) => ({
 
 const LogoText = () => (
 
-    <LogoLayout url="/" className="logoText">
-        <h2 className="logo-text">高雄市</h2>
-        <div>地方文化特色整合</div>
-        <div>5G應用與落地計畫</div>
+    <LogoLayout
+        url="/"
+        className="logoText"
+        title={`${slogn.text1} ${slogn.text2} ${slogn.text3}`}
+    >
+        <h2 className="logo-text">{slogn.text1}</h2>
+        <div>{slogn.text2}</div>
+        <div>{slogn.text3}</div>
     </LogoLayout>
 
 );

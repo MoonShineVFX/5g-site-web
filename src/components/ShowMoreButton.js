@@ -15,7 +15,11 @@ const ShowMoreButtonLayout = styled('div')(({ theme }) => ({
 const ShowMoreButton = ({ url, newPage, ...rest }) => (
 
     <ShowMoreButtonLayout {...rest}>
-        <ButtonLink url={url} newPage={newPage} />
+        <ButtonLink
+            url={url}
+            newPage={newPage}
+            title="更多消息"
+        />
     </ShowMoreButtonLayout>
 
 );

@@ -10,8 +10,9 @@ import { GlobalProvider } from '../src/context/global.state';
 import theme from '../src/utils/theme';
 import HeadTag from '../src/containers/HeadTag';
 import Header from '../src/containers/Header';
-import Breadcrumb from '../src/components/Breadcrumb';
 import Footer from '../src/containers/Footer';
+import Breadcrumb from '../src/components/Breadcrumb';
+import { BlindGuide } from '../src/components/Links';
 
 const styles = {
     html: {
@@ -36,6 +37,7 @@ const styles = {
         width: '100%',
         maxWidth: '1200px',
         margin: 'auto',
+        position: 'relative',
         [theme.breakpoints.up('md')]: {
             paddingTop: '40px',
             paddingBottom: '80px',
@@ -111,6 +113,11 @@ const WebSite = ({ Component, pageProps }) => {
                             component="div"
                             className="web-container"
                         >
+                            <BlindGuide
+                                title="中央內容區塊"
+                                accessKey="C"
+                                className="inContent"
+                            />
                             <Component {...pageProps} />
                         </Box>
                     </Box>

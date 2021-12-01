@@ -25,6 +25,7 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
             display: 'inline-block',
             padding: '0 30px',
             position: 'relative',
+            zIndex: '10',
             transition: 'all .2s ease',
             '&:before': {
                 content: '""',
@@ -129,6 +130,7 @@ const Navbar = ({ ...rest }) => {
 
                                     <Links
                                         key={sub.key}
+                                        title={sub.text}
                                         url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place' && key !== 'policy') ? '/' : ''}`}` : ''}${sub.key}`}
                                         onClick={() => handleClickMenu(sub.text)}
                                     >

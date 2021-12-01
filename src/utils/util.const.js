@@ -76,6 +76,7 @@ const utilConst = {
         local: '地方資源',
     },
     textConfig: {
+        text_breadcrumb_home: '首頁',
         text_contact_us: '聯絡我們',
         text_sitemap: '網站導覽',
         text_privacy: '隱私權政策',

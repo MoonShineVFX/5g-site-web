@@ -92,6 +92,7 @@ const PolicyDetail = ({ pageData }) => {
 
                                     <ItemLayout
                                         key={key}
+                                        title={policyConfig[key]}
                                         url={`/policy?page=1&cate=${key}`}
                                         className={`item ${(categoryKey === key) ? 'active' : ''}`}
                                         onClick={() => router.push(`/policy?page=1&cate=${query.cate}`)}
@@ -108,22 +109,22 @@ const PolicyDetail = ({ pageData }) => {
 
             <MainContentLayout className="section-information">
                 <div className="item">
-                    <h4 className="title">申請方式</h4>
+                    <h3 className="title">申請方式</h3>
                     <p>{applicationWay}</p>
                 </div>
 
                 <div className="item">
-                    <h4 className="title">申請對象</h4>
+                    <h3 className="title">申請對象</h3>
                     <p>{applicationObject}</p>
                 </div>
 
                 <div className="item">
-                    <h4 className="title">資金額度</h4>
+                    <h3 className="title">資金額度</h3>
                     <p>{amountQuota}</p>
                 </div>
 
                 <div className="item">
-                    <h4 className="title">諮詢窗口</h4>
+                    <h3 className="title">諮詢窗口</h3>
                     <div className="contact">
                         <p className="label">{contact.unit}</p>
                         <p>{contact.name}</p>
@@ -152,9 +153,15 @@ const PolicyDetail = ({ pageData }) => {
                 </div>
 
                 <div className="item">
-                    <h4 className="title">網站連結</h4>
+                    <h3 className="title">網站連結</h3>
                     <p>
-                        <Links url={link} className="link">{link}</Links>
+                        <Links
+                            url={link}
+                            title={link}
+                            className="link"
+                        >
+                            {link}
+                        </Links>
                     </p>
                 </div>
             </MainContentLayout>

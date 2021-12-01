@@ -27,6 +27,7 @@ const Item = ({
     <Grid item xs={12} md={6}>
         <NewsItemWrapLayout
             url={`/news/${id}`}
+            title={title}
             className="item"
         >
             <h2 className="title">{title}</h2>

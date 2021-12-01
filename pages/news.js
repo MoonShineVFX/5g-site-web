@@ -30,6 +30,7 @@ const NewsItem = ({
 
     <Links
         url={`/news/${id}`}
+        title={title}
         className="item"
         newPage
     >
@@ -130,6 +131,7 @@ const News = ({ pageData }) => {
 
                                 <ItemLayout
                                     key={key}
+                                    title={newsConfig[key]}
                                     url={`/news?page=1&cate=${key}`}
                                     className={(query?.cate === key) ? 'active' : ''}
                                     onClick={() => handleClickMenu(key)}

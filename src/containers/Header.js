@@ -2,7 +2,7 @@ import { useEffect, useContext } from 'react';
 import { styled } from '@mui/system';
 import { Toolbar, Box, useMediaQuery } from '@mui/material';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Links } from '../components/Links';
+import { Links, BlindGuide } from '../components/Links';
 import Navbar from './Navbar';
 import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
@@ -154,7 +154,7 @@ const Header = () => {
         <AppBarLayout>
             <HeaderTopLayout>
                 <Toolbar className="web-container">
-                    <Links url="#contact">
+                    <Links url="#contact" title={text_contact_us}>
                         {text_contact_us}
                     </Links>
 
@@ -163,13 +163,18 @@ const Header = () => {
                         <span className="search">
                             <FontIcon icon={faSearch} />
                         </span>
-                        <Links url="/sitemap">{text_sitemap}</Links>
+                        <Links url="/sitemap" title={text_sitemap}>{text_sitemap}</Links>
                     </Box>
                 </Toolbar>
             </HeaderTopLayout>
 
             <HeaderLayout className="web-container">
                 <Box className="grid-left">
+                    <BlindGuide
+                        title="上方功能區塊，此區塊有選單相關連結"
+                        accessKey="U"
+                    />
+
                     <span
                         className="menu"
                         onClick={handleClick}

@@ -20,9 +20,10 @@ const MenuItem = ({ tag = 'all', text, ...rest }) => (
 
     <MenuItemLayout
         url={`/partner?page=1&tag=${tag}`}
+        title={text}
         {...rest}
     >
-        {text}
+        <h1 className="title">{text}</h1>
     </MenuItemLayout>
 
 );
@@ -51,6 +52,7 @@ const PartnerItem = ({
                 <img
                     src={imgUrl}
                     alt={name}
+                    title={name}
                     width="152"
                     height="114"
                 />

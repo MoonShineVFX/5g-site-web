@@ -146,12 +146,14 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
                 showArrow &&
                     <ArrowsLayout className="slideshow-control-arrows">
                         <Button
+                            title="前一個"
                             className="web-y-align button-arrow-left"
                             onClick={handleArrowLeft}
                         >
                             <ArrowBackIosIcon />
                         </Button>
                         <Button
+                            title="後一個"
                             className="web-y-align button-arrow-right"
                             onClick={handleArrowRight}
                         >
