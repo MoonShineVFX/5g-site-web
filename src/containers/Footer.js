@@ -1,7 +1,7 @@
 import { styled } from '@mui/system';
 import { Grid, IconButton } from '@mui/material';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faFacebook, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
 import { Links } from '../components/Links';
@@ -12,12 +12,19 @@ const { textConfig: { text_contact_us } } = utilConst;
 // 社群 > 改為後台設定
 const socials = [
     {
-        url: 'https://www.facebook.com/MoonShineAnimation',
-        icon: faFacebook,
+        url: 'https://edbkcg.kcg.gov.tw',
+        icon: faLinkedinIn,
+        name: 'ks',
     },
     {
-        url: 'https://www.instagram.com/moonshine.tw/?hl=zh-tw',
+        url: 'https://www.facebook.com/edbkh',
+        icon: faFacebook,
+        name: 'fb',
+    },
+    {
+        url: 'https://www.instagram.com/edbkh',
         icon: faInstagram,
+        name: 'ig',
     },
 ];
 
@@ -36,7 +43,7 @@ const FooterLayout = styled('footer')(({ theme }) => ({
         fontSize: '1.8em',
         'a': {
             color: theme.palette.bg.text,
-            marginRight: '16px',
+            marginRight: '20px',
         },
     },
     '.footer-copyright': {
@@ -47,7 +54,7 @@ const FooterLayout = styled('footer')(({ theme }) => ({
     },
     '.align-box': {
         textAlign: 'left',
-        paddingLeft: '80px',
+        paddingLeft: '50px',
     },
     '.align-right': {
         textAlign: 'right',
@@ -169,20 +176,27 @@ const Footer = () => {
                         <div className="align-box">
                             <SponsorGridLayout className="info">
                                 <span id="contact" className="title">{text_contact_us}</span>
-                                802 高雄市苓雅區四維三路2號9樓 <br/>
-                                info@5goio.org <br/>
-                                Tel: +886 7 3368333 <br/>
+                                806高雄市前鎮區成功二路25號2樓(數位轉型共創基地) <br/>
+                                arielfang@iii.org.tw <br/>
+                                Tel: +886 7 9667231 <br/>
                             </SponsorGridLayout>
 
                             <div className="socialWrap">
                                 {
-                                    socials.map(({ url, icon }, idx) => (
+                                    socials.map(({ url, icon, name }, idx) => (
 
                                         <Links
                                             key={idx}
                                             href={url}
+                                            newPage
                                         >
-                                            <FontIcon icon={icon} />
+                                            <img
+                                                src={`/${name}.png`}
+                                                alt={name}
+                                                title={name}
+                                                width="30"
+                                                height="30"
+                                            />
                                         </Links>
 
                                     ))

@@ -87,10 +87,6 @@ const PartnersLayout = styled('section')(({ theme }) => ({
     '.title': {
         fontSize: '1.35em',
         margin: '0 0 4px',
-        WebkitLineClamp: theme.lineClamp(1),
-    },
-    '.english-name': {
-        WebkitLineClamp: theme.lineClamp(1),
     },
     '.email': {
         textDecoration: 'underline',

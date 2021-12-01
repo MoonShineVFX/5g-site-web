@@ -39,7 +39,7 @@ const SectionTitleWrapLayout = styled('div')(({ theme }) => ({
         marginBottom: '4px',
     },
     '.secondary-title': {
-        color: '#280724',
+        color: '#71FFE8',
     },
     '&.no-second': {
         '.wrap': {

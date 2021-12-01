@@ -127,12 +127,27 @@ const PolicyDetail = ({ pageData }) => {
                     <div className="contact">
                         <p className="label">{contact.unit}</p>
                         <p>{contact.name}</p>
-                        <p className="label">聯絡電話</p>
-                        <p>{contact.phone}</p>
-                        <p className="label">傳真</p>
-                        <p>{contact.fax}</p>
-                        <p className="label">E-mail</p>
-                        <p>{contact.email}</p>
+                        {
+                            contact.phone &&
+                                <Fragment>
+                                    <p className="label">聯絡電話</p>
+                                    <p>{contact.phone}</p>
+                                </Fragment>
+                        }
+                        {
+                            contact.fax &&
+                                <Fragment>
+                                    <p className="label">傳真</p>
+                                    <p>{contact.fax}</p>
+                                </Fragment>
+                        }
+                        {
+                            contact.email &&
+                                <Fragment>
+                                    <p className="label">E-mail</p>
+                                    <p>{contact.email}</p>
+                                </Fragment>
+                        }
                     </div>
                 </div>
 
