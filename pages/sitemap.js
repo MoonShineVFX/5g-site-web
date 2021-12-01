@@ -21,6 +21,9 @@ const styles = {
     '.breadcrumb .level1': {
         color: theme.palette.primary.main,
     },
+    '.inContent': {
+        display: 'none',
+    },
 };
 
 // Menu 擴充
@@ -133,9 +136,22 @@ const Sitemap = () => {
         <Fragment>
             <GlobalStyles styles={styles} />
             <HeadTag title={text_sitemap} />
-            <SiteTitleLayout>{text_sitemap}</SiteTitleLayout>
 
             <section>
+                <SiteTitleLayout>{text_sitemap}</SiteTitleLayout>
+                <p className="info">
+                    本網站依無障礙網頁設計原則建置，網站的主要內容分為四大區塊：<br />
+                    1. 上方功能區塊、2. 左方導覽區塊、3. 中央內容區塊、4.右方相關連結區塊
+                    <br />
+                    <br />
+                    本網站的快速鍵﹝Accesskey﹞設定如下：<br />
+                    Alt+U：上方導覽連結區，此區塊列有本網站主要連結<br />
+                    Alt+C：中央內容區塊，為本頁主要內容區<br />
+                    Alt+Z：頁尾網站資訊<br />
+                    <br />
+                    <br />
+                </p>
+
                 <ItemsLayout>
                     {
                         extendMenus.map(({ text, subItems }, idx) => (

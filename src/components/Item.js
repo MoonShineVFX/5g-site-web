@@ -32,7 +32,11 @@ const ItemLayout = styled(Links)(({ theme }) => ({
 //
 const Item = ({ title, imgUrl, width, height, ...rest }) => (
 
-    <ItemLayout className="item" {...rest}>
+    <ItemLayout
+        title={title}
+        className="item"
+        {...rest}
+    >
         <div className="thumb">
             <img
                 src={imgUrl}

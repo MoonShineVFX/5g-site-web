@@ -27,6 +27,7 @@ const Buttons = ({ outline, text, children }) => (
     <ButtonLayout
         {...outline && { variant: 'outlined' }}
         endIcon={<ArrowForwardIosIcon />}
+        title={text}
     >
         <div>{text ? text : children}</div>
     </ButtonLayout>

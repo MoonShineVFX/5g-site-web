@@ -14,7 +14,6 @@ const MenusLayout = styled('section')(({ theme }) => ({
 
 //
 const MenuItemLayout = styled(Links)(({ theme }) => ({
-    fontSize: '1.5em',
     color: theme.palette.text.primary,
     padding: '20px',
     margin: '0 20px',
@@ -37,6 +36,11 @@ const MenuItemLayout = styled(Links)(({ theme }) => ({
     },
     '&:hover': {
         opacity: '0.85',
+    },
+    '.title': {
+        fontSize: '1.5em',
+        fontWeight: 'normal',
+        margin: '0',
     },
     [theme.breakpoints.down('md')]: {
         minWidth: '100px',

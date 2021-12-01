@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import { styled } from '@mui/system';
 import Buttons from './Buttons';
 
 //
-const Links = ({ url, newPage, children, ...rest }) => (
+const Links = ({ url, newPage, title, children, ...rest }) => (
 
     <Link href={url}>
         <a
             href={url}
+            title={title}
             {...newPage && { target: '_blank'}}
             {...rest}
         >
@@ -26,12 +28,42 @@ const ButtonLink = ({ url, text, newPage, ...rest }) => (
 
 );
 
+//
+const BlindGuideLayout = styled(Links)({
+    fontSize: '1.2em',
+    color: '#FFF',
+    padding: '4px',
+    position: 'absolute',
+    left: '-40px',
+    '&.inContent': {
+        color: '#000',
+    },
+});
+
+// 導盲用定位點
+const BlindGuide = ({ title, accessKey, ...rest }) => (
+
+    <BlindGuideLayout
+        url={`#A${accessKey}`}
+        id={`#A${accessKey}`}
+        title={title}
+        name={accessKey}
+        accessKey={accessKey}
+        {...rest}
+    >
+        :::
+    </BlindGuideLayout>
+
+);
+
 Links.defaultProps = {
     url: '',
 };
 
 Links.propTypes = {
     url: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    newPage: PropTypes.bool,
     children: PropTypes.any,
 };
 
@@ -41,4 +73,9 @@ ButtonLink.propTypes = {
     newPage: PropTypes.bool,
 };
 
-export { Links, ButtonLink };
+BlindGuide.propTypes = {
+    title: PropTypes.string,
+    accessKey: PropTypes.string.isRequired,
+};
+
+export { Links, ButtonLink, BlindGuide };

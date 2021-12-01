@@ -19,7 +19,7 @@ const { placeConfig } = utilConst;
 //
 const BackButton = ({ type, className }) => (
 
-    <Links url={`/place?type=${type}`} className={`back-button ${className}`}>
+    <Links url={`/place?type=${type}`} className={`back-button ${className}`} title="回列表">
         <span>
             <FontIcon icon={faReply} />
             <div>回列表</div>
@@ -31,7 +31,7 @@ const BackButton = ({ type, className }) => (
 // 外連 google map
 const Location = ({ title, url }) => (
 
-    <Links url={url} newPage={true} title={title}>
+    <Links url={url} newPage={true} title={`${title} 地圖 位置`}>
         <FontIcon icon={faMapMarkerAlt} />
     </Links>
 
@@ -168,7 +168,7 @@ const PlaceDetail = ({ pageData }) => {
                     <div className="item">
                         <span>
                             {websiteName}
-                            <Links url={websiteUrl} newPage={true}>{websiteUrl}</Links>
+                            <Links url={websiteUrl} newPage={true} title={websiteName}>{websiteUrl}</Links>
                         </span>
                     </div>
                 </div>

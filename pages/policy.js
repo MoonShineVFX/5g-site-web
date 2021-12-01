@@ -29,6 +29,7 @@ const PolicyItem = ({
 
     <PolicyItemLayout
         url={`/policy/${id}`}
+        title={title}
         className="item"
         newPage
     >
@@ -129,6 +130,7 @@ const Policy = ({ pageData }) => {
 
                                 <ItemLayout
                                     key={key}
+                                    title={policyConfig[key]}
                                     url={`/policy?page=1&cate=${key}`}
                                     className={(query?.cate === key) ? 'active' : ''}
                                     onClick={() => handleClickMenu(key)}

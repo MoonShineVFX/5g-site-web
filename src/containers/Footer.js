@@ -4,10 +4,16 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faFacebook, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import LogoText from './LogoText';
 import FontIcon from '../components/FontIcon';
-import { Links } from '../components/Links';
+import { Links, BlindGuide } from '../components/Links';
 import utilConst from '../utils/util.const';
 
-const { textConfig: { text_contact_us } } = utilConst;
+const {
+    textConfig: {
+        text_contact_us,
+        text_privacy,
+        text_security,
+    },
+} = utilConst;
 
 // 社群 > 改為後台設定
 const socials = [
@@ -15,16 +21,19 @@ const socials = [
         url: 'https://edbkcg.kcg.gov.tw',
         icon: faLinkedinIn,
         name: 'ks',
+        title: '經發局',
     },
     {
         url: 'https://www.facebook.com/edbkh',
         icon: faFacebook,
         name: 'fb',
+        title: 'Facebook',
     },
     {
         url: 'https://www.instagram.com/edbkh',
         icon: faInstagram,
         name: 'ig',
+        title: 'Instagram',
     },
 ];
 
@@ -35,6 +44,9 @@ const FooterLayout = styled('footer')(({ theme }) => ({
     backgroundColor: theme.palette.bg.secondary,
     '> div': {
         padding: '76px 0 56px',
+    },
+    '.footer-info': {
+        position: 'relative',
     },
     '.logoText': {
         marginBottom: '20px',
@@ -163,10 +175,14 @@ const Footer = () => {
             <div className="web-container">
                 <Grid
                     container
-                    components="section"
+                    component="section"
                     className="footer-info"
                 >
                     <Grid item xs={12} md={4}>
+                        <BlindGuide
+                            title="下方連結區，此區塊列有[聯絡資訊]、[社群]、[資安說明]、[隱私權政策]等連結"
+                            accessKey="Z"
+                        />
                         <LogoText />
                         <SponsorGridLayout><span className="title withLine">主辦</span>高雄市政府經濟發展局</SponsorGridLayout>
                         <SponsorGridLayout><span className="title withLine">協辦</span>財團法人資訊工業策進會</SponsorGridLayout>
@@ -183,17 +199,18 @@ const Footer = () => {
 
                             <div className="socialWrap">
                                 {
-                                    socials.map(({ url, icon, name }, idx) => (
+                                    socials.map(({ url, name, title }, idx) => (
 
                                         <Links
                                             key={idx}
                                             href={url}
+                                            title={title}
                                             newPage
                                         >
                                             <img
                                                 src={`/${name}.png`}
                                                 alt={name}
-                                                title={name}
+                                                title={title}
                                                 width="30"
                                                 height="30"
                                             />
@@ -206,8 +223,8 @@ const Footer = () => {
                     </Grid>
 
                     <Grid item xs={12} md={4} className="align-right privacy">
-                        <p><Links url="/security">資安說明</Links></p>
-                        <p><Links url="/privacy">隱私權政策</Links></p>
+                        <p><Links url="/security" title={text_security}>{text_security}</Links></p>
+                        <p><Links url="/privacy" title={text_privacy}>{text_privacy}</Links></p>
                     </Grid>
                 </Grid>
 

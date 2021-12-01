@@ -194,7 +194,10 @@ const Home = ({ pageData }) => {
                                 md={4}
                                 className="itemWrap"
                             >
-                                <Links url={`/partner?page=1&tag=${id}`}>
+                                <Links
+                                    title={name}
+                                    url={`/partner?page=1&tag=${id}`}
+                                >
                                     <FontIcon icon={arrangePartnerTag(pageData.data.partnerTags)[idx].icon} />
                                     <h1>{name}</h1>
                                     <span className="web-x-align nothing"></span>
