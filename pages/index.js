@@ -92,7 +92,7 @@ const Home = ({ pageData }) => {
 
         <Fragment>
             {homeStyles}
-            <HeadTag title={pageData.title} />
+            <HeadTag />
 
             <section>
                 <SlideShowLayout data={pageData.data.banners}>
