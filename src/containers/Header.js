@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { styled } from '@mui/system';
 import { Toolbar, Box, useMediaQuery } from '@mui/material';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -42,7 +42,10 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
         fontSize: '1.2em',
         marginRight: '40px',
         // Notes: 頁面尚未做，先讓文字顏色與背景相同
-        color: theme.palette.bg.secondary,
+        // color: theme.palette.bg.secondary,
+    },
+    '.hide': {
+        display: 'none',
     },
     '.MuiToolbar-root': {
         height: '45px',
@@ -134,6 +137,9 @@ const Header = () => {
     // Context
     const { sideNav, globalDispatch } = useContext(GlobalContext);
 
+    // State
+    const [visible, setVisible] = useState(false);
+
     const matches = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
     useEffect(() => {
@@ -143,11 +149,29 @@ const Header = () => {
 
     }, [matches, globalDispatch, sideNav]);
 
+    // Google search
+    // useEffect(() => {
+
+    //     (function () {
+    //         var cx = '7c8df01abb5d29b4e';
+    //         var gcse = document.createElement('script');
+    //         gcse.type = 'text/javascript';
+    //         gcse.async = true;
+    //         gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    //         var s = document.getElementsByTagName('script')[0];
+    //         s.parentNode.insertBefore(gcse, s);
+    //     })();
+
+    // }, []);
+
     // 關閉
     const handleHide = () => globalDispatch({ type: 'sidenav', payload: false });
 
     // 點擊
     const handleClick = () => globalDispatch({ type: 'sidenav', payload: !sideNav });
+
+    //
+    const handleShowSearchInput = () => setVisible(true);
 
     return (
 
@@ -160,8 +184,16 @@ const Header = () => {
 
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
-                        <span className="search">
+                        <span className="search" onClick={handleShowSearchInput}>
                             <FontIcon icon={faSearch} />
+                            <form method = "get" title = "Search Form" action="https://cse.google.com/cse/publicurl">
+                                <div>
+                                    <input type="text" id="q" name="q" title="Search this site" alt="Search Text" maxLength="256" />
+                                    <input type="hidden" id="cx" name="cx" value="013626029654558379071:ze3tw4csia4" />
+                                <input type="image" id="searchSubmit" name="submit" src="https://www.flaticon.com/free-icon/active-search-symbol_34148" alt="Go" title="Submit Search Query" />
+                                </div>
+                            </form>
+                            <div className={`gcse-search ${visible ? '' : 'hide'}`}></div>
                         </span>
                         <Links url="/sitemap" title={text_sitemap}>{text_sitemap}</Links>
                     </Box>
@@ -210,3 +242,8 @@ const Header = () => {
 };
 
 export default Header;
+
+/**
+ * google search
+ * api key: AIzaSyA_MyBFlaWVlPyRp6Xwdfpu7pLu0_5Iar8
+ */
