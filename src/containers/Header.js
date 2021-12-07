@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { styled } from '@mui/system';
 import { Toolbar, Box, useMediaQuery } from '@mui/material';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -43,6 +43,9 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
         marginRight: '40px',
         // Notes: 頁面尚未做，先讓文字顏色與背景相同
         color: theme.palette.bg.secondary,
+    },
+    '.hide': {
+        display: 'none',
     },
     '.MuiToolbar-root': {
         height: '45px',
@@ -134,6 +137,9 @@ const Header = () => {
     // Context
     const { sideNav, globalDispatch } = useContext(GlobalContext);
 
+    // State
+    const [visible, setVisible] = useState(false);
+
     const matches = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
     useEffect(() => {
@@ -149,6 +155,9 @@ const Header = () => {
     // 點擊
     const handleClick = () => globalDispatch({ type: 'sidenav', payload: !sideNav });
 
+    //
+    const handleShowSearchInput = () => setVisible(true);
+
     return (
 
         <AppBarLayout>
@@ -160,8 +169,9 @@ const Header = () => {
 
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
-                        <span className="search">
+                        <span className="search" onClick={handleShowSearchInput}>
                             <FontIcon icon={faSearch} />
+                            <div className={`gcse-search ${visible ? '' : 'hide'}`}></div>
                         </span>
                         <Links url="/sitemap" title={text_sitemap}>{text_sitemap}</Links>
                     </Box>
