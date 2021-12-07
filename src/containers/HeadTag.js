@@ -6,6 +6,7 @@ import Head from 'next/head';
 
     <Head>
         <title>{title}</title>
+        <meta name="google-site-verification" content="4hl166o0JOhTPLKcoJZ38oMY0LZNg9qIKilsMAwa1-I" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={description} />
         {children}
