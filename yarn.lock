@@ -1282,6 +1282,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@corex/deepmerge@^2.6.34":
+  version "2.6.133"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.6.133.tgz#eb3aaa7e197ea69cbb129b4e988e669622089063"
+  integrity sha512-KrAg1G7NaXDJ/bihDHof3MKnE6KC0mKE89o7qTSHPaxs122pBB14Ll+QFyMo4FyTqpMIRcFJlv02G9PcDxDMEA==
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -7930,6 +7935,13 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+matcher@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/matcher/-/matcher-4.0.0.tgz#a42a05a09aaed92e2d241eb91fddac689461ea51"
+  integrity sha512-S6x5wmcDmsDRRU/c2dkccDwQPXoFczc5+HpQ2lON8pnvHlnvHAHj5WlLVvw6n6vNyHuVugYrFohYxbS+pvFpKQ==
+  dependencies:
+    escape-string-regexp "^4.0.0"
+
 md5.js@^1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
@@ -8271,6 +8283,15 @@ neo-async@^2.5.0, neo-async@^2.6.1, neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+next-sitemap@^1.6.203:
+  version "1.6.203"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-1.6.203.tgz#bfa2e67fea2bab1efed60cda743e7f98dc00bb46"
+  integrity sha512-WigcoqIUNbXQa2GnwOiCOydGx/XHCS4kRtIPNEsc8DGX2XvJtbAJKRxcidZZ2KihTAtwwCu1XQ4Hbof4mJbvLg==
+  dependencies:
+    "@corex/deepmerge" "^2.6.34"
+    matcher "^4.0.0"
+    minimist "^1.2.5"
 
 next-tick@~1.0.0:
   version "1.0.0"
