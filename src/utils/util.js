@@ -70,11 +70,11 @@ const util = {
 
     },
 
-    serviceServer: ({ method = 'post', url }, reqData = {}) => {
+        serviceServer: ({ method = 'post', url }, reqData = {}) => {
 
-        return axios[method](`http://${process.env.HOST}/api${url}`, reqData);
+            return axios[method](`https://${process.env.HOST}/api${url}`, reqData);
 
-    },
+        },
 
     pathnameKey: (path) => path.split('/')[1] || 'index',
 

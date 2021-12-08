@@ -105,7 +105,7 @@ const WebSite = ({ Component, pageProps }) => {
                     <Box
                         component="main"
                         sx={{
-                            minHeight: 'calc(100vh - 559px)', // header: 145px, footer: 414px
+                            minHeight: 'calc(100vh - 475px)', // header: 145px, footer: 330px
                             display: 'flex',
                         }}
                     >

@@ -13,6 +13,7 @@ const {
     textConfig: {
         text_contact_us,
         text_sitemap,
+        text_search_all,
     },
 } = utilConst;
 
@@ -41,17 +42,51 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
     '.search': {
         fontSize: '1.2em',
         marginRight: '40px',
-        // Notes: 頁面尚未做，先讓文字顏色與背景相同
-        // color: theme.palette.bg.secondary,
-    },
-    '.hide': {
-        display: 'none',
+        position: 'relative',
+        cursor: 'pointer',
     },
     '.MuiToolbar-root': {
         height: '45px',
         minHeight: 'auto',
         lineHeight: '45px',
         padding: '0',
+    },
+    '.google-search-input': {
+        lineHeight: '1',
+        width: '300px',
+        display: 'none',
+        position: 'absolute',
+        right: '-10px',
+        zIndex: '30',
+        '&.active': {
+            display: 'block',
+        },
+    },
+    '.search-input': {
+        width: '300px',
+        lineHeight: '1',
+        fontSize: '0.9em',
+        backgroundColor: '#FFF',
+        display: 'none',
+        padding: '10px',
+        position: 'absolute',
+        right: '-10px',
+        zIndex: '30',
+        cursor: 'default',
+        '&.active': {
+            display: 'block',
+        },
+        'input': {
+            width: 'calc(100% - 10px - 56px)',
+            fontSize: '1em',
+            padding: '4px 8px',
+            outline: '0',
+        },
+        'a': {
+            backgroundColor: theme.palette.primary.main,
+            marginLeft: '10px',
+            padding: '8px 12px',
+        },
     },
     [theme.breakpoints.down('md')]: {
         padding: '0 20px',
@@ -135,7 +170,10 @@ const SideNavLayout = styled('div')(({ theme }) => ({
 const Header = () => {
 
     // Context
-    const { sideNav, globalDispatch } = useContext(GlobalContext);
+    const { sideNav, searchBox, globalDispatch } = useContext(GlobalContext);
+
+    // State
+    const [value, setValue] = useState('');
 
     // State
     const [visible, setVisible] = useState(false);
@@ -170,8 +208,17 @@ const Header = () => {
     // 點擊
     const handleClick = () => globalDispatch({ type: 'sidenav', payload: !sideNav });
 
-    //
-    const handleShowSearchInput = () => setVisible(true);
+    // 父層點擊
+    const handleShowSearchInput = () => globalDispatch({ type: 'search_box', payload: !searchBox });
+
+    // 阻止子層事件冒泡
+    const handleClickStopPropagation = (e) => e.stopPropagation();
+
+    // input
+    const handleChangeInput = ({ target }) => setValue(target.value);
+
+    // console.log('searchBox', searchBox)
+    // console.log('value', value)
 
     return (
 
@@ -186,14 +233,18 @@ const Header = () => {
                     <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
                         <span className="search" onClick={handleShowSearchInput}>
                             <FontIcon icon={faSearch} />
-                            <form method = "get" title = "Search Form" action="https://cse.google.com/cse/publicurl">
-                                <div>
-                                    <input type="text" id="q" name="q" title="Search this site" alt="Search Text" maxLength="256" />
-                                    <input type="hidden" id="cx" name="cx" value="013626029654558379071:ze3tw4csia4" />
-                                <input type="image" id="searchSubmit" name="submit" src="https://www.flaticon.com/free-icon/active-search-symbol_34148" alt="Go" title="Submit Search Query" />
-                                </div>
-                            </form>
-                            <div className={`gcse-search ${visible ? '' : 'hide'}`}></div>
+                            <div
+                                className={`search-input ${searchBox ? 'active' : ''}`}
+                                onClick={handleClickStopPropagation}
+                            >
+                                <input
+                                    type="text"
+                                    placeholder="請輸入關鍵字"
+                                    defaultValue={value}
+                                    onChange={handleChangeInput}
+                                />
+                                <Links url={`/searchall?q=${value}`} title={text_search_all}>送出</Links>
+                            </div>
                         </span>
                         <Links url="/sitemap" title={text_sitemap}>{text_sitemap}</Links>
                     </Box>

@@ -14,6 +14,7 @@
     "axios": "^0.22.0",
     "dayjs": "^1.10.7",
     "next": "^11.1.2",
+    "next-sitemap": "^1.6.203",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.1",
@@ -26,6 +27,7 @@
     "dev": "next dev -p 1001",
     "build": "next build",
     "start": "next start",
+    "postbuild": "next-sitemap",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

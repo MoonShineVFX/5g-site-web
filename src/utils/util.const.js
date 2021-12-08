@@ -81,6 +81,7 @@ const utilConst = {
         text_sitemap: '網站導覽',
         text_privacy: '隱私權政策',
         text_security: '資安說明',
+        text_search_all: '站內搜尋',
     },
 };
 

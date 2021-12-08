@@ -26,6 +26,12 @@ const globalReducer = (state, { type, payload }) => {
                 sideNav: payload,
             };
 
+        case 'search_box':
+            return {
+                ...state,
+                searchBox: payload,
+            };
+
         default:
             return { ...state };
     }

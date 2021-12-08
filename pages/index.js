@@ -85,6 +85,7 @@ const Home = ({ pageData }) => {
     useEffect(() => {
 
         globalDispatch({ type: 'sidenav', payload: false });
+        globalDispatch({ type: 'search_box', payload: false });
 
     }, []);
 
