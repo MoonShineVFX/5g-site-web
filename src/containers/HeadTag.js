@@ -9,7 +9,6 @@ import Head from 'next/head';
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={description} />
         <meta name="google-site-verification" content="05W3_xvcmD687SS2d-SdHjlaJePHv535MkwYYQQ_obk" />
-        <script async src="https://cse.google.com/cse.js?cx=bcabe06a1cb63ec85" crossOrigin="anonymous" />
         {children}
     </Head>
 
