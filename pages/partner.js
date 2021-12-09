@@ -96,7 +96,7 @@ const Partner = ({ pageData }) => {
         });
 
         globalDispatch({ type: 'sidenav', payload: false });
-        globalDispatch({ type: 'search_box', payload: false });
+        globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
 
     }, []);
 

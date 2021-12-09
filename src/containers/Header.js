@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { styled } from '@mui/system';
 import { Toolbar, Box, useMediaQuery } from '@mui/material';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -170,10 +170,11 @@ const SideNavLayout = styled('div')(({ theme }) => ({
 const Header = () => {
 
     // Context
-    const { sideNav, searchBox, globalDispatch } = useContext(GlobalContext);
-
-    // State
-    const [value, setValue] = useState('');
+    const {
+        sideNav,
+        googleSearch,
+        globalDispatch,
+    } = useContext(GlobalContext);
 
     const matches = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
@@ -191,16 +192,33 @@ const Header = () => {
     const handleClick = () => globalDispatch({ type: 'sidenav', payload: !sideNav });
 
     // 父層點擊
-    const handleShowSearchInput = () => globalDispatch({ type: 'search_box', payload: !searchBox });
+    const handleShowSearchInput = () => {
+
+        globalDispatch({
+            type: 'search_box',
+            payload: {
+                ...googleSearch,
+                visible: !googleSearch.visible,
+            },
+        });
+
+    };
 
     // 阻止子層事件冒泡
     const handleClickStopPropagation = (e) => e.stopPropagation();
 
     // input
-    const handleChangeInput = ({ target }) => setValue(target.value);
+    const handleChangeInput = ({ target }) => {
 
-    // console.log('searchBox', searchBox)
-    // console.log('value', value)
+        globalDispatch({
+            type: 'search_box',
+            payload: {
+                ...googleSearch,
+                value: target.value,
+            },
+        });
+
+    };
 
     return (
 
@@ -216,16 +234,16 @@ const Header = () => {
                         <span className="search" onClick={handleShowSearchInput}>
                             <FontIcon icon={faSearch} />
                             <div
-                                className={`search-input ${searchBox ? 'active' : ''}`}
+                                className={`search-input ${googleSearch.visible ? 'active' : ''}`}
                                 onClick={handleClickStopPropagation}
                             >
                                 <input
                                     type="text"
                                     placeholder="請輸入關鍵字"
-                                    defaultValue={value}
+                                    value={googleSearch.value}
                                     onChange={handleChangeInput}
                                 />
-                                <Links url={`/searchall?q=${value}`} title={text_search_all}>送出</Links>
+                                <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
                             </div>
                         </span>
                         <Links url="/sitemap" title={text_sitemap}>{text_sitemap}</Links>

@@ -11,7 +11,10 @@ const globalInitState = {
     },
     slideshowActive: 0,
     sideNav: false,
-    searchBox: false,
+    googleSearch: {
+        visible: false,
+        value: '',
+    },
 };
 
 // Create Context
@@ -26,7 +29,7 @@ const GlobalProvider = ({ children }) => {
         menu,
         slideshowActive,
         sideNav,
-        searchBox,
+        googleSearch,
     } = globalState;
     const { Provider } = GlobalContext;
 
@@ -38,7 +41,7 @@ const GlobalProvider = ({ children }) => {
             menu,
             slideshowActive,
             sideNav,
-            searchBox,
+            googleSearch,
 
             // Dispatch
             globalDispatch,
