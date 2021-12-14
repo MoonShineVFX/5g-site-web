@@ -1,6 +1,7 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { GlobalStyles, Box } from '@mui/material';
+import ReactGA from 'react-ga';
 import 'dayjs/locale/zh-tw';
 import '../src/utils/locale';
 
@@ -90,6 +91,14 @@ const styles = {
 //
 const WebSite = ({ Component, pageProps }) => {
 
+    useEffect(() => {
+
+        // GA
+        ReactGA.initialize('296818950');
+        ReactGA.pageview(window.location.pathname + window.location.search);
+
+    }, []);
+
     return (
 
         <Fragment>
@@ -131,3 +140,8 @@ const WebSite = ({ Component, pageProps }) => {
 };
 
 export default WebSite;
+
+/**
+ * GA
+ * https://jeserlin.wordpress.com/2019/07/21/ga1/
+ */
