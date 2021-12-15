@@ -94,7 +94,7 @@ const WebSite = ({ Component, pageProps }) => {
     useEffect(() => {
 
         // GA
-        ReactGA.initialize('296818950');
+        ReactGA.initialize('UA-215320412-1', { debug: true });
         ReactGA.pageview(window.location.pathname + window.location.search);
 
     }, []);
@@ -140,8 +140,3 @@ const WebSite = ({ Component, pageProps }) => {
 };
 
 export default WebSite;
-
-/**
- * GA
- * https://jeserlin.wordpress.com/2019/07/21/ga1/
- */
