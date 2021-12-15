@@ -94,7 +94,7 @@ const WebSite = ({ Component, pageProps }) => {
     useEffect(() => {
 
         // GA
-        ReactGA.initialize('UA-215320412-1', { debug: true });
+        ReactGA.initialize('UA-215404912-1', { debug: true });
         ReactGA.pageview(window.location.pathname + window.location.search);
 
     }, []);
