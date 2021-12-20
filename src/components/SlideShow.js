@@ -77,7 +77,7 @@ const ArrowsLayout = styled('span')({
         },
     },
     'svg': {
-        fontSize: '46px',
+        fontSize: '3.3em',
     },
 });
 
@@ -146,14 +146,14 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
                 showArrow &&
                     <ArrowsLayout className="slideshow-control-arrows">
                         <Button
-                            title="前一個"
+                            value="前一個"
                             className="web-y-align button-arrow-left"
                             onClick={handleArrowLeft}
                         >
                             <ArrowBackIosIcon />
                         </Button>
                         <Button
-                            title="後一個"
+                            value="後一個"
                             className="web-y-align button-arrow-right"
                             onClick={handleArrowRight}
                         >

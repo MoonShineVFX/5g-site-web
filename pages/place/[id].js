@@ -31,7 +31,7 @@ const BackButton = ({ type, className }) => (
 // 外連 google map
 const Location = ({ title, url }) => (
 
-    <Links url={url} newPage={true} title={`${title} 地圖 位置`}>
+    <Links url={url} newPage={true} title="位置地圖">
         <FontIcon icon={faMapMarkerAlt} />
     </Links>
 

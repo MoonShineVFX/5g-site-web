@@ -3,7 +3,7 @@ import { styled } from '@mui/system';
 import { Button } from '@mui/material';
 import { ArrowForwardIos as ArrowForwardIosIcon } from '@mui/icons-material';
 
-const ButtonLayout = styled(Button)(({ theme }) => ({
+const ButtonLayout = styled(Button)({
     minWidth: '140px',
     minHeight: '36px',
     borderRadius: '7px',
@@ -16,11 +16,11 @@ const ButtonLayout = styled(Button)(({ theme }) => ({
         display: 'inline-block',
         flex: '0 0 20%',
         'svg': {
-            fontSize: '18px',
+            fontSize: '1.3em',
             verticalAlign: 'middle',
         },
     },
-}));
+});
 
 const Buttons = ({ outline, text, children }) => (
 

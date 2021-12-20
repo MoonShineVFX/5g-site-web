@@ -239,6 +239,8 @@ const Header = () => {
                             >
                                 <input
                                     type="text"
+                                    name="query"
+                                    aria-label="請輸入關鍵字"
                                     placeholder="請輸入關鍵字"
                                     value={googleSearch.value}
                                     onChange={handleChangeInput}

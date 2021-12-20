@@ -40,10 +40,10 @@ const Item = ({ title, imgUrl, width, height, ...rest }) => (
         <div className="thumb">
             <img
                 src={imgUrl}
-                alt={title}
                 title={title}
                 width={width}
                 height={height}
+                alt=""
             />
         </div>
         <h2 className="web-line-clamp title">{title}</h2>

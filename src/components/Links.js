@@ -10,6 +10,7 @@ const Links = ({ url, newPage, title, children, ...rest }) => (
         <a
             href={url}
             title={title}
+            aria-label={title}
             {...newPage && { target: '_blank'}}
             {...rest}
         >

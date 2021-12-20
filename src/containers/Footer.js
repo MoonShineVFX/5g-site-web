@@ -72,7 +72,7 @@ const FooterLayout = styled('footer')(({ theme }) => ({
         textAlign: 'right',
     },
     '.privacy': {
-        fontSize: '14px',
+        fontSize: '1em',
         'p': {
             marginTop: '0',
             marginBottom: '4px',
@@ -239,6 +239,7 @@ const Footer = () => {
                 </Grid>
 
                 <BackToTopLayout
+                    value="回到最上方"
                     className="btn-backToTop"
                     onClick={targetScrollToTop}
                 >
