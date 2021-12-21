@@ -15,7 +15,7 @@ const ButtonLayout = styled(Button)({
         textAlign: 'right',
         display: 'inline-block',
         flex: '0 0 20%',
-        'svg': {
+        'svg, > *:nth-of-type(1)': {
             fontSize: '1.3em',
             verticalAlign: 'middle',
         },

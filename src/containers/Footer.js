@@ -239,6 +239,8 @@ const Footer = () => {
                 </Grid>
 
                 <BackToTopLayout
+                    name="backTo"
+                    aria-label="回到最上方"
                     value="回到最上方"
                     className="btn-backToTop"
                     onClick={targetScrollToTop}

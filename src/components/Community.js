@@ -116,6 +116,7 @@ const Community = ({ title, shareUrl, ...rest }) => {
                     }}
                     value={copyState}
                     ref={copyInputRef}
+                    aria-label="複製文字"
                     onChange={() => {}}
                 />
 
