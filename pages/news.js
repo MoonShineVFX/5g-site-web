@@ -150,6 +150,7 @@ const News = ({ pageData }) => {
                         name="selected"
                         value={query?.tag || ''}
                         onChange={handleChangeOpt}
+                        aria-label="選擇類別"
                     >
                         <option value="">全部</option>
                         {

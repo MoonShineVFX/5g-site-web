@@ -15,10 +15,11 @@ const ButtonLayout = styled(Button)({
         textAlign: 'right',
         display: 'inline-block',
         flex: '0 0 20%',
-        'svg, > *:nth-of-type(1)': {
-            fontSize: '1.3em',
-            verticalAlign: 'middle',
-        },
+    },
+    'svg': {
+        fontSize: '1.3em',
+        verticalAlign: 'middle',
+        marginRight: '-4px',
     },
 });
 
@@ -26,10 +27,10 @@ const Buttons = ({ outline, text, children }) => (
 
     <ButtonLayout
         {...outline && { variant: 'outlined' }}
-        endIcon={<ArrowForwardIosIcon />}
         title={text}
     >
         <div>{text ? text : children}</div>
+        <ArrowForwardIosIcon />
     </ButtonLayout>
 
 );

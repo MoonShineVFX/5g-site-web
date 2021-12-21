@@ -32,7 +32,7 @@ const BackButton = ({ type, className }) => (
 const Location = ({ title, url }) => (
 
     <Links url={url} newPage={true} title="位置地圖">
-        <FontIcon icon={faMapMarkerAlt} />
+        <FontIcon icon={faMapMarkerAlt} aria-label="icon" />
     </Links>
 
 );
