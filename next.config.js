@@ -2,6 +2,10 @@ module.exports = {
     env: {
         HOST: '5gkh.kcg.gov.tw',
     },
+    i18n: {
+        locales: ['zh-Hant-TW'],
+        defaultLocale: 'zh-Hant-TW'
+    },
     async headers() {
         return [
             {
