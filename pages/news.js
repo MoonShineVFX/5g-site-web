@@ -32,7 +32,6 @@ const NewsItem = ({
         url={`/news/${id}`}
         title={title}
         className="item"
-        newPage
     >
         <span className="date">{dayjs(createTime).format('YYYY/MM/DD')}</span>
         <h1 className="title">{title}</h1>

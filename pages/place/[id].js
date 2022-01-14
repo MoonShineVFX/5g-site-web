@@ -31,7 +31,7 @@ const BackButton = ({ type, className }) => (
 // 外連 google map
 const Location = ({ title, url }) => (
 
-    <Links url={url} newPage={true} title="位置地圖">
+    <Links url={url} title="位置地圖">
         <FontIcon icon={faMapMarkerAlt} aria-label="icon" />
     </Links>
 
@@ -99,8 +99,8 @@ const PlaceDetail = ({ pageData }) => {
                                 >
                                     <img
                                         src={imgUrl}
-                                        alt={id}
-                                        title={id}
+                                        alt={`${title}-第${idx+1}張圖`}
+                                        title={`${title}-第${idx+1}張圖`}
                                         width="778"
                                         height="438"
                                     />
@@ -169,7 +169,7 @@ const PlaceDetail = ({ pageData }) => {
                     <div className="item">
                         <span>
                             {websiteName}
-                            <Links url={websiteUrl} newPage={true} title={websiteName}>{websiteUrl}</Links>
+                            <Links url={websiteUrl} title={websiteName}>{websiteUrl}</Links>
                         </span>
                     </div>
                 </div>
@@ -181,7 +181,7 @@ const PlaceDetail = ({ pageData }) => {
                                 files.map(({ name, url }, idx) => (
 
                                     <li key={idx}>
-                                        <Links url={url} newPage={true}>
+                                        <Links url={url}>
                                             <span className="filename">{name}</span>
                                             <FontIcon icon={faFileAlt} />
                                         </Links>

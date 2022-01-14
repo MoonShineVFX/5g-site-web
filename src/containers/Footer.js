@@ -205,7 +205,6 @@ const Footer = () => {
                                             key={idx}
                                             href={url}
                                             title={title}
-                                            newPage
                                         >
                                             <img
                                                 src={`/${name}.png`}

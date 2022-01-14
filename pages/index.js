@@ -107,7 +107,6 @@ const Home = ({ pageData }) => {
                                 <Links
                                     url={link}
                                     title={title}
-                                    newPage={true}
                                     className="item"
                                 >
                                     <img

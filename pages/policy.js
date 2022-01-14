@@ -31,7 +31,6 @@ const PolicyItem = ({
         url={`/policy/${id}`}
         title={title}
         className="item"
-        newPage
     >
         <span className="second-title">{titleSecondary}</span>
         <h1 className="title">{title}</h1>

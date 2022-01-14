@@ -1,5 +1,6 @@
 import { Fragment, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '@mui/material';
 import {
     FacebookShareButton,
     FacebookIcon,
@@ -16,16 +17,19 @@ import FontIcon from './FontIcon';
 const socials = [
     {
         key: 'fb',
+        name: 'facebook 社群',
         Icon: FacebookIcon,
         Component: FacebookShareButton,
     },
     {
         key: 'line',
+        name: 'line 社群',
         Icon: LineIcon,
         Component: LineShareButton,
     },
     {
         key: 'copy',
+        name: '複製',
         Icon: faLink,
     },
 ];
@@ -36,6 +40,8 @@ const SocialsLayout = styled('span')(({ theme }) => ({
     color: theme.palette.primary.main,
     cursor: 'pointer',
     '.item-share': {
+        minWidth: 'auto',
+        fontSize: '1em',
         margin: '0 10px',
         padding: '2px',
     },
@@ -121,7 +127,7 @@ const Community = ({ title, shareUrl, ...rest }) => {
                 />
 
                 {
-                    socials.map(({ key, Icon, Component }) => (
+                    socials.map(({ key, name, Icon, Component }) => (
 
                         (key !== 'copy') ? (
 
@@ -136,13 +142,16 @@ const Community = ({ title, shareUrl, ...rest }) => {
 
                         ) : (
 
-                            <span
+                            <Button
                                 key={key}
+                                name={key}
+                                aria-label={name}
+                                value={name}
                                 onClick={() => handleShareButton(key)}
                                 className="item-share"
                             >
                                 <FontIcon icon={Icon} />
-                            </span>
+                            </Button>
 
                         )
 

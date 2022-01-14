@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { styled } from '@mui/system';
-import { Toolbar, Box, useMediaQuery } from '@mui/material';
+import { Toolbar, Box, useMediaQuery, Button } from '@mui/material';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Links, BlindGuide } from '../components/Links';
 import Navbar from './Navbar';
@@ -41,7 +41,8 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
     borderBottom: `1px solid ${theme.palette.text.secondary}`,
     '.search': {
         fontSize: '1.2em',
-        marginRight: '40px',
+        color: '#FFF',
+        marginRight: '10px',
         position: 'relative',
         cursor: 'pointer',
     },
@@ -225,15 +226,24 @@ const Header = () => {
         <AppBarLayout>
             <HeaderTopLayout>
                 <Toolbar className="web-container">
-                    <Links url="#contact" title={text_contact_us}>
-                        {text_contact_us}
-                    </Links>
+                    {
+                        false &&
+                            <Links url="#contact" title={text_contact_us}>
+                                {text_contact_us}
+                            </Links>
+                    }
 
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
-                        <span className="search" onClick={handleShowSearchInput}>
+                        <Button
+                            name="search"
+                            aria-label="搜尋"
+                            value="搜尋"
+                            className="search"
+                            onClick={handleShowSearchInput}
+                        >
                             <FontIcon icon={faSearch} />
-                            <div
+                            <span
                                 className={`search-input ${googleSearch.visible ? 'active' : ''}`}
                                 onClick={handleClickStopPropagation}
                             >
@@ -246,8 +256,9 @@ const Header = () => {
                                     onChange={handleChangeInput}
                                 />
                                 <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
-                            </div>
-                        </span>
+                            </span>
+                        </Button>
+
                         <Links url="/sitemap" title={text_sitemap}>{text_sitemap}</Links>
                     </Box>
                 </Toolbar>

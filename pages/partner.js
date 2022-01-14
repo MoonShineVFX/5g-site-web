@@ -45,7 +45,6 @@ const PartnerItem = ({
         url={link}
         className="item"
         title={name}
-        newPage={true}
     >
         <div className="top">
             <span className="thumb">
