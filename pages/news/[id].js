@@ -1,7 +1,5 @@
 import { Fragment, useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { Grid } from '@mui/material';
-import dayjs from 'dayjs';
 
 import HeadTag from '../../src/containers/HeadTag';
 import SectionTitle from '../../src/components/SectionTitle';
@@ -41,9 +39,6 @@ const Item = ({
 
 //
 const NewsDetail = ({ pageData }) => {
-
-    // Router
-    const router = useRouter();
 
     const {
         title,
@@ -101,7 +96,7 @@ const NewsDetail = ({ pageData }) => {
                     >
                         <Community
                             title={title}
-                            shareUrl={router.asPath}
+                            shareUrl={window.location.href}
                         />
                     </Grid>
                 </Grid>

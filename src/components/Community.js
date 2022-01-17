@@ -115,11 +115,7 @@ const Community = ({ title, shareUrl, ...rest }) => {
         <Fragment>
             <SocialsLayout className="socials" {...rest}>
                 <input
-                    type="text"
-                    style={{
-                        position: 'absolute',
-                        top: '-99999px'
-                    }}
+                    type="hidden"
                     value={copyState}
                     ref={copyInputRef}
                     aria-label="複製文字"

@@ -156,10 +156,12 @@ const SideNavLayout = styled('div')(({ theme }) => ({
             backgroundColor: 'rgba(0, 0, 0, .65)',
         },
         '.nav-menu-wrap': {
+            height: '100%',
             textAlign: 'center',
             backgroundColor: theme.palette.primary.main,
             padding: '20px',
             zIndex: '1',
+            overflow: 'auto',
         },
         '.menu-outer': {
             display: 'block',

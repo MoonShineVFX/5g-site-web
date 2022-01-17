@@ -1,5 +1,4 @@
 import { Fragment, useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { Grid } from '@mui/material';
 import { faMapMarkerAlt, faFileAlt, faReply } from '@fortawesome/free-solid-svg-icons';
 
@@ -40,9 +39,6 @@ const Location = ({ title, url }) => (
 //
 const PlaceDetail = ({ pageData }) => {
 
-    // Router
-    const router = useRouter();
-
     const {
         type,
         images,
@@ -81,6 +77,8 @@ const PlaceDetail = ({ pageData }) => {
         globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
 
     }, []);
+
+    // console.log('check:', window.location)
 
     return (
 
@@ -157,7 +155,7 @@ const PlaceDetail = ({ pageData }) => {
                     <Grid item xs={12} md={6} className="grid-socials">
                         <Community
                             title={title}
-                            shareUrl={router.asPath}
+                            shareUrl={window.location.href}
                         />
                     </Grid>
                 </Grid>
