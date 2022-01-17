@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import { faMapMarkerAlt, faFileAlt, faReply } from '@fortawesome/free-solid-svg-icons';
 
@@ -61,6 +61,9 @@ const PlaceDetail = ({ pageData }) => {
         globalDispatch,
     } = useContext(GlobalContext);
 
+    // State
+    const [url, setUrl] = useState('');
+
     useEffect(() => {
 
         globalDispatch({
@@ -75,10 +78,9 @@ const PlaceDetail = ({ pageData }) => {
 
         globalDispatch({ type: 'sidenav', payload: false });
         globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        setUrl(window.location.href);
 
     }, []);
-
-    // console.log('check:', window.location)
 
     return (
 
@@ -155,7 +157,7 @@ const PlaceDetail = ({ pageData }) => {
                     <Grid item xs={12} md={6} className="grid-socials">
                         <Community
                             title={title}
-                            shareUrl={window.location.href}
+                            shareUrl={url}
                         />
                     </Grid>
                 </Grid>

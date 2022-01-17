@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 
 import HeadTag from '../../src/containers/HeadTag';
@@ -54,6 +54,9 @@ const NewsDetail = ({ pageData }) => {
     // Context
     const { menu, globalDispatch } = useContext(GlobalContext);
 
+    // State
+    const [url, setUrl] = useState('');
+
     useEffect(() => {
 
         globalDispatch({
@@ -68,6 +71,7 @@ const NewsDetail = ({ pageData }) => {
 
         globalDispatch({ type: 'sidenav', payload: false });
         globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        setUrl(window.location.href);
 
     }, []);
 
@@ -96,7 +100,7 @@ const NewsDetail = ({ pageData }) => {
                     >
                         <Community
                             title={title}
-                            shareUrl={window.location.href}
+                            shareUrl={url}
                         />
                     </Grid>
                 </Grid>
