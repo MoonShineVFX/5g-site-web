@@ -52,6 +52,7 @@ const About = ({ pageData }) => {
 
         globalDispatch({ type: 'sidenav', payload: false });
         globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        globalDispatch({ type: 'current_menu', payload: '' });
 
     }, []);
 

@@ -36,6 +36,7 @@ const PolicyDetail = ({ pageData }) => {
         applicationObject,
         amountQuota,
         contact,
+        websiteName,
         link,
     } = pageData.data;
 
@@ -161,7 +162,7 @@ const PolicyDetail = ({ pageData }) => {
                             title={link}
                             className="link"
                         >
-                            {link}
+                            {websiteName}
                         </Links>
                     </p>
                 </div>

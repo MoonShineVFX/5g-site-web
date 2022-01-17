@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Button } from '@mui/material';
 import { styled } from '@mui/system';
 import { Links } from '../components/Links';
 import { GlobalContext } from '../context/global.state';
@@ -9,10 +10,9 @@ const { navMenus } = utilConst;
 //
 const NavMenuLayout = styled('nav')(({ theme }) => ({
     position: 'relative',
-    '.menu-outer': {
+    '.btn-menu': {
         fontSize: '1em',
         color: theme.palette.bg.text,
-        cursor: 'default',
     },
     'a': {
         textDecoration: 'none',
@@ -23,7 +23,7 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
         '.menu-outer': {
             height: '100px',
             display: 'inline-block',
-            padding: '0 30px',
+            padding: '0 20px',
             position: 'relative',
             zIndex: '10',
             transition: 'all .2s ease',
@@ -33,16 +33,20 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
                 display: 'inline-block',
                 verticalAlign: 'middle',
             },
-            '&:hover, &:focus': {
-                color: theme.palette.text.primary,
+            '&.active': {
                 backgroundColor: theme.palette.text.secondary,
-                '.sub-menus': {
-                    width: '100%',
-                    backgroundColor: '#BEBEBE',
-                    textAlign: 'center',
+                '.btn-menu': {
+                    color: theme.palette.text.primary,
+                },
+            },
+            '.sub-menus': {
+                width: '100%',
+                backgroundColor: '#BEBEBE',
+                textAlign: 'center',
+                zIndex: '1',
+                transition: 'all .25s ease',
+                '&.active': {
                     display: 'block',
-                    zIndex: '1',
-                    transition: 'all .25s ease',
                 },
             },
         },
@@ -95,10 +99,19 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
 const Navbar = ({ ...rest }) => {
 
     // Context
-    const { menu, globalDispatch } = useContext(GlobalContext);
+    const { menu, currMenu, globalDispatch } = useContext(GlobalContext);
+
+    // 點擊第一層 menu
+    const handleClickMenuName = ({ target }) => {
+
+        globalDispatch({
+            type: 'current_menu',
+            payload: (currMenu === target.name) ? '' : target.name,
+        });
+    };
 
     // 紀錄 menu 名稱
-    const handleClickMenu = (text) => {
+    const handleClickSubMenu = (text) => {
 
         globalDispatch({
             type: 'menu',
@@ -118,13 +131,19 @@ const Navbar = ({ ...rest }) => {
 
                     <span
                         key={idx}
-                        className="menu-outer"
+                        className={`menu-outer ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}
                     >
-                        <div className="title">
-                            <span>{text}</span>
-                        </div>
+                        <Button
+                            name={`button-${idx + 1}`}
+                            aria-label={text}
+                            value={text}
+                            className="btn-menu"
+                            onClick={handleClickMenuName}
+                        >
+                            {text}
+                        </Button>
 
-                        <div className="sub-menus">
+                        <div className={`sub-menus ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}>
                             {
                                 subItems.map((sub) => (
 
@@ -132,7 +151,7 @@ const Navbar = ({ ...rest }) => {
                                         key={sub.key}
                                         title={sub.text}
                                         url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place' && key !== 'policy') ? '/' : ''}`}` : ''}${sub.key}`}
-                                        onClick={() => handleClickMenu(sub.text)}
+                                        onClick={() => handleClickSubMenu(sub.text)}
                                     >
                                         {sub.text}
                                     </Links>

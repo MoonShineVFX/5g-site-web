@@ -56,7 +56,7 @@ const NewsWrap = ({ title, text, cate, data }) => (
         <div>
             {data.map((obj) => <NewsItemWrap key={obj.id} data={obj} />)}
         </div>
-        <ShowMoreButton url={`/news?page=1&cate=${cate}`} />
+        <ShowMoreButton url={`/news?page=1&cate=${cate}`} title={`更多消息-${title}`} />
     </Grid>
 
 );
@@ -86,6 +86,7 @@ const Home = ({ pageData }) => {
 
         globalDispatch({ type: 'sidenav', payload: false });
         globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        globalDispatch({ type: 'current_menu', payload: '' });
 
     }, []);
 
@@ -154,7 +155,7 @@ const Home = ({ pageData }) => {
                     }
                 </ItemLayout>
 
-                <ShowMoreButton url={`/place?type=5g`} />
+                <ShowMoreButton url={`/place?type=5g`} title="更多消息-5G示範場域" />
             </section>
 
             <section>

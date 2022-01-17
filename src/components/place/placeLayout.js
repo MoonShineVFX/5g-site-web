@@ -64,6 +64,10 @@ const SlideShowLayout = styled('section')(({ theme }) => ({
             display: 'inline-block',
             verticalAlign: 'middle',
         },
+        '&:focus, &:active, &:focus-visible': {
+            outline: 'dashed',
+            outlineColor: 'red',
+        },
         'span': {
             textAlign: 'center',
             display: 'inline-block',
@@ -241,6 +245,9 @@ const SectionLayout = styled('section')(({ theme }) => ({
         },
         '.items-document': {
             paddingInlineStart: '20px',
+            'a': {
+                display: 'inline-block',
+            },
             '.filename': {
                 marginRight: '6px',
                 '&:hover': {

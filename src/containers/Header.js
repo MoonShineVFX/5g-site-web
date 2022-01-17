@@ -71,6 +71,7 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
         display: 'none',
         padding: '10px',
         position: 'absolute',
+        top: '46px',
         right: '-10px',
         zIndex: '30',
         cursor: 'default',
@@ -78,10 +79,9 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
             display: 'block',
         },
         'input': {
-            width: 'calc(100% - 10px - 56px)',
+            width: 'calc(100% - 20px - 56px)',
             fontSize: '1em',
             padding: '4px 8px',
-            outline: '0',
         },
         'a': {
             backgroundColor: theme.palette.primary.main,

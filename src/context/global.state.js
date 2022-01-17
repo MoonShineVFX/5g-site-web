@@ -9,6 +9,7 @@ const globalInitState = {
         level2: '',
         level1Link: '',
     },
+    currMenu: '',
     slideshowActive: 0,
     sideNav: false,
     googleSearch: {
@@ -27,6 +28,7 @@ const GlobalProvider = ({ children }) => {
     const {
         page,
         menu,
+        currMenu,
         slideshowActive,
         sideNav,
         googleSearch,
@@ -39,6 +41,7 @@ const GlobalProvider = ({ children }) => {
             // 全域資料
             page,
             menu,
+            currMenu,
             slideshowActive,
             sideNav,
             googleSearch,

@@ -14,6 +14,12 @@ const globalReducer = (state, { type, payload }) => {
                 menu: payload,
             };
 
+        case 'current_menu':
+            return {
+                ...state,
+                currMenu: payload,
+            };
+
         case 'slideshow':
             return {
                 ...state,

@@ -12,13 +12,13 @@ const ShowMoreButtonLayout = styled('div')(({ theme }) => ({
 }));
 
 //
-const ShowMoreButton = ({ url, newPage, ...rest }) => (
+const ShowMoreButton = ({ url, title, newPage, ...rest }) => (
 
     <ShowMoreButtonLayout {...rest}>
         <ButtonLink
             url={url}
             newPage={newPage}
-            title="更多消息"
+            title={title}
         />
     </ShowMoreButtonLayout>
 
@@ -27,11 +27,13 @@ const ShowMoreButton = ({ url, newPage, ...rest }) => (
 ShowMoreButton.defaultProps = {
     url:'',
     newPage: false,
+    title: '更多消息',
 };
 
 ShowMoreButton.propTypes = {
     url: PropTypes.string,
     newPage: PropTypes.bool,
+    title: PropTypes.string,
 };
 
 export default ShowMoreButton;

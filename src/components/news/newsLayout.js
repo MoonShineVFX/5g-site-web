@@ -51,7 +51,6 @@ const SelectOptLayout = styled('select')(({ theme }) => ({
     borderColor: theme.palette.primary.main,
     marginBottom: '40px',
     padding: '4px 12px',
-    outline: '0',
     transition: 'all 0.3s ease',
     '&:hover': {
         opacity: '0.85',

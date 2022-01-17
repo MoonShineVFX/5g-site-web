@@ -164,32 +164,42 @@ const PlaceDetail = ({ pageData }) => {
             </SectionLayout>
 
             <SectionLayout className="section-relative">
-                <div>
-                    <h2 className="title">相關連結</h2>
-                    <div className="item">
-                        <span>
-                            {websiteName}
-                            <Links url={websiteUrl} title={websiteName}>{websiteUrl}</Links>
-                        </span>
-                    </div>
-                </div>
+                {
+                    websiteName &&
+                        <div>
+                            <h2 className="title">相關連結</h2>
+                            <div className="item">
+                                <span>
+                                    <Links url={websiteUrl} title={websiteName}>{websiteName}</Links>
+                                </span>
+                            </div>
+                        </div>
+                }
 
                 {
                     !!files.length &&
-                        <ul className="items-document">
-                            {
-                                files.map(({ name, url }, idx) => (
+                        <div>
+                            <h2 className="title">相關文件</h2>
+                            <div className="item">
+                                <ul className="items-document">
+                                    {
+                                        files.map(({ name, url }, idx) => (
 
-                                    <li key={idx}>
-                                        <Links url={url}>
-                                            <span className="filename">{name}</span>
-                                            <FontIcon icon={faFileAlt} />
-                                        </Links>
-                                    </li>
+                                            <li key={idx}>
+                                                <Links
+                                                    url={url}
+                                                    title={name}
+                                                >
+                                                    <span className="filename">{name}</span>
+                                                    <FontIcon icon={faFileAlt} />
+                                                </Links>
+                                            </li>
 
-                                ))
-                            }
-                        </ul>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        </div>
                 }
             </SectionLayout>
 
