@@ -73,6 +73,7 @@ const ItemsWrapLayout = styled('div')(({ theme }) => ({
     },
     '.title': {
         fontSize: '2em',
+        fontWeight: 'bold',
         margin: '0',
     },
     'p': {

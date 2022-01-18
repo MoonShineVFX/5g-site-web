@@ -34,7 +34,7 @@ const NewsItem = ({
         className="item"
     >
         <span className="date">{dayjs(createTime).format('YYYY/MM/DD')}</span>
-        <h1 className="title">{title}</h1>
+        <div className="title">{title}</div>
         <TagsLayout>
             {tags.map((id) => <span key={id}>{util.mappingTags(tagList)[id]}</span>)}
         </TagsLayout>

@@ -28,8 +28,8 @@ const Item = ({
             title={title}
             className="item"
         >
-            <h2 className="title">{title}</h2>
-            <div className="date">
+            <div className="title">{title}</div>
+            <div className="content date">
                 <span>{util.dateFormat(createTime)}</span>
             </div>
         </NewsItemWrapLayout>
@@ -84,7 +84,7 @@ const NewsDetail = ({ pageData }) => {
                 <TagsLayout className="detail-tags web-clear-box">
                     {tags.map(({ id, name }) => <span key={id}>{name}</span>)}
                 </TagsLayout>
-                <h1 className="title">{title}</h1>
+                <div className="title">{title}</div>
 
                 <Grid container>
                     <Grid item xs={12} md={6}>

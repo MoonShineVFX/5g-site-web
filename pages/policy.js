@@ -33,7 +33,7 @@ const PolicyItem = ({
         className="item"
     >
         <span className="second-title">{titleSecondary}</span>
-        <h1 className="title">{title}</h1>
+        <div className="title">{title}</div>
         <TagsLayout>
             {tags.map((id) => <span key={id}>{util.mappingTags(tagList)[id]}</span>)}
         </TagsLayout>

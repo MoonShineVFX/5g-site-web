@@ -65,6 +65,8 @@ const ItemsLayout = styled('div')(({ theme }) => ({
         padding: '12px 16px',
     },
     '.title': {
+        fontSize: '1.5em',
+        fontWeight: 'bold',
         margin: '0 0 4px',
     },
     '.sub-items > div': {
@@ -160,7 +162,7 @@ const Sitemap = () => {
                                 className="item-wrap"
                             >
                                 <div className="inner">
-                                    <h2 className="title">
+                                    <div className="title">
                                         {
                                             ((key === 'privacy') || (key === 'security')) ? (
 
@@ -170,7 +172,7 @@ const Sitemap = () => {
 
                                             ) : `${idx + 1}.${text}`
                                         }
-                                    </h2>
+                                    </div>
                                     <div className="sub-items">
                                         {
                                             subItems.map((sub, index) => (

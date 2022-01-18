@@ -119,15 +119,15 @@ const PlaceDetail = ({ pageData }) => {
             <SectionLayout className="section-information">
                 <Grid container>
                     <Grid item xs={12} md={6} className="grid-info">
-                        <h1 className="title">
+                        <div className="title">
                             {title}
                             <Location title={title} url={locationUrl} />
-                        </h1>
+                        </div>
 
                         <p className="description">{description}</p>
 
                         <div className="contact">
-                            <h2>聯絡資訊</h2>
+                            <div className="title">聯絡資訊</div>
                             <p className="label">{contact.unit}</p>
                             <p>{contact.name}</p>
                             {
@@ -167,7 +167,7 @@ const PlaceDetail = ({ pageData }) => {
                 {
                     websiteName &&
                         <div>
-                            <h2 className="title">相關連結</h2>
+                            <div className="title">相關連結</div>
                             <div className="item">
                                 <span>
                                     <Links url={websiteUrl} title={websiteName}>{websiteName}</Links>
@@ -179,7 +179,7 @@ const PlaceDetail = ({ pageData }) => {
                 {
                     !!files.length &&
                         <div>
-                            <h2 className="title">相關文件</h2>
+                            <div className="title">相關文件</div>
                             <div className="item">
                                 <ul className="items-document">
                                     {
@@ -204,7 +204,7 @@ const PlaceDetail = ({ pageData }) => {
             </SectionLayout>
 
             <SectionLayout className='section-traffic'>
-                <h2 className="title">交通資訊</h2>
+                <div className="title">交通資訊</div>
                 <div className="items-traffic">
                     <div className="label">大眾運輸</div>
                     <p>{byMRT}</p>

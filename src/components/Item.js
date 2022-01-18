@@ -45,7 +45,7 @@ const Item = ({ title, imgUrl, width, height, ...rest }) => (
                 alt=""
             />
         </div>
-        <h2 className="web-line-clamp title">{title}</h2>
+        <div className="web-line-clamp title">{title}</div>
     </ItemLayout>
 
 );

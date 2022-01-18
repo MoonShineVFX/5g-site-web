@@ -12,6 +12,7 @@ const LogoLayout = styled(Links)(({ theme }) => ({
     textAlign: 'center',
     textDecoration: 'none',
     '.logo-text': {
+        fontSize: '1.5em',
         fontWeight: 'normal',
         color: theme.palette.bg.text,
         letterSpacing: '8px',
@@ -30,7 +31,7 @@ const LogoText = () => (
         className="logoText"
         title={`${slogn.text1} ${slogn.text2} ${slogn.text3}`}
     >
-        <h2 className="logo-text">{slogn.text1}</h2>
+        <div className="logo-text">{slogn.text1}</div>
         <div>{slogn.text2}</div>
         <div>{slogn.text3}</div>
     </LogoLayout>

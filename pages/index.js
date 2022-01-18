@@ -50,7 +50,7 @@ const NewsWrap = ({ title, text, cate, data }) => (
 
     <Grid item xs={12} md={6}>
         <div className="title-box">
-            <h1 className="title">{title}</h1>
+            <div className="title">{title}</div>
             <div>{text}</div>
         </div>
         <div>
@@ -68,8 +68,8 @@ const NewsItemWrap = ({ data: { id, title, isHot, createTime } }) => (
         url={`/news/${id}`}
         title={title}
     >
-        <h1 className="title web-line-clamp">{title}</h1>
-        <div>
+        <div className="title web-line-clamp">{title}</div>
+        <div className="content">
             {isHot && <span className="isHot">TOP</span>}
             {dayjs(createTime).format('YYYY.MM.DD (dd)')}
         </div>
@@ -200,7 +200,7 @@ const Home = ({ pageData }) => {
                                     url={`/partner?page=1&tag=${id}`}
                                 >
                                     <FontIcon icon={arrangePartnerTag(pageData.data.partnerTags)[idx].icon} />
-                                    <h1>{name}</h1>
+                                    <div className="title">{name}</div>
                                     <span className="web-x-align nothing"></span>
                                 </Links>
                             </Grid>

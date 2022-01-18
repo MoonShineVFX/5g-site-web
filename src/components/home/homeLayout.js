@@ -54,6 +54,9 @@ const SlideShowLayout = styled(SlideShow)(({ theme }) => ({
 //
 const ItemLayout = styled(Grid)({
     padding: '0 24px',
+    '.title': {
+        fontSize: '1.5em',
+    },
     '.item': {
         display: 'block',
     },
@@ -86,7 +89,9 @@ const ItemPartnerLayout = styled(Grid)(({ theme }) => ({
         padding: '40px 20px 20px',
         position: 'relative',
     },
-    'h1': {
+    '.title': {
+        fontSize: '1.5em',
+        fontWeight: 'bold',
         letterSpacing: '2px',
         margin: '4px 0 0',
     },
@@ -143,6 +148,7 @@ const NewsWrapLayout = styled(Grid)(({ theme }) => ({
             margin: '-18px auto 6px',
         },
         '.title': {
+            fontSize: '1.5em',
             fontWeight: 'normal',
             color: theme.palette.primary.main,
             borderBottom: '1px solid',
@@ -172,12 +178,15 @@ const NewsItemWrapLayout = styled(Links)(({ theme }) => ({
     marginBottom: '56px',
     '.title': {
         minHeight: '76px',
+        fontSize: '1.5em',
         fontWeight: 'normal',
         color: theme.palette.text.primary,
+        textAlign: 'left',
         marginTop: '0',
+        marginBottom: '20px',
         WebkitLineClamp: theme.lineClamp(2),
     },
-    'div': {
+    '.content': {
         fontSize: '1.15em',
         textAlign: 'right',
         color: theme.palette.text.primary,

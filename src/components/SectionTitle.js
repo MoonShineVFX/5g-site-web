@@ -113,16 +113,16 @@ const SectionTitle = ({ primaryText, secondaryText, showMobile }) => (
             showMobile &&
                 <div className={`mobile web-x-align ${secondaryText ? 'with-secondTitle' : ''}`}>
                     {
-                        secondaryText && <h3 className="secondary-title">{secondaryText}</h3>
+                        secondaryText && <div className="secondary-title">{secondaryText}</div>
                     }
-                    <h1 className="primary-title">{primaryText}</h1>
+                    <div className="primary-title">{primaryText}</div>
                 </div>
         }
 
         <div className="wrap">
-            <h1 className="primary-title">{primaryText}</h1>
+            <div className="primary-title">{primaryText}</div>
             {
-                secondaryText && <h3 className="secondary-title">{secondaryText}</h3>
+                secondaryText && <div className="secondary-title">{secondaryText}</div>
             }
         </div>
     </SectionTitleWrapLayout>

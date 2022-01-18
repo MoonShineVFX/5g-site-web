@@ -23,7 +23,7 @@ const MenuItem = ({ tag = 'all', text, ...rest }) => (
         title={text}
         {...rest}
     >
-        <h1 className="title">{text}</h1>
+        <div className="title">{text}</div>
     </MenuItemLayout>
 
 );
@@ -58,7 +58,7 @@ const PartnerItem = ({
             </span>
             <span className="info">
                 <div className="name">
-                    <h2 className="title">{name}</h2>
+                    <div className="title">{name}</div>
                     <div>{nameEnglish}</div>
                 </div>
                 <div>{phone}</div>

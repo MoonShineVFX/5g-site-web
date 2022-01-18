@@ -78,7 +78,7 @@ const PolicyDetail = ({ pageData }) => {
                         className="info-wrap"
                     >
                         {updateTime && <span className="update-time">最後更新日期 {util.dateFormat(updateTime)}</span>}
-                        <h1 className="title">{title}</h1>
+                        <div className="title">{title}</div>
                         <p>{description}</p>
                     </Grid>
 
@@ -111,22 +111,22 @@ const PolicyDetail = ({ pageData }) => {
 
             <MainContentLayout className="section-information">
                 <div className="item">
-                    <h3 className="title">申請方式</h3>
+                    <div className="title">申請方式</div>
                     <p>{applicationWay}</p>
                 </div>
 
                 <div className="item">
-                    <h3 className="title">申請對象</h3>
+                    <div className="title">申請對象</div>
                     <p>{applicationObject}</p>
                 </div>
 
                 <div className="item">
-                    <h3 className="title">資金額度</h3>
+                    <div className="title">資金額度</div>
                     <p>{amountQuota}</p>
                 </div>
 
                 <div className="item">
-                    <h3 className="title">諮詢窗口</h3>
+                    <div className="title">諮詢窗口</div>
                     <div className="contact">
                         <p className="label">{contact.unit}</p>
                         <p>{contact.name}</p>
@@ -155,7 +155,7 @@ const PolicyDetail = ({ pageData }) => {
                 </div>
 
                 <div className="item">
-                    <h3 className="title">網站連結</h3>
+                    <div className="title">網站連結</div>
                     <p>
                         <Links
                             url={link}

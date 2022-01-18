@@ -39,6 +39,11 @@ const AppBarLayout = styled('header')(({ theme }) => ({
 const HeaderTopLayout = styled('div')(({ theme }) => ({
     fontSize: '0.9em',
     borderBottom: `1px solid ${theme.palette.text.secondary}`,
+    '.text-sitemap': {
+        fontSize: '1em',
+        fontWeight: 'normal',
+        margin: '0',
+    },
     '.search': {
         fontSize: '1.2em',
         color: '#FFF',
@@ -261,7 +266,9 @@ const Header = () => {
                             </span>
                         </Button>
 
-                        <Links url="/sitemap" title={text_sitemap}>{text_sitemap}</Links>
+                        <Links url="/sitemap" title={text_sitemap}>
+                            <h1 className="text-sitemap">{text_sitemap}</h1>
+                        </Links>
                     </Box>
                 </Toolbar>
             </HeaderTopLayout>

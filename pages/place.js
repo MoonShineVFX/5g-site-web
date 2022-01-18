@@ -46,7 +46,7 @@ const Place = ({ pageData }) => {
             <HeadTag title={`${pageData.title}-${placeConfig[query?.type] || pageData.currPageTitle}`} />
 
             <MenuLayout>
-                <h1 className="title">{placeConfig[query?.type]}</h1>
+                <div className="title">{placeConfig[query?.type]}</div>
             </MenuLayout>
 
             <ItemsWrapLayout>
