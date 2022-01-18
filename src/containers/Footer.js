@@ -203,7 +203,7 @@ const Footer = () => {
 
                                         <Links
                                             key={idx}
-                                            href={url}
+                                            url={url}
                                             title={title}
                                         >
                                             <img
