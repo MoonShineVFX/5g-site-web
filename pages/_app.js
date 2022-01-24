@@ -132,7 +132,7 @@ const WebSite = ({ Component, pageProps }) => {
 
                 <GlobalProvider>
                     <GoToContentLayout
-                        url="#content"
+                        url="#AC"
                         title="跳到主要內容"
                     >
                         跳到主要內容

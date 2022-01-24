@@ -55,6 +55,10 @@ const SelectOptLayout = styled('select')(({ theme }) => ({
     '&:hover': {
         opacity: '0.85',
     },
+    '&:focus, &:active, &:focus-visible': {
+        outline: 'dashed',
+        outlineColor: 'red',
+    },
 }));
 
 //

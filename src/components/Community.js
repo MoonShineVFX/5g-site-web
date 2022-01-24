@@ -48,6 +48,10 @@ const SocialsLayout = styled('span')(({ theme }) => ({
     'svg': {
         verticalAlign: 'middle',
     },
+    '.text-share-to': {
+        fontSize: '0.8em',
+        color: theme.palette.text.primary,
+    },
 }));
 
 const SnackbarLayout = styled(Snackbar)({
@@ -121,6 +125,8 @@ const Community = ({ title, shareUrl, ...rest }) => {
                     aria-label="複製文字"
                     onChange={() => {}}
                 />
+
+                <span className="text-share-to">文章分享至：</span>
 
                 {
                     socials.map(({ key, name, Icon, Component }) => (
