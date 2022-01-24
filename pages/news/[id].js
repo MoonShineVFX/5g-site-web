@@ -16,6 +16,9 @@ import {
 
 import { GlobalContext } from '../../src/context/global.state';
 import util from '../../src/utils/util';
+import utilConst from '../../src/utils/util.const';
+
+const { newsConfig } = utilConst;
 
 // 其他新聞 next/prev
 const Item = ({
@@ -122,7 +125,7 @@ const NewsDetail = ({ pageData }) => {
                 </Grid>
             </OtherNewsWrapLayout>
 
-            <ShowMoreButtonLayout url={`/news?page=1&cate=${categoryKey}`} />
+            <ShowMoreButtonLayout url={`/news?page=1&cate=${categoryKey}`} title={`${newsConfig[categoryKey]}列表頁`} />
         </Fragment>
 
     );
