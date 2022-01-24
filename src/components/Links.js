@@ -45,8 +45,8 @@ const BlindGuideLayout = styled(Links)({
 const BlindGuide = ({ title, accessKey, ...rest }) => (
 
     <BlindGuideLayout
-        url={`#A${accessKey}`}
-        id={`#A${accessKey}`}
+        url={`#${accessKey}`}
+        id={`A${accessKey}`}
         title={title}
         name={accessKey}
         accessKey={accessKey}
