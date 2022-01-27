@@ -10,6 +10,7 @@ const Links = ({ url, newPage, title, children, ...rest }) => (
         <a
             href={url}
             title={title}
+            aria-label={title}
             {...newPage && { target: '_blank'}}
             {...rest}
         >
@@ -44,8 +45,8 @@ const BlindGuideLayout = styled(Links)({
 const BlindGuide = ({ title, accessKey, ...rest }) => (
 
     <BlindGuideLayout
-        url={`#A${accessKey}`}
-        id={`#A${accessKey}`}
+        url={`#${accessKey}`}
+        id={`A${accessKey}`}
         title={title}
         name={accessKey}
         accessKey={accessKey}

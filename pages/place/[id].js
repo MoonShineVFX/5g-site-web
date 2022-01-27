@@ -1,5 +1,4 @@
-import { Fragment, useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import { faMapMarkerAlt, faFileAlt, faReply } from '@fortawesome/free-solid-svg-icons';
 
@@ -31,17 +30,14 @@ const BackButton = ({ type, className }) => (
 // 外連 google map
 const Location = ({ title, url }) => (
 
-    <Links url={url} newPage={true} title={`${title} 地圖 位置`}>
-        <FontIcon icon={faMapMarkerAlt} />
+    <Links url={url} title="位置地圖">
+        <FontIcon icon={faMapMarkerAlt} aria-label="icon" />
     </Links>
 
 );
 
 //
 const PlaceDetail = ({ pageData }) => {
-
-    // Router
-    const router = useRouter();
 
     const {
         type,
@@ -65,6 +61,9 @@ const PlaceDetail = ({ pageData }) => {
         globalDispatch,
     } = useContext(GlobalContext);
 
+    // State
+    const [url, setUrl] = useState('');
+
     useEffect(() => {
 
         globalDispatch({
@@ -78,7 +77,8 @@ const PlaceDetail = ({ pageData }) => {
         });
 
         globalDispatch({ type: 'sidenav', payload: false });
-        globalDispatch({ type: 'search_box', payload: false });
+        globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        setUrl(window.location.href);
 
     }, []);
 
@@ -99,8 +99,8 @@ const PlaceDetail = ({ pageData }) => {
                                 >
                                     <img
                                         src={imgUrl}
-                                        alt={id}
-                                        title={id}
+                                        alt={`${title}-第${idx+1}張圖`}
+                                        title={`${title}-第${idx+1}張圖`}
                                         width="778"
                                         height="438"
                                     />
@@ -119,15 +119,15 @@ const PlaceDetail = ({ pageData }) => {
             <SectionLayout className="section-information">
                 <Grid container>
                     <Grid item xs={12} md={6} className="grid-info">
-                        <h1 className="title">
+                        <div className="title">
                             {title}
                             <Location title={title} url={locationUrl} />
-                        </h1>
+                        </div>
 
                         <p className="description">{description}</p>
 
                         <div className="contact">
-                            <h2>聯絡資訊</h2>
+                            <div className="title">聯絡資訊</div>
                             <p className="label">{contact.unit}</p>
                             <p>{contact.name}</p>
                             {
@@ -157,44 +157,54 @@ const PlaceDetail = ({ pageData }) => {
                     <Grid item xs={12} md={6} className="grid-socials">
                         <Community
                             title={title}
-                            shareUrl={router.asPath}
+                            shareUrl={url}
                         />
                     </Grid>
                 </Grid>
             </SectionLayout>
 
             <SectionLayout className="section-relative">
-                <div>
-                    <h2 className="title">相關連結</h2>
-                    <div className="item">
-                        <span>
-                            {websiteName}
-                            <Links url={websiteUrl} newPage={true} title={websiteName}>{websiteUrl}</Links>
-                        </span>
-                    </div>
-                </div>
+                {
+                    websiteName &&
+                        <div>
+                            <div className="title">相關連結</div>
+                            <div className="item">
+                                <span>
+                                    <Links url={websiteUrl} title={websiteName}>{websiteName}</Links>
+                                </span>
+                            </div>
+                        </div>
+                }
 
                 {
                     !!files.length &&
-                        <ul className="items-document">
-                            {
-                                files.map(({ name, url }, idx) => (
+                        <div>
+                            <div className="title">相關文件</div>
+                            <div className="item">
+                                <ul className="items-document">
+                                    {
+                                        files.map(({ name, url }, idx) => (
 
-                                    <li key={idx}>
-                                        <Links url={url} newPage={true}>
-                                            <span className="filename">{name}</span>
-                                            <FontIcon icon={faFileAlt} />
-                                        </Links>
-                                    </li>
+                                            <li key={idx}>
+                                                <Links
+                                                    url={url}
+                                                    title={name}
+                                                >
+                                                    <span className="filename">{name}</span>
+                                                    <FontIcon icon={faFileAlt} />
+                                                </Links>
+                                            </li>
 
-                                ))
-                            }
-                        </ul>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        </div>
                 }
             </SectionLayout>
 
             <SectionLayout className='section-traffic'>
-                <h2 className="title">交通資訊</h2>
+                <div className="title">交通資訊</div>
                 <div className="items-traffic">
                     <div className="label">大眾運輸</div>
                     <p>{byMRT}</p>

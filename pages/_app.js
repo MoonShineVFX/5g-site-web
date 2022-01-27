@@ -1,6 +1,8 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { GlobalStyles, Box } from '@mui/material';
+import { styled } from '@mui/system';
+import ReactGA from 'react-ga';
 import 'dayjs/locale/zh-tw';
 import '../src/utils/locale';
 
@@ -12,6 +14,7 @@ import HeadTag from '../src/containers/HeadTag';
 import Header from '../src/containers/Header';
 import Footer from '../src/containers/Footer';
 import Breadcrumb from '../src/components/Breadcrumb';
+import { Links } from '../src/components/Links';
 import { BlindGuide } from '../src/components/Links';
 
 const styles = {
@@ -87,8 +90,37 @@ const styles = {
     },
 };
 
+// 跳到主要內容
+const GoToContentLayout = styled(Links)(({ theme }) => ({
+    width: '1px',
+    height: '1px',
+    color: theme.palette.text.primary,
+    border: '0',
+    margin: '-1px',
+    padding: '0',
+    position: 'absolute',
+    overflow: 'hidden',
+    clip: 'rect(0, 0, 0, 0)',
+    '&:focus, &:active': {
+        width: 'auto',
+        height: 'auto',
+        margin: '0',
+        position: 'static',
+        overflow: 'visible',
+        clip: 'auto',
+    },
+}));
+
 //
 const WebSite = ({ Component, pageProps }) => {
+
+    useEffect(() => {
+
+        // GA
+        ReactGA.initialize('UA-215404912-1');
+        ReactGA.pageview(window.location.pathname + window.location.search);
+
+    }, []);
 
     return (
 
@@ -99,6 +131,12 @@ const WebSite = ({ Component, pageProps }) => {
                 <GlobalStyles styles={styles} />
 
                 <GlobalProvider>
+                    <GoToContentLayout
+                        url="#content"
+                        title="跳到主要內容"
+                    >
+                        跳到主要內容
+                    </GoToContentLayout>
                     <Header />
                     <Breadcrumb />
 
@@ -112,6 +150,7 @@ const WebSite = ({ Component, pageProps }) => {
                         <Box
                             component="div"
                             className="web-container"
+                            id="content"
                         >
                             <BlindGuide
                                 title="中央內容區塊"

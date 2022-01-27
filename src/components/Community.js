@@ -1,5 +1,6 @@
 import { Fragment, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '@mui/material';
 import {
     FacebookShareButton,
     FacebookIcon,
@@ -16,16 +17,19 @@ import FontIcon from './FontIcon';
 const socials = [
     {
         key: 'fb',
+        name: 'facebook 社群',
         Icon: FacebookIcon,
         Component: FacebookShareButton,
     },
     {
         key: 'line',
+        name: 'line 社群',
         Icon: LineIcon,
         Component: LineShareButton,
     },
     {
         key: 'copy',
+        name: '複製',
         Icon: faLink,
     },
 ];
@@ -36,11 +40,17 @@ const SocialsLayout = styled('span')(({ theme }) => ({
     color: theme.palette.primary.main,
     cursor: 'pointer',
     '.item-share': {
+        minWidth: 'auto',
+        fontSize: '1em',
         margin: '0 10px',
         padding: '2px',
     },
     'svg': {
         verticalAlign: 'middle',
+    },
+    '.text-share-to': {
+        fontSize: '0.8em',
+        color: theme.palette.text.primary,
     },
 }));
 
@@ -109,18 +119,17 @@ const Community = ({ title, shareUrl, ...rest }) => {
         <Fragment>
             <SocialsLayout className="socials" {...rest}>
                 <input
-                    type="text"
-                    style={{
-                        position: 'absolute',
-                        top: '-99999px'
-                    }}
+                    type="hidden"
                     value={copyState}
                     ref={copyInputRef}
+                    aria-label="複製文字"
                     onChange={() => {}}
                 />
 
+                <span className="text-share-to">文章分享至：</span>
+
                 {
-                    socials.map(({ key, Icon, Component }) => (
+                    socials.map(({ key, name, Icon, Component }) => (
 
                         (key !== 'copy') ? (
 
@@ -135,13 +144,16 @@ const Community = ({ title, shareUrl, ...rest }) => {
 
                         ) : (
 
-                            <span
+                            <Button
                                 key={key}
+                                name={key}
+                                aria-label={name}
+                                value={name}
                                 onClick={() => handleShareButton(key)}
                                 className="item-share"
                             >
                                 <FontIcon icon={Icon} />
-                            </span>
+                            </Button>
 
                         )
 

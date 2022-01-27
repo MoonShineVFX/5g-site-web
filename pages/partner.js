@@ -23,7 +23,7 @@ const MenuItem = ({ tag = 'all', text, ...rest }) => (
         title={text}
         {...rest}
     >
-        <h1 className="title">{text}</h1>
+        <div className="title">{text}</div>
     </MenuItemLayout>
 
 );
@@ -45,7 +45,6 @@ const PartnerItem = ({
         url={link}
         className="item"
         title={name}
-        newPage={true}
     >
         <div className="top">
             <span className="thumb">
@@ -59,7 +58,7 @@ const PartnerItem = ({
             </span>
             <span className="info">
                 <div className="name">
-                    <h2 className="title">{name}</h2>
+                    <div className="title">{name}</div>
                     <div>{nameEnglish}</div>
                 </div>
                 <div>{phone}</div>
@@ -96,7 +95,8 @@ const Partner = ({ pageData }) => {
         });
 
         globalDispatch({ type: 'sidenav', payload: false });
-        globalDispatch({ type: 'search_box', payload: false });
+        globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        globalDispatch({ type: 'current_menu', payload: '' });
 
     }, []);
 

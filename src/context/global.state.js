@@ -9,9 +9,13 @@ const globalInitState = {
         level2: '',
         level1Link: '',
     },
+    currMenu: '',
     slideshowActive: 0,
     sideNav: false,
-    searchBox: false,
+    googleSearch: {
+        visible: false,
+        value: '',
+    },
 };
 
 // Create Context
@@ -24,9 +28,10 @@ const GlobalProvider = ({ children }) => {
     const {
         page,
         menu,
+        currMenu,
         slideshowActive,
         sideNav,
-        searchBox,
+        googleSearch,
     } = globalState;
     const { Provider } = GlobalContext;
 
@@ -36,9 +41,10 @@ const GlobalProvider = ({ children }) => {
             // 全域資料
             page,
             menu,
+            currMenu,
             slideshowActive,
             sideNav,
-            searchBox,
+            googleSearch,
 
             // Dispatch
             globalDispatch,

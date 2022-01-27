@@ -28,6 +28,7 @@ const ItemsWrapLayout = styled('section')(({ theme }) => ({
     },
     '.title': {
         height: '105px',
+        fontSize: '1.5em',
         WebkitLineClamp: '2',
     },
 }));
@@ -63,6 +64,10 @@ const SlideShowLayout = styled('section')(({ theme }) => ({
             height: '100%',
             display: 'inline-block',
             verticalAlign: 'middle',
+        },
+        '&:focus, &:active, &:focus-visible': {
+            outline: 'dashed',
+            outlineColor: 'red',
         },
         'span': {
             textAlign: 'center',
@@ -174,11 +179,16 @@ const SectionLayout = styled('section')(({ theme }) => ({
     '.label': {
         fontWeight: 'bold',
     },
+    '.title': {
+        fontSize: '1.5em',
+        fontWeight: 'bold',
+        marginBottom: '12px',
+    },
     '&.section-information': {
         '.title': {
             fontSize: '2.3em',
             fontWeight: 'normal',
-            marginTop: '0',
+            marginBottom: '30px',
         },
         'a': {
             fontSize: '0.8em',
@@ -206,8 +216,9 @@ const SectionLayout = styled('section')(({ theme }) => ({
     },
     '.contact': {
         marginTop: '40px',
-        'h2': {
-            marginBottom: '12px',
+        '.title': {
+            fontSize: '1.5em',
+            margin: '20px 0 12px',
         },
         'p': {
             lineHeight: '1.8',
@@ -241,6 +252,9 @@ const SectionLayout = styled('section')(({ theme }) => ({
         },
         '.items-document': {
             paddingInlineStart: '20px',
+            'a': {
+                display: 'inline-block',
+            },
             '.filename': {
                 marginRight: '6px',
                 '&:hover': {
@@ -277,7 +291,7 @@ const SectionLayout = styled('section')(({ theme }) => ({
         '.grid-info': {
             order: '2',
         },
-        'h2': {
+        '.title': {
             fontSize: '1.25em',
         },
         '&.section-information': {

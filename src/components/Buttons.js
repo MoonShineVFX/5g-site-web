@@ -3,7 +3,7 @@ import { styled } from '@mui/system';
 import { Button } from '@mui/material';
 import { ArrowForwardIos as ArrowForwardIosIcon } from '@mui/icons-material';
 
-const ButtonLayout = styled(Button)(({ theme }) => ({
+const ButtonLayout = styled(Button)({
     minWidth: '140px',
     minHeight: '36px',
     borderRadius: '7px',
@@ -15,21 +15,21 @@ const ButtonLayout = styled(Button)(({ theme }) => ({
         textAlign: 'right',
         display: 'inline-block',
         flex: '0 0 20%',
-        'svg': {
-            fontSize: '18px',
-            verticalAlign: 'middle',
-        },
     },
-}));
+    'svg': {
+        fontSize: '1.3em',
+        verticalAlign: 'middle',
+        marginRight: '-4px',
+    },
+});
 
 const Buttons = ({ outline, text, children }) => (
 
     <ButtonLayout
         {...outline && { variant: 'outlined' }}
-        endIcon={<ArrowForwardIosIcon />}
-        title={text}
     >
         <div>{text ? text : children}</div>
+        <ArrowForwardIosIcon />
     </ButtonLayout>
 
 );

@@ -50,13 +50,13 @@ const NewsWrap = ({ title, text, cate, data }) => (
 
     <Grid item xs={12} md={6}>
         <div className="title-box">
-            <h1 className="title">{title}</h1>
+            <div className="title">{title}</div>
             <div>{text}</div>
         </div>
         <div>
             {data.map((obj) => <NewsItemWrap key={obj.id} data={obj} />)}
         </div>
-        <ShowMoreButton url={`/news?page=1&cate=${cate}`} />
+        <ShowMoreButton url={`/news?page=1&cate=${cate}`} title={`更多消息-${title}`} />
     </Grid>
 
 );
@@ -68,8 +68,8 @@ const NewsItemWrap = ({ data: { id, title, isHot, createTime } }) => (
         url={`/news/${id}`}
         title={title}
     >
-        <h1 className="title web-line-clamp">{title}</h1>
-        <div>
+        <div className="title web-line-clamp">{title}</div>
+        <div className="content">
             {isHot && <span className="isHot">TOP</span>}
             {dayjs(createTime).format('YYYY.MM.DD (dd)')}
         </div>
@@ -85,7 +85,8 @@ const Home = ({ pageData }) => {
     useEffect(() => {
 
         globalDispatch({ type: 'sidenav', payload: false });
-        globalDispatch({ type: 'search_box', payload: false });
+        globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        globalDispatch({ type: 'current_menu', payload: '' });
 
     }, []);
 
@@ -107,7 +108,6 @@ const Home = ({ pageData }) => {
                                 <Links
                                     url={link}
                                     title={title}
-                                    newPage={true}
                                     className="item"
                                 >
                                     <img
@@ -155,7 +155,7 @@ const Home = ({ pageData }) => {
                     }
                 </ItemLayout>
 
-                <ShowMoreButton url={`/place?type=5g`} />
+                <ShowMoreButton url={`/place?type=5g`} title="更多消息-5G示範場域" />
             </section>
 
             <section>
@@ -200,7 +200,7 @@ const Home = ({ pageData }) => {
                                     url={`/partner?page=1&tag=${id}`}
                                 >
                                     <FontIcon icon={arrangePartnerTag(pageData.data.partnerTags)[idx].icon} />
-                                    <h1>{name}</h1>
+                                    <div className="title">{name}</div>
                                     <span className="web-x-align nothing"></span>
                                 </Links>
                             </Grid>

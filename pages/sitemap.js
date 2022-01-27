@@ -4,6 +4,7 @@ import { styled } from '@mui/system';
 
 import theme from '../src/utils/theme';
 import HeadTag from '../src/containers/HeadTag';
+import { Links } from '../src/components/Links';
 import { GlobalContext } from '../src/context/global.state';
 import useQuery from '../src/utils/useQuery';
 import utilConst from '../src/utils/util.const';
@@ -20,9 +21,6 @@ const {
 const styles = {
     '.breadcrumb .level1': {
         color: theme.palette.primary.main,
-    },
-    '.inContent': {
-        display: 'none',
     },
 };
 
@@ -67,6 +65,8 @@ const ItemsLayout = styled('div')(({ theme }) => ({
         padding: '12px 16px',
     },
     '.title': {
+        fontSize: '1.5em',
+        fontWeight: 'bold',
         margin: '0 0 4px',
     },
     '.sub-items > div': {
@@ -128,7 +128,7 @@ const Sitemap = () => {
         });
 
         globalDispatch({ type: 'sidenav', payload: false });
-        globalDispatch({ type: 'search_box', payload: false });
+        globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
 
     }, []);
 
@@ -155,21 +155,35 @@ const Sitemap = () => {
 
                 <ItemsLayout>
                     {
-                        extendMenus.map(({ text, subItems }, idx) => (
+                        extendMenus.map(({ key, text, subItems }, idx) => (
 
                             <div
                                 key={idx}
                                 className="item-wrap"
                             >
                                 <div className="inner">
-                                    <h2 className="title">{idx + 1}.{text}</h2>
+                                    <div className="title">
+                                        {
+                                            ((key === 'privacy') || (key === 'security')) ? (
+
+                                                <Links url={`/${key}`} title={text}>
+                                                    {idx + 1}.{text}
+                                                </Links>
+
+                                            ) : `${idx + 1}.${text}`
+                                        }
+                                    </div>
                                     <div className="sub-items">
                                         {
                                             subItems.map((sub, index) => (
 
-                                                <div key={sub.key}>
+                                                <Links
+                                                    key={sub.key}
+                                                    url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place' && key !== 'policy') ? '/' : ''}`}` : ''}${sub.key}`}
+                                                    title={sub.text}
+                                                >
                                                     {idx + 1}-{index + 1} {sub.text}
-                                                </div>
+                                                </Links>
 
                                             ))
                                         }

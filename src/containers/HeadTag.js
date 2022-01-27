@@ -15,8 +15,8 @@ import Head from 'next/head';
 );
 
 HeadSEO.defaultProps = {
-    title: '高雄市地方文化5G',
-    description: '高雄市地方文化5G',
+    title: '高雄5G文化科技平台',
+    description: '高雄5G文化科技平台',
 };
 
 HeadSEO.propTypes = {

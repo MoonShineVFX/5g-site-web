@@ -90,6 +90,7 @@ const PartnersLayout = styled('section')(({ theme }) => ({
     },
     '.title': {
         fontSize: '1.35em',
+        fontWeight: 'bold',
         margin: '0 0 4px',
     },
     '.email': {

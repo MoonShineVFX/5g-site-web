@@ -72,7 +72,7 @@ const FooterLayout = styled('footer')(({ theme }) => ({
         textAlign: 'right',
     },
     '.privacy': {
-        fontSize: '14px',
+        fontSize: '1em',
         'p': {
             marginTop: '0',
             marginBottom: '4px',
@@ -203,9 +203,8 @@ const Footer = () => {
 
                                         <Links
                                             key={idx}
-                                            href={url}
+                                            url={url}
                                             title={title}
-                                            newPage
                                         >
                                             <img
                                                 src={`/${name}.png`}
@@ -239,6 +238,9 @@ const Footer = () => {
                 </Grid>
 
                 <BackToTopLayout
+                    name="backTo"
+                    aria-label="回到最上方"
+                    value="回到最上方"
                     className="btn-backToTop"
                     onClick={targetScrollToTop}
                 >

@@ -1,6 +1,6 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { styled } from '@mui/system';
-import { Toolbar, Box, useMediaQuery } from '@mui/material';
+import { Toolbar, Box, useMediaQuery, Button } from '@mui/material';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Links, BlindGuide } from '../components/Links';
 import Navbar from './Navbar';
@@ -39,9 +39,15 @@ const AppBarLayout = styled('header')(({ theme }) => ({
 const HeaderTopLayout = styled('div')(({ theme }) => ({
     fontSize: '0.9em',
     borderBottom: `1px solid ${theme.palette.text.secondary}`,
+    '.text-sitemap': {
+        fontSize: '1em',
+        fontWeight: 'normal',
+        margin: '0',
+    },
     '.search': {
         fontSize: '1.2em',
-        marginRight: '40px',
+        color: '#FFF',
+        marginRight: '10px',
         position: 'relative',
         cursor: 'pointer',
     },
@@ -70,6 +76,7 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
         display: 'none',
         padding: '10px',
         position: 'absolute',
+        top: '46px',
         right: '-10px',
         zIndex: '30',
         cursor: 'default',
@@ -77,10 +84,9 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
             display: 'block',
         },
         'input': {
-            width: 'calc(100% - 10px - 56px)',
+            width: 'calc(100% - 20px - 56px)',
             fontSize: '1em',
             padding: '4px 8px',
-            outline: '0',
         },
         'a': {
             backgroundColor: theme.palette.primary.main,
@@ -155,10 +161,12 @@ const SideNavLayout = styled('div')(({ theme }) => ({
             backgroundColor: 'rgba(0, 0, 0, .65)',
         },
         '.nav-menu-wrap': {
+            height: '100%',
             textAlign: 'center',
             backgroundColor: theme.palette.primary.main,
             padding: '20px',
             zIndex: '1',
+            overflow: 'auto',
         },
         '.menu-outer': {
             display: 'block',
@@ -170,10 +178,11 @@ const SideNavLayout = styled('div')(({ theme }) => ({
 const Header = () => {
 
     // Context
-    const { sideNav, searchBox, globalDispatch } = useContext(GlobalContext);
-
-    // State
-    const [value, setValue] = useState('');
+    const {
+        sideNav,
+        googleSearch,
+        globalDispatch,
+    } = useContext(GlobalContext);
 
     // State
     const [visible, setVisible] = useState(false);
@@ -209,44 +218,75 @@ const Header = () => {
     const handleClick = () => globalDispatch({ type: 'sidenav', payload: !sideNav });
 
     // 父層點擊
-    const handleShowSearchInput = () => globalDispatch({ type: 'search_box', payload: !searchBox });
+    const handleShowSearchInput = () => {
+
+        globalDispatch({
+            type: 'search_box',
+            payload: {
+                ...googleSearch,
+                visible: !googleSearch.visible,
+            },
+        });
+
+    };
 
     // 阻止子層事件冒泡
     const handleClickStopPropagation = (e) => e.stopPropagation();
 
     // input
-    const handleChangeInput = ({ target }) => setValue(target.value);
+    const handleChangeInput = ({ target }) => {
 
-    // console.log('searchBox', searchBox)
-    // console.log('value', value)
+        globalDispatch({
+            type: 'search_box',
+            payload: {
+                ...googleSearch,
+                value: target.value,
+            },
+        });
+
+    };
 
     return (
 
         <AppBarLayout>
             <HeaderTopLayout>
                 <Toolbar className="web-container">
-                    <Links url="#contact" title={text_contact_us}>
-                        {text_contact_us}
-                    </Links>
+                    {
+                        false &&
+                            <Links url="#contact" title={text_contact_us}>
+                                {text_contact_us}
+                            </Links>
+                    }
 
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
-                        <span className="search" onClick={handleShowSearchInput}>
+                        <Button
+                            name="search"
+                            aria-label="搜尋"
+                            value="搜尋"
+                            className="search"
+                            onClick={handleShowSearchInput}
+                        >
                             <FontIcon icon={faSearch} />
-                            <div
-                                className={`search-input ${searchBox ? 'active' : ''}`}
+                            <span
+                                className={`search-input ${googleSearch.visible ? 'active' : ''}`}
                                 onClick={handleClickStopPropagation}
                             >
                                 <input
                                     type="text"
+                                    name="query"
+                                    aria-label="請輸入關鍵字"
                                     placeholder="請輸入關鍵字"
-                                    defaultValue={value}
+                                    value={googleSearch.value}
                                     onChange={handleChangeInput}
                                 />
-                                <Links url={`/searchall?q=${value}`} title={text_search_all}>送出</Links>
-                            </div>
-                        </span>
-                        <Links url="/sitemap" title={text_sitemap}>{text_sitemap}</Links>
+                                <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
+                            </span>
+                        </Button>
+
+                        <Links url="/sitemap" title={text_sitemap}>
+                            <h1 className="text-sitemap">{text_sitemap}</h1>
+                        </Links>
                     </Box>
                 </Toolbar>
             </HeaderTopLayout>

@@ -35,7 +35,8 @@ const Place = ({ pageData }) => {
         });
 
         globalDispatch({ type: 'sidenav', payload: false });
-        globalDispatch({ type: 'search_box', payload: false });
+        globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        globalDispatch({ type: 'current_menu', payload: '' });
 
     }, []);
 
@@ -45,7 +46,7 @@ const Place = ({ pageData }) => {
             <HeadTag title={`${pageData.title}-${placeConfig[query?.type] || pageData.currPageTitle}`} />
 
             <MenuLayout>
-                <h1 className="title">{placeConfig[query?.type]}</h1>
+                <div className="title">{placeConfig[query?.type]}</div>
             </MenuLayout>
 
             <ItemsWrapLayout>
@@ -71,7 +72,6 @@ const Place = ({ pageData }) => {
                                         url={`/place/${id}`}
                                         width="563"
                                         height="312"
-                                        newPage={true}
                                     />
                                 </Grid>
 

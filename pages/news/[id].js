@@ -1,7 +1,5 @@
-import { Fragment, useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
-import dayjs from 'dayjs';
 
 import HeadTag from '../../src/containers/HeadTag';
 import SectionTitle from '../../src/components/SectionTitle';
@@ -18,6 +16,9 @@ import {
 
 import { GlobalContext } from '../../src/context/global.state';
 import util from '../../src/utils/util';
+import utilConst from '../../src/utils/util.const';
+
+const { newsConfig } = utilConst;
 
 // 其他新聞 next/prev
 const Item = ({
@@ -30,8 +31,8 @@ const Item = ({
             title={title}
             className="item"
         >
-            <h2 className="title">{title}</h2>
-            <div className="date">
+            <div className="title">{title}</div>
+            <div className="content date">
                 <span>{util.dateFormat(createTime)}</span>
             </div>
         </NewsItemWrapLayout>
@@ -41,9 +42,6 @@ const Item = ({
 
 //
 const NewsDetail = ({ pageData }) => {
-
-    // Router
-    const router = useRouter();
 
     const {
         title,
@@ -59,6 +57,9 @@ const NewsDetail = ({ pageData }) => {
     // Context
     const { menu, globalDispatch } = useContext(GlobalContext);
 
+    // State
+    const [url, setUrl] = useState('');
+
     useEffect(() => {
 
         globalDispatch({
@@ -72,7 +73,8 @@ const NewsDetail = ({ pageData }) => {
         });
 
         globalDispatch({ type: 'sidenav', payload: false });
-        globalDispatch({ type: 'search_box', payload: false });
+        globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        setUrl(window.location.href);
 
     }, []);
 
@@ -85,7 +87,7 @@ const NewsDetail = ({ pageData }) => {
                 <TagsLayout className="detail-tags web-clear-box">
                     {tags.map(({ id, name }) => <span key={id}>{name}</span>)}
                 </TagsLayout>
-                <h1 className="title">{title}</h1>
+                <div className="title">{title}</div>
 
                 <Grid container>
                     <Grid item xs={12} md={6}>
@@ -101,7 +103,7 @@ const NewsDetail = ({ pageData }) => {
                     >
                         <Community
                             title={title}
-                            shareUrl={router.asPath}
+                            shareUrl={url}
                         />
                     </Grid>
                 </Grid>
@@ -123,7 +125,7 @@ const NewsDetail = ({ pageData }) => {
                 </Grid>
             </OtherNewsWrapLayout>
 
-            <ShowMoreButtonLayout url={`/news?page=1&cate=${categoryKey}`} />
+            <ShowMoreButtonLayout url={`/news?page=1&cate=${categoryKey}`} title={`${newsConfig[categoryKey]}列表頁`} />
         </Fragment>
 
     );

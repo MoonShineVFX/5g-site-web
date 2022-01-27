@@ -31,10 +31,9 @@ const PolicyItem = ({
         url={`/policy/${id}`}
         title={title}
         className="item"
-        newPage
     >
         <span className="second-title">{titleSecondary}</span>
-        <h1 className="title">{title}</h1>
+        <div className="title">{title}</div>
         <TagsLayout>
             {tags.map((id) => <span key={id}>{util.mappingTags(tagList)[id]}</span>)}
         </TagsLayout>
@@ -68,7 +67,8 @@ const Policy = ({ pageData }) => {
         });
 
         globalDispatch({ type: 'sidenav', payload: false });
-        globalDispatch({ type: 'search_box', payload: false });
+        globalDispatch({ type: 'search_box', payload: { visible: false, value: '' } });
+        globalDispatch({ type: 'current_menu', payload: '' });
 
     }, []);
 
@@ -149,6 +149,7 @@ const Policy = ({ pageData }) => {
                         name="selected"
                         value={query?.tag || ''}
                         onChange={handleChangeOpt}
+                        aria-label="選擇類別"
                     >
                         <option value="">全部</option>
                         {
