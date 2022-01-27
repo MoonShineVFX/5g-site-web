@@ -142,6 +142,11 @@ const HeaderLayout = styled(Toolbar)(({ theme }) => ({
     },
 }));
 
+// new header
+const NewHeaderLayout = styled('div')(({ theme }) => ({
+
+}));
+
 //
 const SideNavLayout = styled('div')(({ theme }) => ({
     display: 'none',
@@ -249,7 +254,7 @@ const Header = () => {
     return (
 
         <AppBarLayout>
-            <HeaderTopLayout>
+            {/* <HeaderTopLayout>
                 <Toolbar className="web-container">
                     {
                         false &&
@@ -289,9 +294,9 @@ const Header = () => {
                         </Links>
                     </Box>
                 </Toolbar>
-            </HeaderTopLayout>
+            </HeaderTopLayout> */}
 
-            <HeaderLayout className="web-container">
+            {/* <HeaderLayout className="web-container">
                 <Box className="grid-left">
                     <BlindGuide
                         title="上方功能區塊，此區塊有選單相關連結"
@@ -316,11 +321,13 @@ const Header = () => {
 
                 <Box className="grid-right">
                     <Navbar />
-                    <span className="search">
-                        <FontIcon icon={faSearch} />
-                    </span>
                 </Box>
-            </HeaderLayout>
+            </HeaderLayout> */}
+
+            <NewHeaderLayout className="web-container">
+                <div>123</div>
+                <div>123</div>
+            </NewHeaderLayout>
 
             <SideNavLayout className={`mWeb-menu ${sideNav ? 'active' : ''}`}>
                 <Navbar />

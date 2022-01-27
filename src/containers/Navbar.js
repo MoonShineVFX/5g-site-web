@@ -1,11 +1,16 @@
-import { useContext } from 'react';
+import { Fragment, useContext } from 'react';
 import { Button } from '@mui/material';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { styled } from '@mui/system';
 import { Links } from '../components/Links';
+import FontIcon from '../components/FontIcon';
 import { GlobalContext } from '../context/global.state';
 import utilConst from '../utils/util.const';
 
-const { navMenus } = utilConst;
+const {
+    navMenus,
+    text_search_all,
+} = utilConst;
 
 //
 const NavMenuLayout = styled('nav')(({ theme }) => ({
@@ -18,6 +23,13 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
         textDecoration: 'none',
         display: 'block',
         padding: '8px 12px',
+    },
+    '.search': {
+        fontSize: '1.2em',
+        color: '#FFF',
+        marginRight: '10px',
+        position: 'relative',
+        cursor: 'pointer',
     },
     [theme.breakpoints.up('md')]: {
         '.menu-outer': {
@@ -99,7 +111,12 @@ const NavMenuLayout = styled('nav')(({ theme }) => ({
 const Navbar = ({ ...rest }) => {
 
     // Context
-    const { menu, currMenu, globalDispatch } = useContext(GlobalContext);
+    const {
+        menu,
+        currMenu,
+        googleSearch,
+        globalDispatch,
+    } = useContext(GlobalContext);
 
     // 點擊第一層 menu
     const handleClickMenuName = ({ target }) => {
@@ -123,47 +140,128 @@ const Navbar = ({ ...rest }) => {
 
     };
 
+    // 父層點擊
+    const handleShowSearchInput = () => {
+
+        globalDispatch({
+            type: 'search_box',
+            payload: {
+                ...googleSearch,
+                visible: !googleSearch.visible,
+            },
+        });
+
+    };
+
+    // 阻止子層事件冒泡
+    const handleClickStopPropagation = (e) => e.stopPropagation();
+
+    // input
+    const handleChangeInput = ({ target }) => {
+
+        globalDispatch({
+            type: 'search_box',
+            payload: {
+                ...googleSearch,
+                value: target.value,
+            },
+        });
+
+    };
+
     return (
 
-        <NavMenuLayout className="nav-menu-wrap" {...rest}>
-            {
-                navMenus.map(({ key, text, subItems }, idx) => (
+        <Fragment>
+            <NavMenuLayout className="nav-menu-wrap" {...rest}>
+                {
+                    navMenus.map(({ key, text, subItems }, idx) => (
 
-                    <span
-                        key={idx}
-                        className={`menu-outer ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}
-                    >
-                        <Button
-                            name={`button-${idx + 1}`}
-                            aria-label={text}
-                            value={text}
-                            className="btn-menu"
-                            onClick={handleClickMenuName}
+                        <span
+                            key={idx}
+                            className={`menu-outer ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}
                         >
-                            {text}
-                        </Button>
+                            <Button
+                                name={`button-${idx + 1}`}
+                                aria-label={text}
+                                value={text}
+                                className="btn-menu"
+                                onClick={handleClickMenuName}
+                            >
+                                {text}
+                            </Button>
 
-                        <div className={`sub-menus ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}>
-                            {
-                                subItems.map((sub) => (
+                            <div className={`sub-menus ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}>
+                                {
+                                    subItems.map((sub) => (
 
-                                    <Links
-                                        key={sub.key}
-                                        title={sub.text}
-                                        url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place' && key !== 'policy') ? '/' : ''}`}` : ''}${sub.key}`}
-                                        onClick={() => handleClickSubMenu(sub.text)}
-                                    >
-                                        {sub.text}
-                                    </Links>
+                                        <Links
+                                            key={sub.key}
+                                            title={sub.text}
+                                            url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place' && key !== 'policy') ? '/' : ''}`}` : ''}${sub.key}`}
+                                            onClick={() => handleClickSubMenu(sub.text)}
+                                        >
+                                            {sub.text}
+                                        </Links>
 
-                                ))
-                            }
-                        </div>
-                    </span>
+                                    ))
+                                }
+                            </div>
+                        </span>
 
-                ))
-            }
-        </NavMenuLayout>
+                    ))
+                }
+
+                {/* <span className="menu-outer">
+                    <Button
+                        name="search"
+                        aria-label="搜尋"
+                        value="搜尋"
+                        className="search"
+                        onClick={handleShowSearchInput}
+                    >
+                        <FontIcon icon={faSearch} />
+                        <span
+                            className={`search-input ${googleSearch.visible ? 'active' : ''}`}
+                            onClick={handleClickStopPropagation}
+                        >
+                            <input
+                                type="text"
+                                name="query"
+                                aria-label="請輸入關鍵字"
+                                placeholder="請輸入關鍵字"
+                                value={googleSearch.value}
+                                onChange={handleChangeInput}
+                            />
+                            <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
+                        </span>
+                    </Button>
+                </span> */}
+            </NavMenuLayout>
+
+            <Button
+                name="search"
+                aria-label="搜尋"
+                value="搜尋"
+                className="search"
+                onClick={handleShowSearchInput}
+            >
+                <FontIcon icon={faSearch} />
+                <span
+                    className={`search-input ${googleSearch.visible ? 'active' : ''}`}
+                    onClick={handleClickStopPropagation}
+                >
+                    <input
+                        type="text"
+                        name="query"
+                        aria-label="請輸入關鍵字"
+                        placeholder="請輸入關鍵字"
+                        value={googleSearch.value}
+                        onChange={handleChangeInput}
+                    />
+                    <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
+                </span>
+            </Button>
+        </Fragment>
 
     );
 

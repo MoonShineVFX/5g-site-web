@@ -38,7 +38,6 @@ const socials = [
 const SocialsLayout = styled('span')(({ theme }) => ({
     fontSize: '1.6em',
     color: theme.palette.primary.main,
-    cursor: 'pointer',
     '.item-share': {
         minWidth: 'auto',
         fontSize: '1em',
@@ -51,6 +50,9 @@ const SocialsLayout = styled('span')(({ theme }) => ({
     '.text-share-to': {
         fontSize: '0.8em',
         color: theme.palette.text.primary,
+    },
+    'button': {
+        cursor: 'pointer',
     },
 }));
 
@@ -126,7 +128,7 @@ const Community = ({ title, shareUrl, ...rest }) => {
                     onChange={() => {}}
                 />
 
-                <span className="text-share-to">文章分享至：</span>
+                <span className="text-share-to">文章分享至 (另開小視窗)：</span>
 
                 {
                     socials.map(({ key, name, Icon, Component }) => (

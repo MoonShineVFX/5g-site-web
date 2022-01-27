@@ -12,6 +12,7 @@ const {
         text_contact_us,
         text_privacy,
         text_security,
+        text_sitemap,
     },
 } = utilConst;
 
@@ -224,6 +225,7 @@ const Footer = () => {
                     <Grid item xs={12} md={4} className="align-right privacy">
                         <p><Links url="/security" title={text_security}>{text_security}</Links></p>
                         <p><Links url="/privacy" title={text_privacy}>{text_privacy}</Links></p>
+                        <p><Links url="/sitemap" title={text_sitemap}>{text_sitemap}</Links></p>
                     </Grid>
                 </Grid>
 
