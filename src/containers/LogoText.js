@@ -7,9 +7,9 @@ const slogn = {
     text3: '5G應用與落地計畫',
 };
 
-const LogoLayout = styled(Links)(({ theme }) => ({
+const LogoLayout = styled('span')(({ theme }) => ({
     lineHeight: '1.4',
-    textAlign: 'center',
+    // textAlign: 'center',
     textDecoration: 'none',
     '.logo-text': {
         fontSize: '1.5em',
@@ -27,7 +27,7 @@ const LogoLayout = styled(Links)(({ theme }) => ({
 const LogoText = () => (
 
     <LogoLayout
-        url="/"
+        // url="/"
         className="logoText"
         title={`${slogn.text1} ${slogn.text2} ${slogn.text3}`}
     >

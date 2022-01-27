@@ -1,16 +1,11 @@
-import { Fragment, useContext } from 'react';
+import { useContext } from 'react';
 import { Button } from '@mui/material';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { styled } from '@mui/system';
 import { Links } from '../components/Links';
-import FontIcon from '../components/FontIcon';
 import { GlobalContext } from '../context/global.state';
 import utilConst from '../utils/util.const';
 
-const {
-    navMenus,
-    text_search_all,
-} = utilConst;
+const { navMenus } = utilConst;
 
 //
 const NavMenuLayout = styled('nav')(({ theme }) => ({
@@ -125,6 +120,16 @@ const Navbar = ({ ...rest }) => {
             type: 'current_menu',
             payload: (currMenu === target.name) ? '' : target.name,
         });
+
+        // Reset search input active status
+        globalDispatch({
+            type: 'search_box',
+            payload: {
+                ...googleSearch,
+                visible: false,
+            },
+        });
+
     };
 
     // 紀錄 menu 名稱
@@ -140,128 +145,73 @@ const Navbar = ({ ...rest }) => {
 
     };
 
-    // 父層點擊
-    const handleShowSearchInput = () => {
-
-        globalDispatch({
-            type: 'search_box',
-            payload: {
-                ...googleSearch,
-                visible: !googleSearch.visible,
-            },
-        });
-
-    };
-
-    // 阻止子層事件冒泡
-    const handleClickStopPropagation = (e) => e.stopPropagation();
-
-    // input
-    const handleChangeInput = ({ target }) => {
-
-        globalDispatch({
-            type: 'search_box',
-            payload: {
-                ...googleSearch,
-                value: target.value,
-            },
-        });
-
-    };
-
     return (
 
-        <Fragment>
-            <NavMenuLayout className="nav-menu-wrap" {...rest}>
-                {
-                    navMenus.map(({ key, text, subItems }, idx) => (
+        <NavMenuLayout className="nav-menu-wrap" {...rest}>
+            {
+                navMenus.map(({ key, text, subItems }, idx) => (
 
-                        <span
-                            key={idx}
-                            className={`menu-outer ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}
-                        >
-                            <Button
-                                name={`button-${idx + 1}`}
-                                aria-label={text}
-                                value={text}
-                                className="btn-menu"
-                                onClick={handleClickMenuName}
-                            >
-                                {text}
-                            </Button>
-
-                            <div className={`sub-menus ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}>
-                                {
-                                    subItems.map((sub) => (
-
-                                        <Links
-                                            key={sub.key}
-                                            title={sub.text}
-                                            url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place' && key !== 'policy') ? '/' : ''}`}` : ''}${sub.key}`}
-                                            onClick={() => handleClickSubMenu(sub.text)}
-                                        >
-                                            {sub.text}
-                                        </Links>
-
-                                    ))
-                                }
-                            </div>
-                        </span>
-
-                    ))
-                }
-
-                {/* <span className="menu-outer">
-                    <Button
-                        name="search"
-                        aria-label="搜尋"
-                        value="搜尋"
-                        className="search"
-                        onClick={handleShowSearchInput}
+                    <span
+                        key={idx}
+                        className={`menu-outer ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}
                     >
-                        <FontIcon icon={faSearch} />
-                        <span
-                            className={`search-input ${googleSearch.visible ? 'active' : ''}`}
-                            onClick={handleClickStopPropagation}
+                        <Button
+                            name={`button-${idx + 1}`}
+                            aria-label={text}
+                            value={text}
+                            className="btn-menu"
+                            onClick={handleClickMenuName}
                         >
-                            <input
-                                type="text"
-                                name="query"
-                                aria-label="請輸入關鍵字"
-                                placeholder="請輸入關鍵字"
-                                value={googleSearch.value}
-                                onChange={handleChangeInput}
-                            />
-                            <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
-                        </span>
-                    </Button>
-                </span> */}
-            </NavMenuLayout>
+                            {text}
+                        </Button>
 
-            <Button
-                name="search"
-                aria-label="搜尋"
-                value="搜尋"
-                className="search"
-                onClick={handleShowSearchInput}
-            >
-                <FontIcon icon={faSearch} />
-                <span
-                    className={`search-input ${googleSearch.visible ? 'active' : ''}`}
-                    onClick={handleClickStopPropagation}
+                        <div className={`sub-menus ${(currMenu === `button-${idx + 1}`) ? 'active' : ''}`}>
+                            {
+                                subItems.map((sub) => (
+
+                                    <Links
+                                        key={sub.key}
+                                        title={sub.text}
+                                        url={`/${key ? `${key}${`${(key !== 'news' && key !== 'place' && key !== 'policy') ? '/' : ''}`}` : ''}${sub.key}`}
+                                        onClick={() => handleClickSubMenu(sub.text)}
+                                    >
+                                        {sub.text}
+                                    </Links>
+
+                                ))
+                            }
+                        </div>
+                    </span>
+
+                ))
+            }
+
+            {/* <span className="menu-outer">
+                <Button
+                    name="search"
+                    aria-label="搜尋"
+                    value="搜尋"
+                    className="search"
+                    onClick={handleShowSearchInput}
                 >
-                    <input
-                        type="text"
-                        name="query"
-                        aria-label="請輸入關鍵字"
-                        placeholder="請輸入關鍵字"
-                        value={googleSearch.value}
-                        onChange={handleChangeInput}
-                    />
-                    <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
-                </span>
-            </Button>
-        </Fragment>
+                    <FontIcon icon={faSearch} />
+                    <span
+                        className={`search-input ${googleSearch.visible ? 'active' : ''}`}
+                        onClick={handleClickStopPropagation}
+                    >
+                        <input
+                            type="text"
+                            name="query"
+                            aria-label="請輸入關鍵字"
+                            placeholder="請輸入關鍵字"
+                            value={googleSearch.value}
+                            onChange={handleChangeInput}
+                        />
+                        <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
+                    </span>
+                </Button>
+            </span> */}
+        </NavMenuLayout>
 
     );
 

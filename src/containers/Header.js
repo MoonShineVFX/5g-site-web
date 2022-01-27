@@ -1,6 +1,6 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { styled } from '@mui/system';
-import { Toolbar, Box, useMediaQuery, Button } from '@mui/material';
+import { Toolbar, Box, useMediaQuery, Button, Grid } from '@mui/material';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Links, BlindGuide } from '../components/Links';
 import Navbar from './Navbar';
@@ -11,8 +11,6 @@ import utilConst from '../utils/util.const';
 
 const {
     textConfig: {
-        text_contact_us,
-        text_sitemap,
         text_search_all,
     },
 } = utilConst;
@@ -31,6 +29,69 @@ const AppBarLayout = styled('header')(({ theme }) => ({
         '> div': {
             padding: '0 20px',
             overflow: 'initial',
+        },
+    },
+}));
+
+// new header
+const NewHeaderLayout = styled(Grid)(({ theme }) => ({
+    alignItems: 'center',
+    padding: '0',
+    '.nav-menu-wrap': {
+        display: 'inline-block',
+    },
+    '.menus': {
+        textAlign: 'right',
+    },
+    '.search': {
+        fontSize: '0.65em',
+        color: '#FFF',
+        marginRight: '10px',
+        position: 'relative',
+        cursor: 'pointer',
+    },
+    '.google-search-input': {
+        lineHeight: '1',
+        width: '300px',
+        display: 'none',
+        position: 'absolute',
+        right: '-10px',
+        zIndex: '30',
+        '&.active': {
+            display: 'block',
+        },
+    },
+    '.search-input': {
+        width: '300px',
+        lineHeight: '1',
+        fontSize: '0.9em',
+        backgroundColor: '#FFF',
+        display: 'none',
+        padding: '10px',
+        position: 'absolute',
+        top: '56px',
+        right: '-10px',
+        zIndex: '30',
+        boxShadow: '1px 1px 2px 0 rgba(0,0,0,0.2)',
+        cursor: 'default',
+        '&.active': {
+            display: 'block',
+        },
+        'input': {
+            width: 'calc(100% - 20px - 56px)',
+            fontSize: '1em',
+            padding: '4px 8px',
+        },
+        'a': {
+            backgroundColor: theme.palette.primary.main,
+            marginLeft: '10px',
+            padding: '8px 12px',
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        padding: '0 20px',
+        '.search': {
+            display: 'none',
         },
     },
 }));
@@ -140,11 +201,6 @@ const HeaderLayout = styled(Toolbar)(({ theme }) => ({
             padding: '20px',
         },
     },
-}));
-
-// new header
-const NewHeaderLayout = styled('div')(({ theme }) => ({
-
 }));
 
 //
@@ -324,9 +380,54 @@ const Header = () => {
                 </Box>
             </HeaderLayout> */}
 
-            <NewHeaderLayout className="web-container">
-                <div>123</div>
-                <div>123</div>
+            <NewHeaderLayout
+                container
+                className="web-container"
+            >
+                <Grid item xs={4}>
+                    <LogoText />
+                </Grid>
+                <Grid item xs={8} className="menus">
+                    {/* <BlindGuide
+                        title="上方功能區塊，此區塊有選單相關連結"
+                        accessKey="U"
+                    /> */}
+
+                    <Links
+                        url="#nav"
+                        id="nav"
+                        accessKey="U"
+                        title="上方功能區塊，此區塊有選單相關連結"
+                    >:::</Links>
+
+                    <Navbar />
+
+                    <Button
+                        name="search"
+                        aria-label="搜尋"
+                        value="搜尋"
+                        className="search"
+                        onClick={handleShowSearchInput}
+                    >
+                        <h1>
+                            <FontIcon icon={faSearch} />
+                        </h1>
+                        <span
+                            className={`search-input ${googleSearch.visible ? 'active' : ''}`}
+                            onClick={handleClickStopPropagation}
+                        >
+                            <input
+                                type="text"
+                                name="query"
+                                aria-label="請輸入關鍵字"
+                                placeholder="請輸入關鍵字"
+                                value={googleSearch.value}
+                                onChange={handleChangeInput}
+                            />
+                            <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
+                        </span>
+                    </Button>
+                </Grid>
             </NewHeaderLayout>
 
             <SideNavLayout className={`mWeb-menu ${sideNav ? 'active' : ''}`}>
@@ -342,6 +443,5 @@ const Header = () => {
 export default Header;
 
 /**
- * google search
- * api key: AIzaSyA_MyBFlaWVlPyRp6Xwdfpu7pLu0_5Iar8
+ * https://codepen.io/askie/pen/PooPBBG?editors=1100
  */

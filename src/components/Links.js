@@ -42,7 +42,7 @@ const BlindGuideLayout = styled(Links)({
 });
 
 // 導盲用定位點
-const BlindGuide = ({ title, accessKey, ...rest }) => (
+const BlindGuide = ({ id, title, accessKey, ...rest }) => (
 
     <BlindGuideLayout
         url={`#${accessKey}`}

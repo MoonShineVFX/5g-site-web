@@ -111,6 +111,12 @@ const GoToContentLayout = styled(Links)(({ theme }) => ({
     },
 }));
 
+const TestLayout = styled(Links)({
+    // ':focus': {
+
+    // },
+});
+
 //
 const WebSite = ({ Component, pageProps }) => {
 
@@ -132,7 +138,7 @@ const WebSite = ({ Component, pageProps }) => {
 
                 <GlobalProvider>
                     <GoToContentLayout
-                        url="#content"
+                        url="#main"
                         title="跳到主要內容"
                     >
                         跳到主要內容
@@ -150,13 +156,18 @@ const WebSite = ({ Component, pageProps }) => {
                         <Box
                             component="div"
                             className="web-container"
-                            id="content"
+                            // id="content"
                         >
-                            <BlindGuide
+                            <TestLayout
+                                url="#main"
+                                id="main"
+                                accessKey="C"
+                            >:::</TestLayout>
+                            {/* <BlindGuide
                                 title="中央內容區塊"
                                 accessKey="C"
                                 className="inContent"
-                            />
+                            /> */}
                             <Component {...pageProps} />
                         </Box>
                     </Box>
