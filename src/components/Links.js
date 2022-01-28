@@ -39,6 +39,9 @@ const BlindGuideLayout = styled(Links)({
     '&.inContent': {
         color: '#000',
     },
+    '&:focus': {
+        outline: '4px dotted red',
+    },
 });
 
 // 導盲用定位點

@@ -251,7 +251,7 @@ const Header = () => {
                         >
                             <FontIcon icon={faSearch} />
                             <span
-                                className={`search-input ${googleSearch.visible ? 'active' : ''}`}
+                                className={`search-input ${googleSearch?.visible ? 'active' : ''}`}
                                 onClick={handleClickStopPropagation}
                             >
                                 <input
@@ -259,10 +259,10 @@ const Header = () => {
                                     name="query"
                                     aria-label="請輸入關鍵字"
                                     placeholder="請輸入關鍵字"
-                                    value={googleSearch.value}
+                                    value={googleSearch?.value}
                                     onChange={handleChangeInput}
                                 />
-                                <Links url={`/searchall?q=${googleSearch.value}`} title={text_search_all}>送出</Links>
+                                <Links url={`/searchall?q=${googleSearch?.value}`} title={text_search_all}>送出</Links>
                             </span>
                         </Button>
 

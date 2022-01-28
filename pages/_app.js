@@ -91,7 +91,7 @@ const styles = {
 };
 
 // 跳到主要內容
-const GoToContentLayout = styled(Links)(({ theme }) => ({
+const GoToContentLayout = styled('a')(({ theme }) => ({
     width: '1px',
     height: '1px',
     color: theme.palette.text.primary,
@@ -132,7 +132,7 @@ const WebSite = ({ Component, pageProps }) => {
 
                 <GlobalProvider>
                     <GoToContentLayout
-                        url="#content"
+                        href="#content"
                         title="跳到主要內容"
                     >
                         跳到主要內容
