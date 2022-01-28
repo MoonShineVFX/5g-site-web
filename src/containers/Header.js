@@ -79,6 +79,7 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
         top: '46px',
         right: '-10px',
         zIndex: '30',
+        boxShadow: '1px 1px 3px 1px rgba(0,0,0,.1)',
         cursor: 'default',
         '&.active': {
             display: 'block',
@@ -96,7 +97,7 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
     },
     [theme.breakpoints.down('md')]: {
         padding: '0 20px',
-        '.search': {
+        '.web': {
             display: 'none',
         },
     },
@@ -105,6 +106,50 @@ const HeaderTopLayout = styled('div')(({ theme }) => ({
 //
 const HeaderLayout = styled(Toolbar)(({ theme }) => ({
     height: '100px',
+    '.search': {
+        fontSize: '0.8em',
+        color: '#FFF',
+        position: 'relative',
+        cursor: 'pointer',
+    },
+    '.google-search-input': {
+        lineHeight: '1',
+        width: '300px',
+        display: 'none',
+        position: 'absolute',
+        right: '-10px',
+        zIndex: '30',
+        '&.active': {
+            display: 'block',
+        },
+    },
+    '.search-input': {
+        width: '300px',
+        lineHeight: '1',
+        fontSize: '0.9em',
+        backgroundColor: '#FFF',
+        display: 'none',
+        padding: '10px',
+        position: 'absolute',
+        top: '46px',
+        right: '-10px',
+        zIndex: '30',
+        boxShadow: '1px 1px 3px 1px rgba(0,0,0,.1)',
+        cursor: 'default',
+        '&.active': {
+            display: 'block',
+        },
+        'input': {
+            width: 'calc(100% - 20px - 56px)',
+            fontSize: '1em',
+            padding: '4px 8px',
+        },
+        'a': {
+            backgroundColor: theme.palette.primary.main,
+            marginLeft: '10px',
+            padding: '8px 12px',
+        },
+    },
     [theme.breakpoints.up('1220')]: {
         padding: '0',
     },
@@ -246,7 +291,7 @@ const Header = () => {
                             name="search"
                             aria-label="搜尋"
                             value="搜尋"
-                            className="search"
+                            className="search web"
                             onClick={handleShowSearchInput}
                         >
                             <FontIcon icon={faSearch} />
@@ -298,9 +343,30 @@ const Header = () => {
 
                 <Box className="grid-right">
                     <Navbar />
-                    <span className="search">
+
+                    <Button
+                        name="search"
+                        aria-label="搜尋"
+                        value="搜尋"
+                        className="search mWeb-search"
+                        onClick={handleShowSearchInput}
+                    >
                         <FontIcon icon={faSearch} />
-                    </span>
+                        <span
+                            className={`search-input ${googleSearch?.visible ? 'active' : ''}`}
+                            onClick={handleClickStopPropagation}
+                        >
+                            <input
+                                type="text"
+                                name="query"
+                                aria-label="請輸入關鍵字"
+                                placeholder="請輸入關鍵字"
+                                value={googleSearch?.value}
+                                onChange={handleChangeInput}
+                            />
+                            <Links url={`/searchall?q=${googleSearch?.value}`} title={text_search_all}>送出</Links>
+                        </span>
+                    </Button>
                 </Box>
             </HeaderLayout>
 

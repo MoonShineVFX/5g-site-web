@@ -14,7 +14,6 @@ import HeadTag from '../src/containers/HeadTag';
 import Header from '../src/containers/Header';
 import Footer from '../src/containers/Footer';
 import Breadcrumb from '../src/components/Breadcrumb';
-import { Links } from '../src/components/Links';
 import { BlindGuide } from '../src/components/Links';
 
 const styles = {
