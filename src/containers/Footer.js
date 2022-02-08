@@ -224,6 +224,11 @@ const Footer = () => {
                     <Grid item xs={12} md={4} className="align-right privacy">
                         <p><Links url="/security" title={text_security}>{text_security}</Links></p>
                         <p><Links url="/privacy" title={text_privacy}>{text_privacy}</Links></p>
+                        <p>
+                            <a href="https://accessibility.ncc.gov.tw/Applications/Detail?category=20220106151048" title="無障礙網站">
+                                <img src="/AA.png" border="0" width="88" height="31" alt="通過AA無障礙網頁檢測" />
+                            </a>
+                        </p>
                     </Grid>
                 </Grid>
 
