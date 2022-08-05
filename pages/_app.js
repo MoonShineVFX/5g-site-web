@@ -111,6 +111,33 @@ const GoToContentLayout = styled('a')(({ theme }) => ({
 }));
 
 //
+const WillBeBackLayout = styled('div')({
+    maxWidth: '50%',
+    margin: 'calc((100vh - 205px) / 2) auto',
+    display: 'flex',
+    justifyContent: 'center',
+    'h1': {
+        fontSize: '50px',
+    },
+    'p': {
+        fontSize: '28px',
+        color: 'gray',
+    },
+});
+
+//
+const WillBeBack = () => (
+
+    <WillBeBackLayout>
+        <div className="container">
+            <h1>網站維護中！</h1>
+            <p>很抱歉，網站維護中將暫停服務，造成不便請見諒。</p>
+        </div>
+    </WillBeBackLayout>
+
+);
+
+//
 const WebSite = ({ Component, pageProps }) => {
 
     useEffect(() => {
@@ -124,45 +151,53 @@ const WebSite = ({ Component, pageProps }) => {
     return (
 
         <Fragment>
-            <HeadTag />
+            <WillBeBack />
 
-            <ThemeProvider theme={theme}>
-                <GlobalStyles styles={styles} />
+            {
+                false &&
+                    <Fragment>
+                        <HeadTag />
 
-                <GlobalProvider>
-                    <GoToContentLayout
-                        href="#content"
-                        title="跳到主要內容"
-                    >
-                        跳到主要內容
-                    </GoToContentLayout>
-                    <Header />
-                    <Breadcrumb />
+                        <ThemeProvider theme={theme}>
+                            <GlobalStyles styles={styles} />
 
-                    <Box
-                        component="main"
-                        sx={{
-                            minHeight: 'calc(100vh - 475px)', // header: 145px, footer: 330px
-                            display: 'flex',
-                        }}
-                    >
-                        <Box
-                            component="div"
-                            className="web-container"
-                            id="content"
-                        >
-                            <BlindGuide
-                                title="中央內容區塊"
-                                accessKey="C"
-                                className="inContent"
-                            />
-                            <Component {...pageProps} />
-                        </Box>
-                    </Box>
-                    <Footer />
-                </GlobalProvider>
-            </ThemeProvider>
+                            <GlobalProvider>
+                                <GoToContentLayout
+                                    href="#content"
+                                    title="跳到主要內容"
+                                >
+                                    跳到主要內容
+                                </GoToContentLayout>
+                                <Header />
+                                <Breadcrumb />
+
+                                <Box
+                                    component="main"
+                                    sx={{
+                                        minHeight: 'calc(100vh - 475px)', // header: 145px, footer: 330px
+                                        display: 'flex',
+                                    }}
+                                >
+                                    <Box
+                                        component="div"
+                                        className="web-container"
+                                        id="content"
+                                    >
+                                        <BlindGuide
+                                            title="中央內容區塊"
+                                            accessKey="C"
+                                            className="inContent"
+                                        />
+                                        <Component {...pageProps} />
+                                    </Box>
+                                </Box>
+                                <Footer />
+                            </GlobalProvider>
+                        </ThemeProvider>
+                    </Fragment>
+            }
         </Fragment>
+
 
     );
 
