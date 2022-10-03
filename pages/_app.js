@@ -151,51 +151,51 @@ const WebSite = ({ Component, pageProps }) => {
     return (
 
         <Fragment>
-            <WillBeBack />
-
             {
                 false &&
-                    <Fragment>
-                        <HeadTag />
-
-                        <ThemeProvider theme={theme}>
-                            <GlobalStyles styles={styles} />
-
-                            <GlobalProvider>
-                                <GoToContentLayout
-                                    href="#content"
-                                    title="跳到主要內容"
-                                >
-                                    跳到主要內容
-                                </GoToContentLayout>
-                                <Header />
-                                <Breadcrumb />
-
-                                <Box
-                                    component="main"
-                                    sx={{
-                                        minHeight: 'calc(100vh - 475px)', // header: 145px, footer: 330px
-                                        display: 'flex',
-                                    }}
-                                >
-                                    <Box
-                                        component="div"
-                                        className="web-container"
-                                        id="content"
-                                    >
-                                        <BlindGuide
-                                            title="中央內容區塊"
-                                            accessKey="C"
-                                            className="inContent"
-                                        />
-                                        <Component {...pageProps} />
-                                    </Box>
-                                </Box>
-                                <Footer />
-                            </GlobalProvider>
-                        </ThemeProvider>
-                    </Fragment>
+                    <WillBeBack />
             }
+
+            <Fragment>
+                <HeadTag />
+
+                <ThemeProvider theme={theme}>
+                    <GlobalStyles styles={styles} />
+
+                    <GlobalProvider>
+                        <GoToContentLayout
+                            href="#content"
+                            title="跳到主要內容"
+                        >
+                            跳到主要內容
+                        </GoToContentLayout>
+                        <Header />
+                        <Breadcrumb />
+
+                        <Box
+                            component="main"
+                            sx={{
+                                minHeight: 'calc(100vh - 475px)', // header: 145px, footer: 330px
+                                display: 'flex',
+                            }}
+                        >
+                            <Box
+                                component="div"
+                                className="web-container"
+                                id="content"
+                            >
+                                <BlindGuide
+                                    title="中央內容區塊"
+                                    accessKey="C"
+                                    className="inContent"
+                                />
+                                <Component {...pageProps} />
+                            </Box>
+                        </Box>
+                        <Footer />
+                    </GlobalProvider>
+                </ThemeProvider>
+            </Fragment>
         </Fragment>
 
 
