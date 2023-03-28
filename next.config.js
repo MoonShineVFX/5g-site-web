@@ -25,7 +25,10 @@ module.exports = {
                 source: '/index',
                 destination: '/',
                 permanent: false,
-            },
+            }
         ]
+    },
+    publicRuntimeConfig: {
+        MAINTENANCE_MODE: process.env.MAINTENANCE_MODE === 'true',
     },
 }
