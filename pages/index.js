@@ -97,7 +97,7 @@ const Home = ({ pageData }) => {
             <HeadTag />
 
             <section>
-                <SlideShowLayout data={pageData.data.banners} interval={pageData.data.loopTime}>
+                <SlideShowLayout data={pageData.data.banners} interval={pageData.data.loopTime * 1000}>
                     {
                         pageData.data.banners.map(({ id, title, imgUrl, link }, idx) => (
 
