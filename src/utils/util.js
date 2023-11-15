@@ -17,23 +17,23 @@ const util = {
         // method, url 與環境設定
         const CONFIG = () => {
 
-                let url = '';
-                let method = 'post';
+            let url = '';
+            let method = 'post';
 
-                if (typeof service === 'string') url = service;
-                else {
+            if (typeof service === 'string') url = service;
+            else {
 
-                    url = service.url;
-                    method = service.method;
+                url = service.url;
+                method = service.method;
 
-                }
+            }
 
-                return {
-                    url: (process.env.NODE_ENV === 'development') ? `//${process.env.HOST}/api${url}` : `/api${url}`,
-                    method,
-                };
+            return {
+                url: (process.env.NODE_ENV === 'development') ? `//${process.env.HOST}/api${url}` : `/api${url}`,
+                method,
+            };
 
-            },
+        },
             showErrorMesg = (message, callback) => {
 
                 console.log(message || '出了些狀況，請找研發');
@@ -70,11 +70,11 @@ const util = {
 
     },
 
-        serviceServer: ({ method = 'post', url }, reqData = {}) => {
+    serviceServer: ({ method = 'post', url }, reqData = {}) => {
 
-            return axios[method](`https://${process.env.HOST}/api${url}`, reqData);
+        return axios[method](`${process.env.HOST}/api${url}`, reqData, {withCredentials: true});
 
-        },
+    },
 
     pathnameKey: (path) => path.split('/')[1] || 'index',
 
