@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
@@ -82,7 +82,7 @@ const ArrowsLayout = styled('span')({
 });
 
 //
-const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
+const SlideShow = ({ data, showArrow, showDot, interval, children, ...rest }) => {
 
     // Context
     const {
@@ -119,6 +119,15 @@ const SlideShow = ({ data, showArrow, showDot, children, ...rest }) => {
         });
 
     };
+
+    // 自動輪播
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            handleArrowRight();  // 或者你可以直接使用 globalDispatch 來更新 slideshowActive
+        }, interval);
+
+        return () => clearTimeout(timer);  // 清除定時器
+    }, [slideshowActive, interval]);  // 當 slideshowActive 或 interval 變更時重新設置定時器
 
     return (
 
@@ -175,6 +184,7 @@ SlideShow.defaultProps = {
     data: [],
     showDot: true,
     showArrow: true,
+    interval: 3000,
 };
 
 SlideShow.propTypes = {
