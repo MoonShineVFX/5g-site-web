@@ -128,7 +128,7 @@ const SlideShow = ({
     // 自動輪播
     useEffect(() => {
         const timer = setTimeout(() => {
-            handleArrowRight(); // 或者你可以直接使用 globalDispatch 來更新 slideshowActive
+            handleArrowRight();
         }, interval);
 
         return () => clearTimeout(timer); // 清除定時器
@@ -138,7 +138,7 @@ const SlideShow = ({
         <SlideShowLayout className="slide-show" {...rest}>
             <SlideShowContainer>{transitions((style, item) => (
                 <animated.div style={style}>
-                    {children[item]} {/* 或者其他根據 item 渲染的內容 */}
+                    {children[item]} 
                 </animated.div>
             ))}
             </SlideShowContainer>
