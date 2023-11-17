@@ -185,7 +185,7 @@ const Footer = () => {
                         />
                         <LogoText />
                         <SponsorGridLayout><span className="title withLine">主辦</span>高雄市政府經濟發展局</SponsorGridLayout>
-                        <SponsorGridLayout><span className="title withLine">協辦</span>財團法人資訊工業策進會</SponsorGridLayout>
+                        <SponsorGridLayout><span className="title withLine">協辦</span>資暘數位有限公司</SponsorGridLayout>
                     </Grid>
 
                     <Grid item xs={12} md={4}>
@@ -193,8 +193,8 @@ const Footer = () => {
                             <SponsorGridLayout className="info">
                                 <span id="contact" className="title">{text_contact_us}</span>
                                 806高雄市前鎮區成功二路25號2樓(數位轉型共創基地) <br/>
-                                arielfang@iii.org.tw <br/>
-                                Tel: +886 7 9667231 <br/>
+                                tracylee@vnrc.tw <br/>
+                                Tel: +886 7 3387397 <br/>
                             </SponsorGridLayout>
 
                             <div className="socialWrap">

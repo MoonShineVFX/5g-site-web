@@ -4,7 +4,7 @@ import { Links } from '../components/Links';
 const slogn = {
     text1: '高雄市',
     text2: '地方文化特色整合',
-    text3: '5G應用與落地計畫',
+    text3: '5G應用與落地計畫 2.0',
 };
 
 const LogoLayout = styled(Links)(({ theme }) => ({
