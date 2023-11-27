@@ -97,7 +97,7 @@ const Home = ({ pageData }) => {
             <HeadTag />
 
             <section>
-                <SlideShowLayout data={pageData.data.banners}>
+                <SlideShowLayout data={pageData.data.banners} interval={pageData.data.loopTime * 1000}>
                     {
                         pageData.data.banners.map(({ id, title, imgUrl, link }, idx) => (
 
@@ -234,7 +234,7 @@ export async function getServerSideProps () {
         props: {
             pageData: {
                 title: '首頁',
-                data: data.data,
+                data: data.data
             },
         },
     };
