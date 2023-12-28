@@ -134,6 +134,7 @@ const WillBeBack = () => (
     <div className="container">
       <h1>網站維護中！</h1>
       <p>很抱歉，網站維護中將暫停服務，造成不便請見諒。</p>
+      <p>聯絡方式: 07-3383827李小姐</p>
     </div>
   </WillBeBackLayout>
 
