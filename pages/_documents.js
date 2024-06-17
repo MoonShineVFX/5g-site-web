@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
             const initialProps = await Document.getInitialProps(ctx);
             
             // Set X-Frame-Options header
-            ctx.res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+            ctx.res.setHeader('X-Frame-Options', 'DENY');
             
             return {
                 ...initialProps,
