@@ -12,7 +12,7 @@ module.exports = {
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: "/:path*",
         headers: [
           {
             key: "Strict-Transport-Security",
@@ -36,8 +36,15 @@ module.exports = {
           },
           {
             key: "Content-Security-Policy",
-            value:
-              "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none';",
+            value: "\
+              default-src 'self';\
+              connect-src 'self' https://www.google-analytics.com;\
+              script-src 'self' https://www.google-analytics.com https://www.googletagmanager.com;\
+              style-src 'self' 'unsafe-inline';\
+              img-src 'self' https://storage.googleapis.com;\
+              object-src 'none';\
+              form-action 'self';\
+              frame-ancestors 'none';",
           },
           {
             key: "Permissions-Policy",
