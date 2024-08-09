@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://5gkh.kcg.gov.tw
+
+# Sitemaps
+Sitemap: https://5gkh.kcg.gov.tw/sitemap.xml

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://5gkh.kcg.gov.tw</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.073Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/privacy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/searchall</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/security</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/sitemap</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/news?page=1&amp;amp;cate=news</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/news?page=1&amp;amp;cate=newsIndustry</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/policy?page=1&amp;amp;cate=center</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/policy?page=1&amp;amp;cate=local</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/place?type=5g</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/place?type=tech</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+<url><loc>https://5gkh.kcg.gov.tw/partner?page=1&amp;amp;tag=all</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2024-06-17T09:36:32.074Z</lastmod></url>
+</urlset>
