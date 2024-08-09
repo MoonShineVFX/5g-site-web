@@ -1,4 +1,5 @@
 module.exports = {
+  poweredByHeader: false,
   env: {
     HOST:
       process.env.API_URL === undefined
@@ -29,10 +30,6 @@ module.exports = {
           {
             key: "X-Xss-Protection",
             value: "1; mode=block",
-          },
-          {
-            key: "X-Powered-By",
-            value: " ",
           },
           {
             key: "Content-Security-Policy",
